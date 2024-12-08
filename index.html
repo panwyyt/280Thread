@@ -369,7 +369,7 @@
             const blob = new Blob([content], { type: 'text/plain' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = `280Thread_${threadTitle}.txt`;
+            link.download = `280Thread_${threadTitle.replace(/[ ,]+/g, "_")}.txt`;
             link.click();
         });
 
@@ -379,3 +379,40 @@
             
             reader.onload = function(e) {
                 const content = e.target.result;
+                const lines = content.split('\n');
+
+                const titleLine = lines.find(line => line.startsWith('Thread Title:'));
+                const conceptLineStartIdx = lines.findIndex(line => line.startsWith('Thread Concept:'));
+                const tweetsStartIdx = lines.findIndex(line => line.startsWith('Tweets:')) + 1;
+                
+                if (titleLine) {
+                    document.getElementById('threadTitle').value = titleLine.replace('Thread Title: ', '');
+                }
+                
+                let concept = '';
+                for (let i = conceptLineStartIdx + 1; i < tweetsStartIdx - 1; i++) {
+                    concept += `${lines[i]}\n`;
+                }
+                document.getElementById('threadConcept').value = concept.trim();
+
+                // Clear existing tweets
+                document.getElementById('tweetContainer').innerHTML = '';
+                tweetCount = 0;
+                
+                // Add imported tweets
+                for (let i = tweetsStartIdx; i < lines.length; i++) {
+                    if (lines[i].trim()) {
+                        createTweetElement();
+                        document.getElementById(`tweet${tweetCount}`).value = lines[i].substring(lines[i].indexOf('.') + 2);
+                        updatePreview(); // update the preview for each tweet imported
+                    }
+                }
+            };
+
+            if (file) {
+                reader.readAsText(file);
+            }
+        });
+    </script>
+</body>
+</html>
