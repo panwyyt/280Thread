@@ -249,6 +249,13 @@
                 </svg>
                 Save Thread
             </button>
+            <button id="clearAllBtn" class="btn btn-danger">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+                Clear All
+            </button>
             <label class="btn btn-danger file-label">
                 <input type="file" class="file-input" id="importFile">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -369,8 +376,16 @@
             const blob = new Blob([content], { type: 'text/plain' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = `280Thread_${threadTitle.replace(/[ ,]+/g, "_")}.txt`;
+            link.download = `280Thread_${threadTitle}.txt`;
             link.click();
+        });
+
+        document.getElementById('clearAllBtn').addEventListener('click', () => {
+            document.getElementById('threadTitle').value = '';
+            document.getElementById('threadConcept').value = '';
+            document.getElementById('tweetContainer').innerHTML = '';
+            document.getElementById('previewContainer').innerHTML = '';
+            tweetCount = 0;
         });
 
         document.getElementById('importFile').addEventListener('change', (event) => {
@@ -381,37 +396,36 @@
                 const content = e.target.result;
                 const lines = content.split('\n');
 
-                const titleLine = lines.find(line => line.startsWith('Thread Title:'));
-                const conceptLineStartIdx = lines.findIndex(line => line.startsWith('Thread Concept:'));
-                const tweetsStartIdx = lines.findIndex(line => line.startsWith('Tweets:')) + 1;
-                
-                if (titleLine) {
-                    document.getElementById('threadTitle').value = titleLine.replace('Thread Title: ', '');
-                }
-                
-                let concept = '';
-                for (let i = conceptLineStartIdx + 1; i < tweetsStartIdx - 1; i++) {
-                    concept += `${lines[i]}\n`;
-                }
-                document.getElementById('threadConcept').value = concept.trim();
-
-                // Clear existing tweets
+                // Clear existing content
+                document.getElementById('threadTitle').value = '';
+                document.getElementById('threadConcept').value = '';
                 document.getElementById('tweetContainer').innerHTML = '';
+                document.getElementById('previewContainer').innerHTML = '';
                 tweetCount = 0;
-                
-                // Add imported tweets
-                for (let i = tweetsStartIdx; i < lines.length; i++) {
-                    if (lines[i].trim()) {
-                        createTweetElement();
-                        document.getElementById(`tweet${tweetCount}`).value = lines[i].substring(lines[i].indexOf('.') + 2);
-                        updatePreview(); // update the preview for each tweet imported
+
+                let currentSection = '';
+                for (let line of lines) {
+                    if (line.startsWith('Thread Title:')) {
+                        document.getElementById('threadTitle').value = line.replace('Thread Title:', '').trim();
+                    } else if (line.startsWith('Thread Concept:')) {
+                        currentSection = 'concept';
+                    } else if (line.startsWith('Tweets:')) {
+                        currentSection = 'tweets';
+                    } else if (currentSection === 'concept') {
+                        document.getElementById('threadConcept').value += line.trim() + '\n';
+                    } else if (currentSection === 'tweets') {
+                        if (line.trim()) {
+                            createTweetElement();
+                            document.getElementById(`tweet${tweetCount}`).value = line.trim();
+                            document.getElementById(`count${tweetCount}`).textContent = `${line.trim().length}/${MAX_TWEET_LENGTH}`;
+                        }
                     }
                 }
+
+                updatePreview();
             };
 
-            if (file) {
-                reader.readAsText(file);
-            }
+            reader.readAsText(file);
         });
     </script>
 </body>
