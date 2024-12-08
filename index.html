@@ -1,355 +1,381 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tweet Thread Editor</title>
-  <style>
-    body {
-      background: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 100%);
-      color: #333;
-      padding: 20px;
-      text-align: center;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>280Thread</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1A73E8;
+            --secondary-color: #34A853;
+            --text-color: #202124;
+            --background-color: #F5F5F5;
+            --border-color: #E0E0E0;
+        }
 
-    h1 {
-      color: #ff6f61;
-      text-align: center;
-      text-shadow: 2px 2px #ffe6e6;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
 
-    label {
-      font-weight: bold;
-      display: block;
-      margin: 10px 0 5px;
-    }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            padding: 2rem;
+        }
 
-    input[type="text"], textarea {
-      width: 80%;
-      padding: 10px;
-      margin: 0 auto 10px;
-      border: 1px solid #ff6f61;
-      border-radius: 5px;
-      font-size: 14px;
-      display: block;
-    }
+        .container {
+            width: 100%;
+            max-width: 700px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
 
-    input[type="text"]:focus, textarea:focus {
-      outline: none;
-      border-color: #6a5acd;
-      box-shadow: 0 0 5px rgba(106,90,205,0.5);
-    }
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
 
-    .button-group {
-      text-align: center;
-      margin-top: 20px;
-    }
+        .header h1 {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
 
-    button, .import-button {
-      color: white;
-      padding: 10px 20px;
-      margin: 5px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 14px;
-    }
+        .form-group {
+            margin-bottom: 1rem;
+        }
 
-    .add-button {
-      background-color: #ff6f61;
-    }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
 
-    .add-button:hover {
-      background-color: #e65b57;
-    }
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+            outline: none;
+            font-family: 'Roboto', sans-serif;
+        }
 
-    .copy-all-button {
-      background-color: #6a5acd;
-    }
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+        }
 
-    .copy-all-button:hover {
-      background-color: #5a4ab6;
-    }
+        .tweet-container {
+            margin-bottom: 1rem;
+            position: relative;
+        }
 
-    .save-button {
-      background-color: #ffa500;
-    }
+        .tweet-container textarea {
+            resize: vertical;
+            min-height: 100px;
+            font-family: 'Roboto', sans-serif;
+        }
 
-    .save-button:hover {
-      background-color: #e59400;
-    }
+        .character-count {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.75rem;
+            color: var(--text-color);
+        }
 
-    .clear-button {
-      background-color: #ff4500;
-    }
+        .character-count.warning {
+            color: #EA4335;
+        }
 
-    .clear-button:hover {
-      background-color: #e03d00;
-    }
+        .tweet-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
 
-    .import-button {
-      background-color: #32cd32;
-      display: inline-block;
-    }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
 
-    .import-button:hover {
-      background-color: #28a428;
-    }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-    .import-button input {
-      display: none;
-    }
+        .btn-small {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+        }
 
-    .tweet-box-container {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 10px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 10px;
-      background-color: #fff;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      width: 80%;
-      margin: 10px auto;
-    }
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
 
-    .tweet-box {
-      width: 100%;
-      margin-bottom: 10px;
-      border: none;
-      outline: none;
-      resize: none;
-    }
+        .btn-primary:hover {
+            background-color: #1557B0;
+        }
 
-    .counter {
-      font-size: 12px;
-      font-weight: bold;
-    }
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
 
-    .counter.red {
-      color: red;
-    }
+        .btn-secondary:hover {
+            background-color: #2B7D41;
+        }
 
-    .preview-box {
-      background-color: #fff;
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      font-style: italic;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      width: 80%;
-      margin: 10px auto;
-      text-align: left;
-    }
+        .btn-danger {
+            background-color: #EA4335;
+            color: white;
+        }
 
-    .copy-button {
-      background-color: #ff6f61;
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 12px;
-      margin-top: 5px;
-    }
+        .btn-danger:hover {
+            background-color: #C5221F;
+        }
 
-    .copy-button:hover {
-      background-color: #e65b57;
-    }
+        .btn-copy {
+            background-color: #4CAF50;
+            color: white;
+        }
 
-    /* Responsive layout adjustments */
-    .main-container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
+        .btn-copy:hover {
+            background-color: #45a049;
+        }
 
-    .preview-section h2 {
-      text-align: center;
-      color: #6a5acd;
-    }
+        .file-input {
+            display: none;
+        }
 
-    @media (min-width: 768px) {
-      .main-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
+        .file-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
 
-      .tweet-section, .preview-section {
-        width: 100%;
-      }
-    }
-  </style>
+        .preview {
+            margin-top: 2rem;
+            background-color: var(--background-color);
+            border-radius: 4px;
+            padding: 1rem;
+        }
+
+        .preview-item {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+                padding: 1rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <div class="header">
+            <h1>280Thread</h1>
+        </div>
 
-  <h1>📝 Tweet Thread Editor 🐦</h1>
+        <div class="form-group">
+            <label for="threadTitle">Thread Title</label>
+            <input type="text" id="threadTitle" class="form-control" placeholder="Enter a title for your thread">
+        </div>
 
-  <div class="main-container">
-    <div class="tweet-section">
-      <label for="tweetName">🖋️ Tweet Name:</label>
-      <input type="text" id="tweetName" placeholder="Enter tweet name here">
+        <div class="form-group">
+            <label for="threadConcept">Thread Concept</label>
+            <textarea id="threadConcept" class="form-control" placeholder="Briefly describe the main idea of your thread" rows="3"></textarea>
+        </div>
 
-      <label for="plotIdea">💡 Plot Idea:</label>
-      <textarea id="plotIdea" placeholder="Enter plot idea here" rows="3"></textarea>
+        <div id="tweetContainer"></div>
 
-      <div id="tweetContainers"></div>
+        <div class="button-group">
+            <button id="addTweetBtn" class="btn btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                Add Tweet
+            </button>
+            <button id="copyAllBtn" class="btn btn-copy">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                Copy All
+            </button>
+            <button id="saveBtn" class="btn btn-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                    <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                    <polyline points="7 3 7 8 15 8"></polyline>
+                </svg>
+                Save Thread
+            </button>
+            <label class="btn btn-danger file-label">
+                <input type="file" class="file-input" id="importFile">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21.2 15.89l-1.2 1.44c-1.28 1.48-3.2 2.67-6 2.67h-4a7.5 7.5 0 0 1 0-15h4a7.48 7.48 0 0 1 6 3"></path>
+                    <path d="M8 12h8"></path>
+                    <path d="M16 8l-4-4-4 4"></path>
+                </svg>
+                Import
+            </label>
+        </div>
 
-      <div class="button-group">
-        <button class="add-button" onclick="addTweetBox()">➕ Add Tweet Box</button>
-        <button class="copy-all-button" onclick="copyAll()">📋 Copy All</button>
-        <button class="save-button" onclick="saveToFile()">💾 Save as .txt</button>
-        <button class="clear-button" onclick="clearAll()">🗑️ Clear All</button>
-        <label class="import-button">
-          📂 Import File
-          <input type="file" id="importFile" onchange="importFile(event)">
-        </label>
-      </div>
+        <div id="previewContainer" class="preview"></div>
     </div>
 
-    <div class="preview-section" id="previewSection">
-      <h2>👁️ Preview</h2>
-      <div id="previewContainer"></div>
-    </div>
-  </div>
+    <script>
+        const MAX_TWEET_LENGTH = 280;
+        let tweetCount = 0;
 
-  <script>
-    let tweetCount = 0;
-    const maxCharacters = 280;
+        function createTweetElement() {
+            tweetCount++;
+            const tweetElement = document.createElement('div');
+            tweetElement.classList.add('tweet-container');
+            tweetElement.innerHTML = `
+                <textarea id="tweet${tweetCount}" class="form-control" placeholder="Write your tweet (max 280 characters)" rows="4"></textarea>
+                <div id="count${tweetCount}" class="character-count">0/${MAX_TWEET_LENGTH}</div>
+                <div class="tweet-actions">
+                    <button id="copy${tweetCount}" class="btn btn-small btn-copy">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        Copy
+                    </button>
+                </div>
+            `;
+            document.getElementById('tweetContainer').appendChild(tweetElement);
 
-    function addTweetBox() {
-      tweetCount++;
-      const tweetBoxHtml = `
-        <div class="tweet-box-container" id="tweetBox${tweetCount}">
-          <textarea class="tweet-box" oninput="updateCounter(${tweetCount})" id="tweetText${tweetCount}" rows="4"></textarea>
-          <span class="counter" id="counter${tweetCount}">0/${maxCharacters}</span>
-          <button class="copy-button" onclick="copyText(${tweetCount})">📋 Copy</button>
-        </div>`;
-      document.getElementById('tweetContainers').insertAdjacentHTML('beforeend', tweetBoxHtml);
-      updatePreview();
-    }
+            const textarea = tweetElement.querySelector('textarea');
+            const countDisplay = tweetElement.querySelector('.character-count');
+            const copyButton = tweetElement.querySelector('.btn-copy');
 
-    function updateCounter(id) {
-      const textArea = document.getElementById(`tweetText${id}`);
-      const counter = document.getElementById(`counter${id}`);
-      const textLength = textArea.value.length;
+            textarea.addEventListener('input', () => {
+                const length = textarea.value.length;
+                countDisplay.textContent = `${length}/${MAX_TWEET_LENGTH}`;
+                countDisplay.classList.toggle('warning', length > MAX_TWEET_LENGTH);
+                updatePreview();
+            });
 
-      if (textLength > maxCharacters) {
-        counter.classList.add('red');
-      } else {
-        counter.classList.remove('red');
-      }
-
-      counter.innerText = `${textLength}/${maxCharacters}`;
-      updatePreview();
-    }
-
-    function updatePreview() {
-      let previewHtml = '';
-      let hasSecondTweet = false;
-      for (let i = 1; i <= tweetCount; i++) {
-        const tweetText = document.getElementById(`tweetText${i}`).value;
-        if (tweetText.trim()) {
-          previewHtml += `<div class="preview-box">📄 ${i}. ${tweetText}</div>`;
+            copyButton.addEventListener('click', () => {
+                textarea.select();
+                document.execCommand('copy');
+            });
         }
-        if (i >= 2 && tweetText.trim()) {
-          hasSecondTweet = true;
+
+        function updatePreview() {
+            const previewContainer = document.getElementById('previewContainer');
+            previewContainer.innerHTML = '';
+
+            for (let i = 1; i <= tweetCount; i++) {
+                const textarea = document.getElementById(`tweet${i}`);
+                if (textarea && textarea.value.trim()) {
+                    const previewItem = document.createElement('div');
+                    previewItem.classList.add('preview-item');
+                    previewItem.textContent = `${i}. ${textarea.value.trim()}`;
+                    previewContainer.appendChild(previewItem);
+                }
+            }
         }
-      }
-      document.getElementById('previewContainer').innerHTML = previewHtml;
 
-      // Show the preview section only after the second tweet is typed
-      if (hasSecondTweet) {
-        document.getElementById('previewSection').style.display = 'block';
-      } else {
-        document.getElementById('previewSection').style.display = 'none';
-      }
-    }
+        document.getElementById('addTweetBtn').addEventListener('click', createTweetElement);
 
-    function copyText(id) {
-      const tweetText = document.getElementById(`tweetText${id}`);
-      tweetText.select();
-      document.execCommand('copy');
-    }
+        document.getElementById('copyAllBtn').addEventListener('click', () => {
+            const threadTitle = document.getElementById('threadTitle').value || 'Untitled Thread';
+            const threadConcept = document.getElementById('threadConcept').value;
+            let content = `Thread Title: ${threadTitle}\n\nThread Concept:\n${threadConcept}\n\nTweets:\n\n`;
 
-    function copyAll() {
-      let allText = '';
-      for (let i = 1; i <= tweetCount; i++) {
-        allText += document.getElementById(`tweetText${i}`).value + '\n';
-      }
-      const tempTextArea = document.createElement('textarea');
-      tempTextArea.value = allText;
-      document.body.appendChild(tempTextArea);
-      tempTextArea.select();
-      document.execCommand('copy');
-      document.body.removeChild(tempTextArea);
-    }
+            for (let i = 1; i <= tweetCount; i++) {
+                const textarea = document.getElementById(`tweet${i}`);
+                if (textarea && textarea.value.trim()) {
+                    content += `${i}. ${textarea.value.trim()}\n\n`;
+                }
+            }
 
-    function saveToFile() {
-      const tweetName = document.getElementById('tweetName').value || 'Untitled';
-      const plotIdea = document.getElementById('plotIdea').value;
-      let content = `Tweet Name: ${tweetName}\n\nPlot Idea:\n${plotIdea}\n\nTweets:\n\n`;
+            // Create a temporary textarea to copy the content
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = content;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
 
-      for (let i = 1; i <= tweetCount; i++) {
-        const tweetText = document.getElementById(`tweetText${i}`).value;
-        if (tweetText.trim()) {
-          content += `${i}. ${tweetText.trim()}\n\n`;
-        }
-      }
-
-      const blob = new Blob([content], { type: 'text/plain' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = `Hatchedboy:${tweetName}.txt`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    }
-
-    function importFile(event) {
-      const file = event.target.files[0];
-      const reader = new FileReader();
-      
-      reader.onload = function(e) {
-        const content = e.target.result;
-        const parts = content.split('\n\n');
-        
-        const tweetNameLine = parts[0].split('Tweet Name: ')[1];
-        document.getElementById('tweetName').value = tweetNameLine || '';
-        
-        const plotIdeaStart = content.indexOf('Plot Idea:\n') + 11;
-        const plotIdeaEnd = content.indexOf('\n\nTweets:');
-        const plotIdea = content.substring(plotIdeaStart, plotIdeaEnd).trim();
-        document.getElementById('plotIdea').value = plotIdea;
-
-        document.getElementById('tweetContainers').innerHTML = '';
-        tweetCount = 0;
-
-        const tweetsStart = content.indexOf('\n\nTweets:\n') + 10;
-        const tweets = content.substring(tweetsStart).split('\n\n');
-        tweets.forEach((tweet, index) => {
-          if (tweet.trim()) {
-            addTweetBox();
-            document.getElementById(`tweetText${index + 1}`).value = tweet.split('. ')[1];
-            updateCounter(index + 1);
-          }
+            // Optional: Provide visual feedback
+            const copyAllBtn = document.getElementById('copyAllBtn');
+            copyAllBtn.textContent = 'Copied!';
+            setTimeout(() => {
+                copyAllBtn.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    Copy All
+                `;
+            }, 1500);
         });
-      };
 
-      reader.readAsText(file);
-    }
+        document.getElementById('saveBtn').addEventListener('click', () => {
+            const threadTitle = document.getElementById('threadTitle').value || 'Untitled Thread';
+            const threadConcept = document.getElementById('threadConcept').value;
+            let content = `Thread Title: ${threadTitle}\n\nThread Concept:\n${threadConcept}\n\nTweets:\n\n`;
 
-    function clearAll() {
-      document.getElementById('tweetName').value = '';
-      document.getElementById('plotIdea').value = '';
-      document.getElementById('tweetContainers').innerHTML = '';
-      document.getElementById('previewContainer').innerHTML = '';
-      tweetCount = 0;
-      updatePreview();
-    }
-  </script>
+            for (let i = 1; i <= tweetCount; i++) {
+                const textarea = document.getElementById(`tweet${i}`);
+                if (textarea && textarea.value.trim()) {
+                    content += `${i}. ${textarea.value.trim()}\n\n`;
+                }
+            }
 
-</body>
-</html>
+            const blob = new Blob([content], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `280Thread_${threadTitle}.txt`;
+            link.click();
+        });
+
+        document.getElementById('importFile').addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                const content = e.target.result;
