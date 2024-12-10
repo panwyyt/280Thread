@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -22,6 +22,14 @@
             --border-color: #333;
         }
 
+        .christmas-theme {
+            --primary-color: #FF6F61; /* Vivid red */
+            --secondary-color: #FFD700; /* Gold */
+            --text-color: #FFFFFF; /* White */
+            --background-color: #2E8B57; /* Dark green */
+            --border-color: #FFD700; /* Gold */
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -31,7 +39,7 @@
 
         html, body {
             height: 100%;
-            overflow: auto; /* Ensure scrolling for the entire page */
+            overflow: auto;
         }
 
         body {
@@ -43,7 +51,7 @@
             justify-content: center;
             padding: 2rem;
             position: relative;
-            overflow: hidden; /* Prevent body overflow */
+            overflow: hidden;
         }
 
         /* Christmas Decorations */
@@ -80,14 +88,14 @@
         .container {
             width: 100%;
             max-width: 700px;
-            background-color: white;
+            background-color: var(--background-color);
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 2rem;
             position: relative;
             z-index: 1;
-            overflow-y: auto; /* Add scrolling for the container */
-            max-height: calc(100vh - 4rem); /* Limit height to viewport minus padding */
+            overflow-y: auto;
+            max-height: calc(100vh - 4rem);
         }
 
         .header {
@@ -119,6 +127,8 @@
             font-size: 1rem;
             outline: none;
             font-family: 'Helvetica', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
         }
 
         .form-control:focus {
@@ -172,6 +182,8 @@
             align-items: center;
             gap: 0.5rem;
             font-family: 'Helvetica', sans-serif;
+            background-color: var(--primary-color);
+            color: white;
         }
 
         .btn-small {
@@ -235,13 +247,14 @@
         }
 
         .preview-item {
-            background-color: white;
+            background-color: var(--background-color);
             border: 1px solid var(--border-color);
             border-radius: 4px;
             padding: 1rem;
             margin-bottom: 1rem;
             position: relative;
             font-family: 'Helvetica', sans-serif;
+            color: var(--text-color);
         }
 
         @media (max-width: 600px) {
@@ -273,6 +286,20 @@
         .theme-toggle svg {
             fill: var(--text-color);
         }
+
+        /* Christmas Theme Toggle */
+        .christmas-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .christmas-toggle svg {
+            fill: var(--text-color);
+        }
     </style>
 </head>
 <body>
@@ -301,6 +328,15 @@
             <line x1="21" y1="12" x2="23" y2="12"></line>
             <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+    </div>
+
+    <!-- Christmas Theme Toggle -->
+    <div class="christmas-toggle" id="christmasToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
         </svg>
     </div>
 
@@ -528,6 +564,13 @@
         const themeToggle = document.getElementById('themeToggle');
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-theme');
+        });
+
+        // Christmas Theme Toggle
+        const christmasToggle = document.getElementById('christmasToggle');
+        christmasToggle.addEventListener('click', () => {
+            document.body.classList.toggle('christmas-theme');
+            document.querySelectorAll('.snowflake, .christmas-tree, .santa-hat').forEach(el => el.classList.toggle('hidden'));
         });
     </script>
 </body>
