@@ -246,7 +246,7 @@
             </button>
             <button id="saveBtn" class="btn btn-secondary">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1-2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
                     <polyline points="17 21 17 13 7 13 7 21"></polyline>
                     <polyline points="7 3 7 8 15 8"></polyline>
                 </svg>
@@ -255,16 +255,16 @@
             <button id="clearAllBtn" class="btn btn-danger">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y1="18"></line>
                 </svg>
                 Clear All
             </button>
             <label class="btn btn-danger file-label">
                 <input type="file" class="file-input" id="importFile">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21.2 15.89l-1.2 1.44c-1.28 1.48-3.2 2.67-6 2.67h-4a7.5 7.5 0 0 1 0-15h4a7.48 7.48 0 0 1 6 3"></path>
-                    <path d="M8 12h8"></path>
-                    <path d="M16 8l-4-4-4 4"></path>
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
                 </svg>
                 Import
             </label>
@@ -418,9 +418,10 @@
                         document.getElementById('threadConcept').value += line.trim() + '\n';
                     } else if (currentSection === 'tweets') {
                         if (line.trim()) {
+                            const tweetText = line.replace(/^\d+\.\s*/, '').trim(); // Remove the number and dot
                             createTweetElement();
-                            document.getElementById(`tweet${tweetCount}`).value = line.trim();
-                            document.getElementById(`count${tweetCount}`).textContent = `${line.trim().length}/${MAX_TWEET_LENGTH}`;
+                            document.getElementById(`tweet${tweetCount}`).value = tweetText;
+                            document.getElementById(`count${tweetCount}`).textContent = `${tweetText.length}/${MAX_TWEET_LENGTH}`;
                         }
                     }
                 }
