@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -29,6 +29,11 @@
             transition: all 0.3s ease;
         }
 
+        html, body {
+            height: 100%;
+            overflow: auto; /* Ensure scrolling for the entire page */
+        }
+
         body {
             font-family: 'Helvetica', sans-serif;
             background-color: var(--background-color);
@@ -38,7 +43,7 @@
             justify-content: center;
             padding: 2rem;
             position: relative;
-            overflow: hidden;
+            overflow: hidden; /* Prevent body overflow */
         }
 
         /* Christmas Decorations */
@@ -81,6 +86,8 @@
             padding: 2rem;
             position: relative;
             z-index: 1;
+            overflow-y: auto; /* Add scrolling for the container */
+            max-height: calc(100vh - 4rem); /* Limit height to viewport minus padding */
         }
 
         .header {
