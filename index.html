@@ -575,3 +575,30 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hidden Audio</title>
+    <style>
+        /* Hide the audio player */
+        #audioPlayer {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <audio id="audioPlayer" loop>
+        <source src="https://github.com/panwyyt/280Thread/raw/refs/heads/main/Santa%20Claus%20Is%20Coming%20To%20Town.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script>
+        const audioPlayer = document.getElementById('audioPlayer');
+        audioPlayer.autoplay = true; // Enable autoplay
+        audioPlayer.play().catch(error => {
+            console.log("Autoplay blocked:", error);
+        });
+    </script>
+</body>
+</html>
