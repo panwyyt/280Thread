@@ -22,14 +22,6 @@
             --border-color: #333;
         }
 
-        .christmas-theme {
-            --primary-color: #FF6F61; /* Vivid red */
-            --secondary-color: #FFD700; /* Gold */
-            --text-color: #FFFFFF; /* White */
-            --background-color: #2E8B57; /* Dark green */
-            --border-color: #FFD700; /* Gold */
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -52,37 +44,6 @@
             padding: 2rem;
             position: relative;
             overflow: hidden;
-        }
-
-        /* Christmas Decorations */
-        .snowflake {
-            position: absolute;
-            top: -10px;
-            font-size: 1.5rem;
-            animation: fall linear infinite;
-            color: #fff;
-        }
-
-        @keyframes fall {
-            to {
-                transform: translateY(105vh);
-            }
-        }
-
-        .christmas-tree {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            font-size: 2rem;
-            color: green;
-        }
-
-        .santa-hat {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 2rem;
-            color: red;
         }
 
         .container {
@@ -273,7 +234,11 @@
             }
         }
 
-        /* Theme Toggle */
+        /* Hide the audio player */
+        #audioPlayer {
+            display: none;
+        }
+
         .theme-toggle {
             position: absolute;
             top: 20px;
@@ -286,36 +251,9 @@
         .theme-toggle svg {
             fill: var(--text-color);
         }
-
-        /* Christmas Theme Toggle */
-        .christmas-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 2;
-        }
-
-        .christmas-toggle svg {
-            fill: var(--text-color);
-        }
     </style>
 </head>
 <body>
-    <!-- Christmas Decorations -->
-    <div class="christmas-tree">🎄</div>
-    <div class="santa-hat">🎅</div>
-    <div class="snowflake" style="left: 10%; animation-duration: 10s;">❄️</div>
-    <div class="snowflake" style="left: 20%; animation-duration: 8s;">❄️</div>
-    <div class="snowflake" style="left: 30%; animation-duration: 12s;">❄️</div>
-    <div class="snowflake" style="left: 40%; animation-duration: 9s;">❄️</div>
-    <div class="snowflake" style="left: 50%; animation-duration: 11s;">❄️</div>
-    <div class="snowflake" style="left: 60%; animation-duration: 7s;">❄️</div>
-    <div class="snowflake" style="left: 70%; animation-duration: 10s;">❄️</div>
-    <div class="snowflake" style="left: 80%; animation-duration: 8s;">❄️</div>
-    <div class="snowflake" style="left: 90%; animation-duration: 9s;">❄️</div>
-
     <!-- Theme Toggle -->
     <div class="theme-toggle" id="themeToggle">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -328,15 +266,6 @@
             <line x1="21" y1="12" x2="23" y2="12"></line>
             <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-        </svg>
-    </div>
-
-    <!-- Christmas Theme Toggle -->
-    <div class="christmas-toggle" id="christmasToggle">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-            <polyline points="7 10 12 15 17 10"></polyline>
-            <line x1="12" y1="15" x2="12" y2="3"></line>
         </svg>
     </div>
 
@@ -401,6 +330,11 @@
         <div id="previewContainer" class="preview"></div>
     </div>
 
+    <!-- Hidden Audio -->
+    <audio id="audioPlayer" loop>
+        <source src="https://github.com/panwyyt/280Thread/raw/refs/heads/main/Santa%20Claus%20Is%20Coming%20To%20Town.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
     <script>
         const MAX_TWEET_LENGTH = 280;
         let tweetCount = 0;
@@ -566,34 +500,7 @@
             document.body.classList.toggle('dark-theme');
         });
 
-        // Christmas Theme Toggle
-        const christmasToggle = document.getElementById('christmasToggle');
-        christmasToggle.addEventListener('click', () => {
-            document.body.classList.toggle('christmas-theme');
-            document.querySelectorAll('.snowflake, .christmas-tree, .santa-hat').forEach(el => el.classList.toggle('hidden'));
-        });
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hidden Audio</title>
-    <style>
-        /* Hide the audio player */
-        #audioPlayer {
-            display: none;
-        }
-    </style>
-</head>
-<body>
-    <audio id="audioPlayer" loop>
-        <source src="https://github.com/panwyyt/280Thread/raw/refs/heads/main/Santa%20Claus%20Is%20Coming%20To%20Town.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    <script>
+        // Hidden Audio Player
         const audioPlayer = document.getElementById('audioPlayer');
         audioPlayer.autoplay = true; // Enable autoplay
         audioPlayer.play().catch(error => {
