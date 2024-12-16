@@ -22,6 +22,14 @@
             --border-color: #333;
         }
 
+        .christmas-theme {
+            --primary-color: #FF6F61; /* Vivid red */
+            --secondary-color: #FFD700; /* Gold */
+            --text-color: #FFFFFF; /* White */
+            --background-color: #2E8B57; /* Dark green */
+            --border-color: #FFD700; /* Gold */
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -44,6 +52,37 @@
             padding: 2rem;
             position: relative;
             overflow: hidden;
+        }
+
+        /* Christmas Decorations */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            font-size: 1.5rem;
+            animation: fall linear infinite;
+            color: #fff;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(105vh);
+            }
+        }
+
+        .christmas-tree {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 2rem;
+            color: green;
+        }
+
+        .santa-hat {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: red;
         }
 
         .container {
@@ -247,9 +286,34 @@
         .theme-toggle svg {
             fill: var(--text-color);
         }
+
+        /* Christmas Theme Toggle */
+        .christmas-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .christmas-toggle svg {
+            fill: var(--text-color);
+        }
     </style>
 </head>
 <body>
+    <!-- Christmas Decorations -->
+    <div class="snowflake" style="left: 10%; animation-duration: 10s;">❄️</div>
+    <div class="snowflake" style="left: 20%; animation-duration: 8s;">❄️</div>
+    <div class="snowflake" style="left: 30%; animation-duration: 12s;">❄️</div>
+    <div class="snowflake" style="left: 40%; animation-duration: 9s;">❄️</div>
+    <div class="snowflake" style="left: 50%; animation-duration: 11s;">❄️</div>
+    <div class="snowflake" style="left: 60%; animation-duration: 7s;">❄️</div>
+    <div class="snowflake" style="left: 70%; animation-duration: 10s;">❄️</div>
+    <div class="snowflake" style="left: 80%; animation-duration: 8s;">❄️</div>
+    <div class="snowflake" style="left: 90%; animation-duration: 9s;">❄️</div>
+
     <!-- Theme Toggle -->
     <div class="theme-toggle" id="themeToggle">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -262,6 +326,15 @@
             <line x1="21" y1="12" x2="23" y2="12"></line>
             <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+    </div>
+
+    <!-- Christmas Theme Toggle -->
+    <div class="christmas-toggle" id="christmasToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
         </svg>
     </div>
 
@@ -290,4 +363,240 @@
                 </svg>
                 Add Tweet
             </button>
-            <
+            <button id="copyAllBtn" class="btn btn-copy">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                Copy All
+            </button>
+            <button id="saveBtn" class="btn btn-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1-2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                    <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                    <polyline points="7 3 7 8 15 8"></polyline>
+                </svg>
+                Save Thread
+            </button>
+            <button id="clearAllBtn" class="btn btn-danger">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y1="18"></line>
+                </svg>
+                Clear All
+            </button>
+            <label class="btn btn-danger file-label">
+                <input type="file" class="file-input" id="importFile">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Import
+            </label>
+        </div>
+
+        <div id="previewContainer" class="preview"></div>
+    </div>
+
+    <script>
+        const MAX_TWEET_LENGTH = 280;
+        let tweetCount = 0;
+
+        function createTweetElement() {
+            tweetCount++;
+            const tweetElement = document.createElement('div');
+            tweetElement.classList.add('tweet-container');
+            tweetElement.innerHTML = `
+                <textarea id="tweet${tweetCount}" class="form-control" placeholder="Write your tweet (max 280 characters)" rows="4"></textarea>
+                <div id="count${tweetCount}" class="character-count">0/${MAX_TWEET_LENGTH}</div>
+                <div class="tweet-actions">
+                    <button id="copy${tweetCount}" class="btn btn-small btn-copy">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        Copy
+                    </button>
+                </div>
+            `;
+            document.getElementById('tweetContainer').appendChild(tweetElement);
+
+            const textarea = tweetElement.querySelector('textarea');
+            const countDisplay = tweetElement.querySelector('.character-count');
+            const copyButton = tweetElement.querySelector('.btn-copy');
+
+            textarea.addEventListener('input', () => {
+                const length = textarea.value.length;
+                countDisplay.textContent = `${length}/${MAX_TWEET_LENGTH}`;
+                countDisplay.classList.toggle('warning', length > MAX_TWEET_LENGTH);
+                updatePreview();
+            });
+
+            copyButton.addEventListener('click', () => {
+                textarea.select();
+                document.execCommand('copy');
+            });
+        }
+
+        function updatePreview() {
+            const previewContainer = document.getElementById('previewContainer');
+            previewContainer.innerHTML = '';
+
+            for (let i = 1; i <= tweetCount; i++) {
+                const textarea = document.getElementById(`tweet${i}`);
+                if (textarea && textarea.value.trim()) {
+                    const previewItem = document.createElement('div');
+                    previewItem.classList.add('preview-item');
+                    previewItem.textContent = `${i}. ${textarea.value.trim()}`;
+                    previewContainer.appendChild(previewItem);
+                }
+            }
+        }
+
+        document.getElementById('addTweetBtn').addEventListener('click', createTweetElement);
+
+        document.getElementById('copyAllBtn').addEventListener('click', () => {
+            const threadTitle = document.getElementById('threadTitle').value || 'Untitled Thread';
+            const threadConcept = document.getElementById('threadConcept').value;
+            let content = `Thread Title: ${threadTitle}\n\nThread Concept:\n${threadConcept}\n\nTweets:\n\n`;
+
+            for (let i = 1; i <= tweetCount; i++) {
+                const textarea = document.getElementById(`tweet${i}`);
+                if (textarea && textarea.value.trim()) {
+                    content += `${i}. ${textarea.value.trim()}\n\n`;
+                }
+            }
+
+            // Create a temporary textarea to copy the content
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = content;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            // Optional: Provide visual feedback
+            const copyAllBtn = document.getElementById('copyAllBtn');
+            copyAllBtn.textContent = 'Copied!';
+            setTimeout(() => {
+                copyAllBtn.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    Copy All
+                `;
+            }, 1500);
+        });
+
+        document.getElementById('saveBtn').addEventListener('click', () => {
+            const threadTitle = document.getElementById('threadTitle').value || 'Untitled Thread';
+            const threadConcept = document.getElementById('threadConcept').value;
+            let content = `Thread Title: ${threadTitle}\n\nThread Concept:\n${threadConcept}\n\nTweets:\n\n`;
+
+            for (let i = 1; i <= tweetCount; i++) {
+                const textarea = document.getElementById(`tweet${i}`);
+                if (textarea && textarea.value.trim()) {
+                    content += `${i}. ${textarea.value.trim()}\n\n`;
+                }
+            }
+
+            const blob = new Blob([content], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `280Thread_${threadTitle}.txt`;
+            link.click();
+        });
+
+        document.getElementById('clearAllBtn').addEventListener('click', () => {
+            document.getElementById('threadTitle').value = '';
+            document.getElementById('threadConcept').value = '';
+            document.getElementById('tweetContainer').innerHTML = '';
+            document.getElementById('previewContainer').innerHTML = '';
+            tweetCount = 0;
+        });
+
+        document.getElementById('importFile').addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                const content = e.target.result;
+                const lines = content.split('\n');
+
+                // Clear existing content
+                document.getElementById('threadTitle').value = '';
+                document.getElementById('threadConcept').value = '';
+                document.getElementById('tweetContainer').innerHTML = '';
+                document.getElementById('previewContainer').innerHTML = '';
+                tweetCount = 0;
+
+                let currentSection = '';
+                for (let line of lines) {
+                    if (line.startsWith('Thread Title:')) {
+                        document.getElementById('threadTitle').value = line.replace('Thread Title:', '').trim();
+                    } else if (line.startsWith('Thread Concept:')) {
+                        currentSection = 'concept';
+                    } else if (line.startsWith('Tweets:')) {
+                        currentSection = 'tweets';
+                    } else if (currentSection === 'concept') {
+                        document.getElementById('threadConcept').value += line.trim() + '\n';
+                    } else if (currentSection === 'tweets') {
+                        if (line.trim()) {
+                            const tweetText = line.replace(/^\d+\.\s*/, '').trim(); // Remove the number and dot
+                            createTweetElement();
+                            document.getElementById(`tweet${tweetCount}`).value = tweetText;
+                            document.getElementById(`count${tweetCount}`).textContent = `${tweetText.length}/${MAX_TWEET_LENGTH}`;
+                        }
+                    }
+                }
+
+                updatePreview();
+            };
+
+            reader.readAsText(file);
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+        });
+
+        // Christmas Theme Toggle
+        const christmasToggle = document.getElementById('christmasToggle');
+        christmasToggle.addEventListener('click', () => {
+            document.body.classList.toggle('christmas-theme');
+            document.querySelectorAll('.snowflake, .christmas-tree, .santa-hat').forEach(el => el.classList.toggle('hidden'));
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hidden Audio</title>
+    <style>
+        /* Hide the audio player */
+        #audioPlayer {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <audio id="audioPlayer" loop>
+        <source src="https://github.com/panwyyt/280Thread/raw/refs/heads/main/Santa%20Claus%20Is%20Coming%20To%20Town.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script>
+        const audioPlayer = document.getElementById('audioPlayer');
+        audioPlayer.autoplay = true; // Enable autoplay
+        audioPlayer.play().catch(error => {
+            console.log("Autoplay blocked:", error);
+        });
+    </script>
+</body>
+</html>
