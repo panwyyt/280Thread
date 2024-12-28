@@ -116,12 +116,31 @@
         .tweet-container {
             margin-bottom: 1rem;
             position: relative;
+            display: flex;
+            align-items: center;
         }
 
         .tweet-container textarea {
             resize: vertical;
             min-height: 100px;
             font-family: 'Helvetica', sans-serif;
+            flex: 1;
+        }
+
+        .tweet-controls {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 0.5rem;
+        }
+
+        .tweet-controls button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--primary-color);
+            margin: 0.1rem;
         }
 
         .character-count {
@@ -305,21 +324,37 @@
 
     <script>
         const MAX_TWEET_LENGTH = 280;
-        let tweetCount = 0;
         const library = {};
-
-        function createTweetElement(text = '') {
-            tweetCount++;
+        
+        function createTweetElement(text = '', index) {
             const tweetElement = document.createElement('div');
             tweetElement.classList.add('tweet-container');
             tweetElement.innerHTML = `
-                <textarea id="tweet${tweetCount}" class="form-control" placeholder="Write your tweet (max 280 characters)" rows="4">${text}</textarea>
-                <div id="count${tweetCount}" class="character-count">${text.length}/${MAX_TWEET_LENGTH}</div>
+                <textarea class="form-control" placeholder="Write your tweet (max 280 characters)" rows="4">${text}</textarea>
+                <div class="character-count">${text.length}/${MAX_TWEET_LENGTH}</div>
+                <div class="tweet-controls">
+                    <button class="up-button">⬆️</button>
+                    <button class="down-button">⬇️</button>
+                </div>
             `;
-            document.getElementById('tweetContainer').appendChild(tweetElement);
+            
+            const tweetContainer = document.getElementById('tweetContainer');
+            
+            if (typeof index === 'number') {
+                tweetContainer.insertBefore(tweetElement, tweetContainer.children[index]);
+            } else {
+                tweetContainer.appendChild(tweetElement);
+            }
 
+            setTweetElementEvents(tweetElement);
+            updatePreview();
+        }
+
+        function setTweetElementEvents(tweetElement) {
             const textarea = tweetElement.querySelector('textarea');
             const countDisplay = tweetElement.querySelector('.character-count');
+            const upButton = tweetElement.querySelector('.up-button');
+            const downButton = tweetElement.querySelector('.down-button');
 
             textarea.addEventListener('input', () => {
                 const length = textarea.value.length;
@@ -328,22 +363,29 @@
                 updatePreview();
             });
 
-            updatePreview();
+            upButton.addEventListener('click', () => {
+                const index = Array.from(tweetElement.parentNode.children).indexOf(tweetElement);
+                createTweetElement('', index);
+            });
+
+            downButton.addEventListener('click', () => {
+                const index = Array.from(tweetElement.parentNode.children).indexOf(tweetElement);
+                createTweetElement('', index + 1);
+            });
         }
 
         function updatePreview() {
             const previewContainer = document.getElementById('previewContainer');
             previewContainer.innerHTML = '';
-
-            for (let i = 1; i <= tweetCount; i++) {
-                const textarea = document.getElementById(`tweet${i}`);
-                if (textarea && textarea.value.trim()) {
+            const tweets = document.querySelectorAll('#tweetContainer .tweet-container textarea');
+            tweets.forEach((textarea, index) => {
+                if (textarea.value.trim()) {
                     const previewItem = document.createElement('div');
                     previewItem.classList.add('preview-item');
-                    previewItem.textContent = `${i}. ${textarea.value.trim()}`;
+                    previewItem.textContent = `${index + 1}. ${textarea.value.trim()}`;
                     previewContainer.appendChild(previewItem);
                 }
-            }
+            });
         }
 
         function updateLibraryDisplay() {
@@ -382,16 +424,9 @@
 
             const threadData = {
                 concept: document.getElementById('threadConcept').value.trim(),
-                tweets: [],
+                tweets: Array.from(document.querySelectorAll('#tweetContainer .tweet-container textarea')).map(textarea => textarea.value.trim()),
                 timestamp: Date.now()
             };
-
-            for (let i = 1; i <= tweetCount; i++) {
-                const textarea = document.getElementById(`tweet${i}`);
-                if (textarea && textarea.value.trim()) {
-                    threadData.tweets.push(textarea.value.trim());
-                }
-            }
 
             library[threadTitle].push(threadData);
             saveToCookie('threadLibrary', library);
@@ -406,7 +441,6 @@
                 document.getElementById('threadTitle').value = title;
                 document.getElementById('threadConcept').value = threadData.concept;
                 document.getElementById('tweetContainer').innerHTML = '';
-                tweetCount = 0;
 
                 threadData.tweets.forEach(tweet => createTweetElement(tweet));
             }
@@ -448,12 +482,11 @@
             const threadConcept = document.getElementById('threadConcept').value.trim();
             let content = `Thread Title: ${threadTitle}\n\nThread Concept:\n${threadConcept}\n\nTweets:\n\n`;
 
-            for (let i = 1; i <= tweetCount; i++) {
-                const textarea = document.getElementById(`tweet${i}`);
-                if (textarea && textarea.value.trim()) {
-                    content += `${i}. ${textarea.value.trim()}\n\n`;
+            Array.from(document.querySelectorAll('#tweetContainer .tweet-container textarea')).forEach((textarea, index) => {
+                if (textarea.value.trim()) {
+                    content += `${index + 1}. ${textarea.value.trim()}\n\n`;
                 }
-            }
+            });
 
             const timestamp = new Date().toLocaleString();
             content += `\n\nSaved on: ${timestamp}`;
@@ -475,7 +508,6 @@
                 const tweets = [];
                 let currentSection = '';
                 document.getElementById('tweetContainer').innerHTML = '';
-                tweetCount = 0;
 
                 lines.forEach(line => {
                     if (line.startsWith('Thread Title:')) {
@@ -519,7 +551,6 @@
                 document.getElementById('threadConcept').value = '';
                 document.getElementById('tweetContainer').innerHTML = '';
                 document.getElementById('previewContainer').innerHTML = '';
-                tweetCount = 0;
             }
         });
 
@@ -583,7 +614,7 @@
         updateLibraryDisplay();
 
         window.addEventListener('beforeunload', (event) => {
-            const shouldWarn = document.getElementById('threadTitle').value || document.getElementById('threadConcept').value || tweetCount > 0;
+            const shouldWarn = document.getElementById('threadTitle').value || document.getElementById('threadConcept').value || document.querySelectorAll('#tweetContainer .tweet-container textarea').length > 0;
             if (shouldWarn && !confirm('You have unsaved changes. Are you sure you want to leave?')) {
                 event.preventDefault();
                 event.returnValue = '';
@@ -591,6 +622,7 @@
                 saveToCookie('threadLibrary', library);
             }
         });
+
     </script>
 </body>
 </html>
