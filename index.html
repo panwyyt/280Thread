@@ -61,6 +61,18 @@
             gap: 1rem;
             position: relative;
             margin-bottom: 2rem;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .theme-toggle {
@@ -70,6 +82,11 @@
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
         }
 
         .header {
@@ -81,6 +98,12 @@
             color: var(--primary-color);
             font-weight: 600;
             font-size: 1.75rem;
+            transition: color 0.3s ease;
+        }
+
+        .header p {
+            font-size: 0.875rem;
+            color: var(--text-color);
         }
 
         .form-group {
@@ -106,6 +129,7 @@
             font-family: 'Helvetica', sans-serif;
             background-color: var(--background-color);
             color: var(--text-color);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .form-control:focus {
@@ -118,6 +142,7 @@
             position: relative;
             display: flex;
             align-items: center;
+            animation: fadeIn 0.5s ease-in-out;
         }
 
         .tweet-container textarea {
@@ -141,6 +166,11 @@
             font-size: 1rem;
             color: var(--primary-color);
             margin: 0.1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .tweet-controls button:hover {
+            transform: scale(1.1);
         }
 
         .character-count {
@@ -174,6 +204,12 @@
             background-color: var(--primary-color);
             color: white;
             margin-bottom: 0.5rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #1565C0;
+            transform: scale(1.05);
         }
 
         .btn-small {
@@ -186,9 +222,17 @@
             color: black;
         }
 
+        .btn-secondary:hover {
+            background-color: #FFE57F;
+        }
+
         .btn-danger {
             background-color: #EA4335;
             color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #D32F2F;
         }
 
         .file-input {
@@ -202,6 +246,7 @@
             padding: 1rem;
             max-height: 200px;
             overflow-y: auto;
+            animation: fadeIn 0.5s ease-in-out;
         }
 
         .preview-item {
@@ -222,6 +267,7 @@
             align-items: center;
             z-index: 1000;
             overflow: hidden;
+            animation: fadeIn 0.5s ease-in-out;
         }
 
         .modal {
@@ -237,19 +283,28 @@
 
         .library-item {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             margin: 0.5rem 0;
-        }
-
-        .library-item div {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
         }
 
         .library-item span {
             font-size: 0.875rem;
             color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .library-version {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .library-version-preview {
+            font-size: 0.75rem;
+            color: var(--text-color);
+            white-space: pre-wrap;
+            word-break: break-word;
         }
 
         @media (max-width: 768px) {
@@ -283,20 +338,21 @@
         <div class="theme-toggle" id="themeToggle">🌓</div>
         <div class="header">
             <h1>280Thread</h1>
+            <p>Made with 🖤 by <a href="https://x.com/hatchedboy" target="_blank">hatchedboy</a></p>
         </div>
-        
+
         <div class="form-group">
             <label for="threadTitle">Thread Title</label>
             <input type="text" id="threadTitle" class="form-control" placeholder="Enter a title for your thread">
         </div>
-        
+
         <div class="form-group">
             <label for="threadConcept">Thread Concept</label>
             <textarea id="threadConcept" class="form-control" placeholder="Briefly describe the main idea of your thread" rows="3"></textarea>
         </div>
-        
+
         <div id="tweetContainer"></div>
-        
+
         <div class="button-group">
             <button id="addTweetBtn" class="btn">Add Tweet</button>
             <button id="saveThreadBtn" class="btn">Export as TXT</button>
@@ -325,7 +381,7 @@
     <script>
         const MAX_TWEET_LENGTH = 280;
         const library = {};
-        
+
         function createTweetElement(text = '', index) {
             const tweetElement = document.createElement('div');
             tweetElement.classList.add('tweet-container');
@@ -337,9 +393,9 @@
                     <button class="down-button">⬇️</button>
                 </div>
             `;
-            
+
             const tweetContainer = document.getElementById('tweetContainer');
-            
+
             if (typeof index === 'number') {
                 tweetContainer.insertBefore(tweetElement, tweetContainer.children[index]);
             } else {
@@ -366,11 +422,13 @@
             upButton.addEventListener('click', () => {
                 const index = Array.from(tweetElement.parentNode.children).indexOf(tweetElement);
                 createTweetElement('', index);
+                playHapticFeedback();
             });
 
             downButton.addEventListener('click', () => {
                 const index = Array.from(tweetElement.parentNode.children).indexOf(tweetElement);
                 createTweetElement('', index + 1);
+                playHapticFeedback();
             });
         }
 
@@ -392,22 +450,51 @@
             const libraryContainer = document.getElementById('libraryContainer');
             libraryContainer.innerHTML = '';
             for (const title in library) {
-                library[title].forEach((version, index) => {
-                    const entry = document.createElement('div');
-                    entry.classList.add('library-item');
-                    entry.innerHTML = `
-                        <span>${title} (Version ${index + 1} - ${new Date(version.timestamp).toLocaleString()})</span>
+                const titleElement = document.createElement('div');
+                titleElement.classList.add('library-item');
+                titleElement.innerHTML = `
+                    <span>${title}</span>
+                    <div class="library-version">
+                        <select class="version-select">
+                            ${library[title].map((version, index) => `<option value="${index}">Version ${index + 1} - ${new Date(version.timestamp).toLocaleString()}</option>`).join('')}
+                        </select>
+                        <div class="library-version-preview"></div>
                         <div>
                             <button class="load-entry btn btn-small">Load</button>
                             <button class="export-entry btn btn-small">Export</button>
                             <button class="delete-entry btn btn-small btn-danger">Delete</button>
                         </div>
-                    `;
-                    entry.querySelector('.load-entry').addEventListener('click', () => loadThread(title, index));
-                    entry.querySelector('.export-entry').addEventListener('click', () => exportThread(title, index));
-                    entry.querySelector('.delete-entry').addEventListener('click', () => deleteThread(title, index));
-                    libraryContainer.appendChild(entry);
+                    </div>
+                `;
+                const versionSelect = titleElement.querySelector('.version-select');
+                const previewElement = titleElement.querySelector('.library-version-preview');
+                const loadButton = titleElement.querySelector('.load-entry');
+                const exportButton = titleElement.querySelector('.export-entry');
+                const deleteButton = titleElement.querySelector('.delete-entry');
+
+                versionSelect.addEventListener('change', () => {
+                    const selectedIndex = versionSelect.value;
+                    const version = library[title][selectedIndex];
+                    previewElement.textContent = version.tweets.map((tweet, idx) => `${idx + 1}. ${tweet}`).join('\n');
                 });
+
+                loadButton.addEventListener('click', () => {
+                    loadThread(title, versionSelect.value);
+                    playHapticFeedback();
+                });
+
+                exportButton.addEventListener('click', () => {
+                    exportThread(title, versionSelect.value);
+                    playHapticFeedback();
+                });
+
+                deleteButton.addEventListener('click', () => {
+                    deleteThread(title, versionSelect.value);
+                    playHapticFeedback();
+                });
+
+                libraryContainer.appendChild(titleElement);
+                versionSelect.dispatchEvent(new Event('change'));
             }
         }
 
@@ -433,6 +520,7 @@
 
             updateLibraryDisplay();
             alert(`Thread "${threadTitle}" saved to library.`);
+            playHapticFeedback();
         }
 
         function loadThread(title, index) {
@@ -496,6 +584,7 @@
             link.href = URL.createObjectURL(blob);
             link.download = `${threadTitle}_${timestamp}.txt`;
             link.click();
+            playHapticFeedback();
         }
 
         function importFromTxt(file) {
@@ -529,20 +618,29 @@
                 document.getElementById('threadTitle').value = title;
                 document.getElementById('threadConcept').value = concept.trim();
                 updatePreview();
+                playHapticFeedback();
             };
             reader.readAsText(file);
         }
 
-        document.getElementById('addTweetBtn').addEventListener('click', () => createTweetElement());
+        document.getElementById('addTweetBtn').addEventListener('click', () => {
+            createTweetElement();
+            playHapticFeedback();
+        });
 
-        document.getElementById('saveThreadBtn').addEventListener('click', saveThreadToTxt);
+        document.getElementById('saveThreadBtn').addEventListener('click', () => {
+            saveThreadToTxt();
+            playHapticFeedback();
+        });
 
         document.getElementById('importThreadBtn').addEventListener('click', () => {
             document.getElementById('importThreadFile').click();
+            playHapticFeedback();
         });
 
         document.getElementById('importThreadFile').addEventListener('change', event => {
             importFromTxt(event.target.files[0]);
+            playHapticFeedback();
         });
 
         document.getElementById('clearAllBtn').addEventListener('click', () => {
@@ -551,18 +649,24 @@
                 document.getElementById('threadConcept').value = '';
                 document.getElementById('tweetContainer').innerHTML = '';
                 document.getElementById('previewContainer').innerHTML = '';
+                playHapticFeedback();
             }
         });
 
-        document.getElementById('saveToLibraryBtn').addEventListener('click', saveToLibrary);
+        document.getElementById('saveToLibraryBtn').addEventListener('click', () => {
+            saveToLibrary();
+            playHapticFeedback();
+        });
 
         document.getElementById('openLibraryBtn').addEventListener('click', () => {
             document.getElementById('libraryModal').style.display = 'flex';
             updateLibraryDisplay();
+            playHapticFeedback();
         });
 
         document.getElementById('closeLibraryBtn').addEventListener('click', () => {
             document.getElementById('libraryModal').style.display = 'none';
+            playHapticFeedback();
         });
 
         document.getElementById('exportLibraryBtn').addEventListener('click', () => {
@@ -571,10 +675,12 @@
             link.href = URL.createObjectURL(blob);
             link.download = '280Thread_Library.json';
             link.click();
+            playHapticFeedback();
         });
 
         document.getElementById('importLibraryBtn').addEventListener('click', () => {
             document.getElementById('importLibraryFile').click();
+            playHapticFeedback();
         });
 
         document.getElementById('importLibraryFile').addEventListener('change', event => {
@@ -591,12 +697,14 @@
                 saveToCookie('threadLibrary', library);
                 updateLibraryDisplay();
                 alert('Library imported successfully!');
+                playHapticFeedback();
             };
             reader.readAsText(file);
         });
 
         document.getElementById('themeToggle').addEventListener('click', () => {
             document.body.classList.toggle('dark-theme');
+            playHapticFeedback();
         });
 
         function saveToCookie(name, value) {
@@ -608,6 +716,12 @@
             const parts = value.split(`; ${name}=`);
             if (parts.length === 2) return JSON.parse(parts.pop().split(';').shift());
             return {};
+        }
+
+        function playHapticFeedback() {
+            if ('vibrate' in navigator) {
+                navigator.vibrate(100);
+            }
         }
 
         Object.assign(library, getFromCookie('threadLibrary'));
