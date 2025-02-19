@@ -428,6 +428,7 @@
                 countDisplay.textContent = `${length}/${MAX_TWEET_LENGTH}`;
                 countDisplay.classList.toggle('warning', length > MAX_TWEET_LENGTH);
                 updatePreview();
+                autoSave();
             });
 
             upButton.addEventListener('click', () => {
@@ -729,6 +730,27 @@
             return {};
         }
 
+        function autoSave() {
+            const threadData = {
+                title: document.getElementById('threadTitle').value.trim(),
+                concept: document.getElementById('threadConcept').value.trim(),
+                tweets: Array.from(document.querySelectorAll('#tweetContainer .tweet-container textarea')).map(textarea => textarea.value.trim()),
+                timestamp: Date.now()
+            };
+            localStorage.setItem('autoSaveThread', JSON.stringify(threadData));
+        }
+
+        function loadAutoSave() {
+            const savedData = localStorage.getItem('autoSaveThread');
+            if (savedData) {
+                const threadData = JSON.parse(savedData);
+                document.getElementById('threadTitle').value = threadData.title;
+                document.getElementById('threadConcept').value = threadData.concept;
+                document.getElementById('tweetContainer').innerHTML = '';
+                threadData.tweets.forEach(tweet => createTweetElement(tweet));
+            }
+        }
+
         function playHapticFeedback() {
             if ('vibrate' in navigator) {
                 navigator.vibrate(100);
@@ -737,6 +759,7 @@
 
         Object.assign(library, getFromCookie('threadLibrary'));
         updateLibraryDisplay();
+        loadAutoSave();
 
         window.addEventListener('beforeunload', (event) => {
             const shouldWarn = document.getElementById('threadTitle').value || document.getElementById('threadConcept').value || document.querySelectorAll('#tweetContainer .tweet-container textarea').length > 0;
