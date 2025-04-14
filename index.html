@@ -7,139 +7,140 @@
     <link rel="icon" href="https://raw.githubusercontent.com/panwyyt/280Thread/refs/heads/main/Hathedboy.ico" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      /* Custom styles for dark mode are applied via Tailwind dark: prefixes */
+        /* Custom styles for dark mode are applied via Tailwind dark: prefixes */
 
-      /* Simple scrollbar styling */
-       .scrollbar-thin {
-           scrollbar-width: thin;
-           scrollbar-color: rgba(156, 163, 175, 0.5) rgba(243, 244, 246, 0.1); /* gray-400/50 gray-100/10 */
-       }
-       .dark .scrollbar-thin {
-            scrollbar-color: rgba(107, 114, 128, 0.5) rgba(55, 65, 81, 0.5); /* gray-500/50 gray-700/50 */
-       }
-       .scrollbar-thin::-webkit-scrollbar {
-           width: 8px;
-       }
-       .scrollbar-thin::-webkit-scrollbar-track {
-           background: rgba(243, 244, 246, 0.1); /* gray-100/10 */
-           border-radius: 4px;
-       }
-       .dark .scrollbar-thin::-webkit-scrollbar-track {
-            background: rgba(55, 65, 81, 0.5); /* gray-700/50 */
-       }
-       .scrollbar-thin::-webkit-scrollbar-thumb {
-           background-color: rgba(156, 163, 175, 0.5); /* gray-400/50 */
-           border-radius: 4px;
-           border: 2px solid transparent;
-           background-clip: content-box;
-       }
-        .dark .scrollbar-thin::-webkit-scrollbar-thumb {
-            background-color: rgba(107, 114, 128, 0.5); /* gray-500/50 */
+        /* Simple scrollbar styling */
+        .scrollbar-thin {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(156, 163, 175, 0.5) rgba(243, 244, 246, 0.1); /* gray-400/50 gray-100/10 */
         }
-        /* Utility for inline SVGs */
-        .icon {
-            display: inline-block;
-            vertical-align: middle; /* Adjust alignment as needed */
-            width: 1.25em; /* Default size, matches font-size */
-            height: 1.25em;
+        .dark .scrollbar-thin {
+             scrollbar-color: rgba(107, 114, 128, 0.5) rgba(55, 65, 81, 0.5); /* gray-500/50 gray-700/50 */
         }
-        .icon-sm { width: 1em; height: 1em; }
-        .icon-xs { width: 0.875em; height: 0.875em; }
-
-        /* Base input styling (can be overridden by dark mode) */
-        .input-bg {
-            background-color: white;
-            border-color: #d1d5db; /* gray-300 */
-            color: #111827; /* gray-900 */
+        .scrollbar-thin::-webkit-scrollbar {
+            width: 8px;
         }
-        .dark .input-bg {
-            background-color: #374151; /* gray-700 */
-            border-color: #4b5563; /* gray-600 */
-            color: #f9fafb; /* gray-50 */
+        .scrollbar-thin::-webkit-scrollbar-track {
+            background: rgba(243, 244, 246, 0.1); /* gray-100/10 */
+            border-radius: 4px;
         }
-        .input-bg:focus {
-             border-color: #3b82f6; /* blue-500 */
-             --tw-ring-color: #3b82f6; /* blue-500 */
-             box-shadow: 0 0 0 2px var(--tw-ring-color);
+        .dark .scrollbar-thin::-webkit-scrollbar-track {
+             background: rgba(55, 65, 81, 0.5); /* gray-700/50 */
         }
-         .dark .input-bg:focus {
-             border-color: #60a5fa; /* blue-400 */
-             --tw-ring-color: #60a5fa; /* blue-400 */
-             box-shadow: 0 0 0 2px var(--tw-ring-color);
+        .scrollbar-thin::-webkit-scrollbar-thumb {
+            background-color: rgba(156, 163, 175, 0.5); /* gray-400/50 */
+            border-radius: 4px;
+            border: 2px solid transparent;
+            background-clip: content-box;
+        }
+         .dark .scrollbar-thin::-webkit-scrollbar-thumb {
+             background-color: rgba(107, 114, 128, 0.5); /* gray-500/50 */
          }
+         /* Utility for inline SVGs */
+         .icon {
+             display: inline-block;
+             vertical-align: middle; /* Adjust alignment as needed */
+             width: 1.25em; /* Default size, matches font-size */
+             height: 1.25em;
+         }
+         .icon-sm { width: 1em; height: 1em; }
+         .icon-xs { width: 0.875em; height: 0.875em; }
 
-         /* Base text colors (can be overridden by dark mode) */
-         body { color: #1f2937; /* gray-800 */ }
-         .text-primary { color: #2563eb; /* blue-600 */ }
-         .text-secondary { color: #374151; /* gray-700 */ }
-         .text-muted { color: #6b7280; /* gray-500 */ }
-         .container-bg { background-color: white; }
-         .preview-bg { background-color: #f9fafb; /* gray-50 */ }
-         .border-color { border-color: #e5e7eb; /* gray-200 */ }
-         .modal-bg { background-color: white; }
-         .modal-overlay-bg { background-color: rgba(0, 0, 0, 0.6); }
-         .text-warning { color: #ef4444; /* red-500 */ }
+         /* Base input styling (can be overridden by dark mode) */
+         .input-bg {
+             background-color: white;
+             border-color: #d1d5db; /* gray-300 */
+             color: #111827; /* gray-900 */
+         }
+         .dark .input-bg {
+             background-color: #374151; /* gray-700 */
+             border-color: #4b5563; /* gray-600 */
+             color: #f9fafb; /* gray-50 */
+         }
+         .input-bg:focus {
+              border-color: #3b82f6; /* blue-500 */
+              --tw-ring-color: #3b82f6; /* blue-500 */
+              box-shadow: 0 0 0 2px var(--tw-ring-color);
+         }
+          .dark .input-bg:focus {
+              border-color: #60a5fa; /* blue-400 */
+              --tw-ring-color: #60a5fa; /* blue-400 */
+              box-shadow: 0 0 0 2px var(--tw-ring-color);
+           }
+
+           /* Base text colors (can be overridden by dark mode) */
+           body { color: #1f2937; /* gray-800 */ }
+           .text-primary { color: #2563eb; /* blue-600 */ }
+           .text-secondary { color: #374151; /* gray-700 */ }
+           .text-muted { color: #6b7280; /* gray-500 */ }
+           .container-bg { background-color: white; }
+           .preview-bg { background-color: #f9fafb; /* gray-50 */ }
+           .border-color { border-color: #e5e7eb; /* gray-200 */ }
+           .modal-bg { background-color: white; }
+           .modal-overlay-bg { background-color: rgba(0, 0, 0, 0.6); }
+           .text-warning { color: #ef4444; /* red-500 */ }
 
 
-         /* Dark mode overrides */
-         .dark body { color: #d1d5db; /* gray-300 */ }
-         .dark .text-primary { color: #60a5fa; /* blue-400 */ }
-         .dark .text-secondary { color: #d1d5db; /* gray-300 */ }
-         .dark .text-muted { color: #9ca3af; /* gray-400 */ }
-         .dark .container-bg { background-color: #1f2937; /* gray-800 */ }
-         .dark .preview-bg { background-color: #374151; /* gray-700 */ }
-         .dark .border-color { border-color: #4b5563; /* gray-600 */ }
-         .dark .modal-bg { background-color: #374151; /* gray-700 */ }
-         .dark .modal-overlay-bg { background-color: rgba(0, 0, 0, 0.7); }
-         .dark .text-warning { color: #f87171; /* red-400 */ }
+           /* Dark mode overrides */
+           .dark body { color: #d1d5db; /* gray-300 */ }
+           .dark .text-primary { color: #60a5fa; /* blue-400 */ }
+           .dark .text-secondary { color: #d1d5db; /* gray-300 */ }
+           .dark .text-muted { color: #9ca3af; /* gray-400 */ }
+           .dark .container-bg { background-color: #1f2937; /* gray-800 */ }
+           .dark .preview-bg { background-color: #374151; /* gray-700 */ }
+           .dark .border-color { border-color: #4b5563; /* gray-600 */ }
+           .dark .modal-bg { background-color: #374151; /* gray-700 */ }
+           .dark .modal-overlay-bg { background-color: rgba(0, 0, 0, 0.7); }
+           .dark .text-warning { color: #f87171; /* red-400 */ }
 
 
     </style>
     <script>
-      // Basic Tailwind config for v4 browser build
-      tailwind.config = {
-        darkMode: 'class', // Enable dark mode using a class
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'], // Set Inter as primary sans-serif font
-            },
+        // Basic Tailwind config for v4 browser build
+        tailwind.config = {
+          darkMode: 'class', // Enable dark mode using a class
+          theme: {
+            extend: {
+              fontFamily: {
+                sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'], // Set Inter as primary sans-serif font
+              },
+            }
           }
         }
-      }
-      // Function to apply saved theme preference
-      function applyTheme() {
-        console.log("Applying theme..."); // DEBUG
-        const themeToggleBtn = document.getElementById('themeToggle');
-        if (!themeToggleBtn) {
-             console.error("Theme toggle button not found during applyTheme.");
-             return;
-        }
+        // Function to apply saved theme preference (Uses localStorage)
+        function applyTheme() {
+            console.log("Applying theme..."); // DEBUG
+            const themeToggleBtn = document.getElementById('themeToggle');
+            if (!themeToggleBtn) {
+                console.error("Theme toggle button not found during applyTheme.");
+                return;
+            }
 
-        const isDarkMode = localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            // Keep theme in localStorage - it's simple and sufficient
+            const isDarkMode = localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
 
-        if (isDarkMode) {
-          document.documentElement.classList.add('dark');
-          // Set Sun SVG
-          themeToggleBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon w-5 h-5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>`;
-          console.log("Theme set to dark."); // DEBUG
-        } else {
-          document.documentElement.classList.remove('dark');
-           // Set Moon SVG
-          themeToggleBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon w-5 h-5"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`;
-           console.log("Theme set to light."); // DEBUG
+            if (isDarkMode) {
+                document.documentElement.classList.add('dark');
+                // Set Sun SVG
+                themeToggleBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon w-5 h-5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>`;
+                console.log("Theme set to dark."); // DEBUG
+            } else {
+                document.documentElement.classList.remove('dark');
+                 // Set Moon SVG
+                themeToggleBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon w-5 h-5"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`;
+                console.log("Theme set to light."); // DEBUG
+            }
         }
-      }
     </script>
 </head>
-<body class="bg-gray-100 font-sans flex justify-center items-start min-h-screen p-4 transition-colors duration-300">
+<body class="bg-gray-100 dark:bg-gray-900 font-sans flex justify-center items-start min-h-screen p-4 transition-colors duration-300">
     <div id="appContainer" class="container-bg w-full max-w-2xl rounded-lg shadow-lg p-4 sm:p-6 md:p-8 relative transition-colors duration-300">
 
         <button id="themeToggle" title="Toggle Theme" class="absolute top-4 right-4 text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
             </button>
 
         <div class="text-center mb-6">
-             <h1 class="text-2xl sm:text-3xl font-bold text-primary mb-1">280Thread</h1>
+            <h1 class="text-2xl sm:text-3xl font-bold text-primary mb-1">280Thread</h1>
             <p class="text-sm text-muted">
                 Made with ❤️ by
                 <a href="https://x.com/hatchedboy" target="_blank" rel="noopener noreferrer"
@@ -166,7 +167,7 @@
             </div>
 
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
-             <button id="addTweetBtn" class="btn bg-blue-600 hover:bg-blue-700">
+            <button id="addTweetBtn" class="btn bg-blue-600 hover:bg-blue-700">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon mr-2"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="16"/><line x1="8" x2="16" y1="12" y2="12"/></svg>
                 Add Tweet
             </button>
@@ -193,30 +194,30 @@
         </div>
 
         <div class="mb-4">
-             <h3 class="text-lg font-semibold text-secondary mb-2">Preview</h3>
-             <div id="previewContainer" class="preview-bg border border-color rounded-md p-4 max-h-48 overflow-y-auto text-sm space-y-2 transition-colors duration-300 scrollbar-thin">
-                 <p class="text-muted italic">Add tweets to see the preview.</p>
-             </div>
+            <h3 class="text-lg font-semibold text-secondary mb-2">Preview</h3>
+            <div id="previewContainer" class="preview-bg border border-color rounded-md p-4 max-h-48 overflow-y-auto text-sm space-y-2 transition-colors duration-300 scrollbar-thin">
+                <p class="text-muted italic">Add tweets to see the preview.</p>
+            </div>
         </div>
     </div>
 
     <div id="libraryModal" class="fixed inset-0 modal-overlay-bg hidden justify-center items-center p-4 z-50 transition-opacity duration-300">
         <div class="modal-bg rounded-lg shadow-xl p-6 w-full max-w-2xl max-h-[85vh] overflow-y-auto relative transition-colors duration-300 scrollbar-thin">
             <button id="closeLibraryBtn" title="Close Library" class="absolute top-3 right-3 text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors duration-200 p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600">
-                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon w-5 h-5"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon w-5 h-5"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
             </button>
             <h2 class="text-2xl font-semibold text-primary mb-4">Thread Library</h2>
             <div id="libraryContainer" class="space-y-6 mb-6">
                 <p class="text-muted italic text-center">Your saved threads will appear here.</p>
             </div>
-             <div class="flex flex-wrap gap-3 justify-end border-t border-color pt-4 mt-auto">
+            <div class="flex flex-wrap gap-3 justify-end border-t border-color pt-4 mt-auto">
                 <button id="exportLibraryBtn" class="btn btn-sm bg-green-600 hover:bg-green-700">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm mr-1"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" x2="12" y1="2" y2="15"/></svg>
-                     Export All
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm mr-1"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" x2="12" y1="2" y2="15"/></svg>
+                    Export All
                 </button>
                 <button id="importLibraryBtnModal" class="btn btn-sm bg-purple-600 hover:bg-purple-700">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm mr-1"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"/><path d="M14 2v6h6"/><path d="M4 12.5V16a2 2 0 0 0 2 2h1"/><path d="M11 18h-1a2 2 0 0 0-2 2v2"/><path d="M7 18a5 5 0 0 1 5-5v0a5 5 0 0 1 5 5v0"/><path d="M12 13v6"/><path d="m9 16 3-3 3 3"/></svg>
-                     Import All
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm mr-1"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"/><path d="M14 2v6h6"/><path d="M4 12.5V16a2 2 0 0 0 2 2h1"/><path d="M11 18h-1a2 2 0 0 0-2 2v2"/><path d="M7 18a5 5 0 0 1 5-5v0a5 5 0 0 1 5 5v0"/><path d="M12 13v6"/><path d="m9 16 3-3 3 3"/></svg>
+                    Import All
                 </button>
             </div>
         </div>
@@ -228,194 +229,310 @@
     <script>
         // Constants
         const MAX_TWEET_LENGTH = 280;
+        const DB_NAME = '280ThreadDB';
+        const DB_VERSION = 1;
+        const LIBRARY_STORE_NAME = 'threads'; // Stores { title: string, versions: Array<ThreadVersion> }
+        const AUTOSAVE_STORE_NAME = 'autosave'; // Stores { id: 'currentDraft', data: ThreadData }
+        const AUTOSAVE_KEY = 'currentDraft';
 
         // Global State
-        let library = {}; // In-memory library store
+        let library = {}; // In-memory cache of the library, loaded from DB
         let notificationTimeout; // Store timeout ID for notifications
+        let dbPromise; // Holds the promise for the IndexedDB connection
 
         // DOM Elements (cache references on load)
         let threadTitleInput, threadConceptInput, tweetContainer, previewContainer,
             libraryModal, libraryContainer, importThreadFileInput, importLibraryFileInput,
-            notificationArea, themeToggleBtn; // themeIcon removed as parent button content is replaced
+            notificationArea, themeToggleBtn;
+
+        // --- IndexedDB Helper Functions ---
+        function openDB() {
+            if (!dbPromise) {
+                console.log(`Opening IndexedDB: ${DB_NAME} v${DB_VERSION}`); // DEBUG
+                dbPromise = new Promise((resolve, reject) => {
+                    const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+                    request.onerror = (event) => {
+                        console.error("IndexedDB error:", event.target.error);
+                        reject("Error opening IndexedDB.");
+                    };
+
+                    request.onsuccess = (event) => {
+                        console.log("IndexedDB opened successfully."); // DEBUG
+                        resolve(event.target.result);
+                    };
+
+                    request.onupgradeneeded = (event) => {
+                        console.log("IndexedDB upgrade needed."); // DEBUG
+                        const db = event.target.result;
+                        if (!db.objectStoreNames.contains(LIBRARY_STORE_NAME)) {
+                            console.log(`Creating object store: ${LIBRARY_STORE_NAME}`); // DEBUG
+                            // Use title as the key path
+                            db.createObjectStore(LIBRARY_STORE_NAME, { keyPath: 'title' });
+                        }
+                        if (!db.objectStoreNames.contains(AUTOSAVE_STORE_NAME)) {
+                            console.log(`Creating object store: ${AUTOSAVE_STORE_NAME}`); // DEBUG
+                            // Use a fixed key for the single autosave entry
+                            db.createObjectStore(AUTOSAVE_STORE_NAME, { keyPath: 'id' });
+                        }
+                    };
+                });
+            }
+            return dbPromise;
+        }
+
+        async function saveToDB(storeName, data) {
+            const db = await openDB();
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction(storeName, 'readwrite');
+                const store = transaction.objectStore(storeName);
+                const request = store.put(data); // Use put for insert/update
+
+                request.onsuccess = () => resolve();
+                request.onerror = (event) => {
+                    console.error(`Error saving to ${storeName}:`, event.target.error);
+                    reject(`Error saving data to ${storeName}.`);
+                }
+            });
+        }
+
+        async function loadFromDB(storeName, key) {
+            const db = await openDB();
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction(storeName, 'readonly');
+                const store = transaction.objectStore(storeName);
+                const request = store.get(key);
+
+                request.onsuccess = () => resolve(request.result); // Returns the object or undefined
+                request.onerror = (event) => {
+                    console.error(`Error loading from ${storeName}:`, event.target.error);
+                    reject(`Error loading data from ${storeName}.`);
+                }
+            });
+        }
+
+         async function loadAllFromDB(storeName) {
+            const db = await openDB();
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction(storeName, 'readonly');
+                const store = transaction.objectStore(storeName);
+                const request = store.getAll(); // Use getAll() for entire store content
+
+                request.onsuccess = () => resolve(request.result || []); // Returns array of objects
+                request.onerror = (event) => {
+                    console.error(`Error loading all from ${storeName}:`, event.target.error);
+                    reject(`Error loading all data from ${storeName}.`);
+                }
+            });
+        }
+
+        async function deleteFromDB(storeName, key) {
+            const db = await openDB();
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction(storeName, 'readwrite');
+                const store = transaction.objectStore(storeName);
+                const request = store.delete(key);
+
+                request.onsuccess = () => resolve();
+                request.onerror = (event) => {
+                    console.error(`Error deleting from ${storeName}:`, event.target.error);
+                    reject(`Error deleting data from ${storeName}.`);
+                }
+            });
+        }
+
+         async function clearStoreDB(storeName) {
+            const db = await openDB();
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction(storeName, 'readwrite');
+                const store = transaction.objectStore(storeName);
+                const request = store.clear();
+
+                request.onsuccess = () => resolve();
+                request.onerror = (event) => {
+                    console.error(`Error clearing store ${storeName}:`, event.target.error);
+                    reject(`Error clearing store ${storeName}.`);
+                }
+            });
+        }
 
         // --- Notification Function ---
         function showNotification(message, type = 'success', duration = 3000) {
-            console.log(`Showing notification: ${message} (Type: ${type})`); // DEBUG
-            if (!notificationArea) {
-                console.error("Notification area not found!"); // DEBUG
-                return;
-            }
-            // Clear previous timeout if exists
-            if (notificationTimeout) {
-                clearTimeout(notificationTimeout);
-            }
-            notificationArea.textContent = message;
-            // Apply classes based on type
-            notificationArea.className = `mb-4 text-center text-sm font-medium min-h-[1.25rem] transition-opacity duration-300 ease-in-out ${
-                type === 'success' ? 'text-green-600 dark:text-green-400' :
-                type === 'error' ? 'text-red-600 dark:text-red-400' :
-                'text-blue-600 dark:text-blue-400' // info default
-            }`;
-            // Make visible
-            requestAnimationFrame(() => { // Ensure class changes are applied before opacity change
-                 notificationArea.style.opacity = 1;
-            });
+             console.log(`Showing notification: ${message} (Type: ${type})`); // DEBUG
+             if (!notificationArea) {
+                 console.error("Notification area not found!"); // DEBUG
+                 return;
+             }
+             // Clear previous timeout if exists
+             if (notificationTimeout) {
+                 clearTimeout(notificationTimeout);
+             }
+             notificationArea.textContent = message;
+             // Apply classes based on type
+             notificationArea.className = `mb-4 text-center text-sm font-medium min-h-[1.25rem] transition-opacity duration-300 ease-in-out ${
+                 type === 'success' ? 'text-green-600 dark:text-green-400' :
+                 type === 'error' ? 'text-red-600 dark:text-red-400' :
+                 'text-blue-600 dark:text-blue-400' // info default
+             }`;
+             // Make visible
+             requestAnimationFrame(() => { // Ensure class changes are applied before opacity change
+                  notificationArea.style.opacity = 1;
+             });
 
-
-            // Set timeout to hide
-            notificationTimeout = setTimeout(() => {
-                notificationArea.style.opacity = 0;
-            }, duration);
+             // Set timeout to hide
+             notificationTimeout = setTimeout(() => {
+                 notificationArea.style.opacity = 0;
+             }, duration);
         }
 
         // --- Tweet Element Creation & Management ---
         function createTweetElement(text = '', index) {
-            console.log(`Creating tweet element at index ${index === undefined ? 'end' : index}`); // DEBUG
-            if (!tweetContainer) {
-                console.error("Tweet container not found!"); // DEBUG
-                return null;
-            }
+             console.log(`Creating tweet element at index ${index === undefined ? 'end' : index}`); // DEBUG
+             if (!tweetContainer) {
+                 console.error("Tweet container not found!"); // DEBUG
+                 return null;
+             }
 
-            const tweetId = `tweet-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`; // Unique ID
-            const tweetElement = document.createElement('div');
-            tweetElement.id = tweetId;
-            // Consolidated Tailwind classes
-            tweetElement.className = 'tweet-container border border-color rounded-md p-4 relative transition-colors duration-300';
-            // Inner HTML structure for a tweet element using inline SVGs
-            tweetElement.innerHTML = `
-                <textarea class="input-bg w-full p-2 border rounded-md shadow-sm transition-colors duration-300 resize-vertical min-h-[80px]" placeholder="Write your tweet (${MAX_TWEET_LENGTH} chars max)" rows="4">${text}</textarea>
-                <div class="text-xs text-right mt-1 text-muted character-count">${text.length}/${MAX_TWEET_LENGTH}</div>
-                <div class="absolute top-2 right-2 flex flex-col space-y-1">
-                    <button title="Add Tweet Above" class="add-above-button btn-icon p-1 rounded-full text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm"><path d="m15 18-6-6 6-6"/><circle cx="12" cy="12" r="10"/></svg>
-                    </button>
-                    <button title="Add Tweet Below" class="add-below-button btn-icon p-1 rounded-full text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm"><path d="m9 18 6-6-6-6"/><circle cx="12" cy="12" r="10"/></svg>
-                    </button>
-                    <button title="Delete Tweet" class="delete-tweet-button btn-icon p-1 rounded-full text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
-                    </button>
-                </div>
-            `;
+             const tweetId = `tweet-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`; // Unique ID
+             const tweetElement = document.createElement('div');
+             tweetElement.id = tweetId;
+             // Consolidated Tailwind classes
+             tweetElement.className = 'tweet-container border border-color rounded-md p-4 relative transition-colors duration-300';
+             // Inner HTML structure for a tweet element using inline SVGs
+             tweetElement.innerHTML = `
+                 <textarea class="input-bg w-full p-2 border rounded-md shadow-sm transition-colors duration-300 resize-vertical min-h-[80px]" placeholder="Write your tweet (${MAX_TWEET_LENGTH} chars max)" rows="4">${text}</textarea>
+                 <div class="text-xs text-right mt-1 text-muted character-count">${text.length}/${MAX_TWEET_LENGTH}</div>
+                 <div class="absolute top-2 right-2 flex flex-col space-y-1">
+                     <button title="Add Tweet Above" class="add-above-button btn-icon p-1 rounded-full text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 transition-colors">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm"><path d="m15 18-6-6 6-6"/><circle cx="12" cy="12" r="10"/></svg>
+                     </button>
+                     <button title="Add Tweet Below" class="add-below-button btn-icon p-1 rounded-full text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 transition-colors">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm"><path d="m9 18 6-6-6-6"/><circle cx="12" cy="12" r="10"/></svg>
+                     </button>
+                     <button title="Delete Tweet" class="delete-tweet-button btn-icon p-1 rounded-full text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 transition-colors">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                     </button>
+                 </div>
+             `;
 
-            // Insert into the DOM at the specified index or at the end
-            if (typeof index === 'number' && tweetContainer.children[index]) {
-                tweetContainer.insertBefore(tweetElement, tweetContainer.children[index]);
-            } else {
-                tweetContainer.appendChild(tweetElement);
-            }
+             // Insert into the DOM at the specified index or at the end
+             if (typeof index === 'number' && tweetContainer.children[index]) {
+                 tweetContainer.insertBefore(tweetElement, tweetContainer.children[index]);
+             } else {
+                 tweetContainer.appendChild(tweetElement);
+             }
 
-            // Attach event listeners to the new element
-            setTweetElementEvents(tweetElement);
-            // Apply necessary styles (like button styles)
-            applyDynamicStyles(tweetElement);
-            // Update UI and save state
-            updatePreview();
-            autoSave();
-            return tweetElement; // Return for potential focus, etc.
-        }
+             // Attach event listeners to the new element
+             setTweetElementEvents(tweetElement);
+             // Apply necessary styles (like button styles)
+             applyDynamicStyles(tweetElement);
+             // Update UI and save state
+             updatePreview();
+             autoSave(); // Will now use IndexedDB
+             return tweetElement; // Return for potential focus, etc.
+         }
 
         function setTweetElementEvents(tweetElement) {
-            console.log("Setting events for tweet element:", tweetElement.id); // DEBUG
-            // Find elements within the tweetElement
-            const textarea = tweetElement.querySelector('textarea');
-            const countDisplay = tweetElement.querySelector('.character-count');
-            const addAboveButton = tweetElement.querySelector('.add-above-button');
-            const addBelowButton = tweetElement.querySelector('.add-below-button');
-            const deleteButton = tweetElement.querySelector('.delete-tweet-button');
+             console.log("Setting events for tweet element:", tweetElement.id); // DEBUG
+             // Find elements within the tweetElement
+             const textarea = tweetElement.querySelector('textarea');
+             const countDisplay = tweetElement.querySelector('.character-count');
+             const addAboveButton = tweetElement.querySelector('.add-above-button');
+             const addBelowButton = tweetElement.querySelector('.add-below-button');
+             const deleteButton = tweetElement.querySelector('.delete-tweet-button');
 
-            // Ensure all elements were found before adding listeners
-            if (!textarea || !countDisplay || !addAboveButton || !addBelowButton || !deleteButton) {
-                console.error("Could not find all elements within tweetElement:", tweetElement);
-                return;
-            }
+             // Ensure all elements were found before adding listeners
+             if (!textarea || !countDisplay || !addAboveButton || !addBelowButton || !deleteButton) {
+                 console.error("Could not find all elements within tweetElement:", tweetElement);
+                 return;
+             }
 
-            // --- Textarea Input Listener ---
-            textarea.addEventListener('input', () => {
-                // console.log("Tweet textarea input changed:", tweetElement.id); // DEBUG (can be noisy)
-                const length = textarea.value.length;
-                countDisplay.textContent = `${length}/${MAX_TWEET_LENGTH}`;
-                const isOverLimit = length > MAX_TWEET_LENGTH;
-                // Use classList.toggle for cleaner state management
-                countDisplay.classList.toggle('text-warning', isOverLimit);
-                countDisplay.classList.toggle('dark:text-red-400', isOverLimit);
-                countDisplay.classList.toggle('text-muted', !isOverLimit); // Use text-muted for normal state
-                updatePreview();
-                autoSave();
-            });
+             // --- Textarea Input Listener ---
+             textarea.addEventListener('input', () => {
+                 // console.log("Tweet textarea input changed:", tweetElement.id); // DEBUG (can be noisy)
+                 const length = textarea.value.length;
+                 countDisplay.textContent = `${length}/${MAX_TWEET_LENGTH}`;
+                 const isOverLimit = length > MAX_TWEET_LENGTH;
+                 // Use classList.toggle for cleaner state management
+                 countDisplay.classList.toggle('text-warning', isOverLimit);
+                 countDisplay.classList.toggle('dark:text-red-400', isOverLimit);
+                 countDisplay.classList.toggle('text-muted', !isOverLimit); // Use text-muted for normal state
+                 updatePreview();
+                 autoSave(); // Uses IndexedDB
+             });
 
-            // --- Add Tweet Above Button Listener ---
-            addAboveButton.addEventListener('click', (event) => { // Added event parameter
-                event.stopPropagation(); // Prevent potential event bubbling issues
-                console.log("Add Above button clicked for:", tweetElement.id); // DEBUG
-                const index = Array.from(tweetContainer.children).indexOf(tweetElement);
-                const newTweet = createTweetElement('', index);
-                if (newTweet) newTweet.querySelector('textarea')?.focus(); // Focus if created
-                playHapticFeedback();
-            });
-
-            // --- Add Tweet Below Button Listener ---
-            addBelowButton.addEventListener('click', (event) => { // Added event parameter
+             // --- Add Tweet Above Button Listener ---
+             addAboveButton.addEventListener('click', (event) => { // Added event parameter
                  event.stopPropagation(); // Prevent potential event bubbling issues
-                 console.log("Add Below button clicked for:", tweetElement.id); // DEBUG
-                const index = Array.from(tweetContainer.children).indexOf(tweetElement);
-                const newTweet = createTweetElement('', index + 1);
+                 console.log("Add Above button clicked for:", tweetElement.id); // DEBUG
+                 const index = Array.from(tweetContainer.children).indexOf(tweetElement);
+                 const newTweet = createTweetElement('', index);
                  if (newTweet) newTweet.querySelector('textarea')?.focus(); // Focus if created
-                playHapticFeedback();
-            });
+                 playHapticFeedback();
+             });
+
+             // --- Add Tweet Below Button Listener ---
+             addBelowButton.addEventListener('click', (event) => { // Added event parameter
+                  event.stopPropagation(); // Prevent potential event bubbling issues
+                  console.log("Add Below button clicked for:", tweetElement.id); // DEBUG
+                  const index = Array.from(tweetContainer.children).indexOf(tweetElement);
+                  const newTweet = createTweetElement('', index + 1);
+                  if (newTweet) newTweet.querySelector('textarea')?.focus(); // Focus if created
+                  playHapticFeedback();
+             });
 
              // --- Delete Tweet Button Listener ---
-            deleteButton.addEventListener('click', (event) => { // Added event parameter
-                 event.stopPropagation(); // Prevent potential event bubbling issues
-                 console.log("Delete button clicked for:", tweetElement.id); // DEBUG
-                if (confirm('Are you sure you want to delete this tweet?')) {
-                    console.log("Deleting tweet:", tweetElement.id); // DEBUG
-                    tweetElement.remove();
-                    updatePreview();
-                    autoSave();
-                    playHapticFeedback();
-                    showNotification('Tweet deleted.', 'info', 1500);
-                } else {
-                     console.log("Tweet deletion cancelled:", tweetElement.id); // DEBUG
-                }
-            });
+             deleteButton.addEventListener('click', (event) => { // Added event parameter
+                  event.stopPropagation(); // Prevent potential event bubbling issues
+                  console.log("Delete button clicked for:", tweetElement.id); // DEBUG
+                  if (confirm('Are you sure you want to delete this tweet?')) {
+                      console.log("Deleting tweet:", tweetElement.id); // DEBUG
+                      tweetElement.remove();
+                      updatePreview();
+                      autoSave(); // Uses IndexedDB
+                      playHapticFeedback();
+                      showNotification('Tweet deleted.', 'info', 1500);
+                  } else {
+                       console.log("Tweet deletion cancelled:", tweetElement.id); // DEBUG
+                  }
+             });
         }
 
         // --- Update Preview ---
         function updatePreview() {
-            // console.log("Updating preview..."); // DEBUG (can be noisy)
-            if (!previewContainer || !tweetContainer) return; // Ensure elements exist
+             // console.log("Updating preview..."); // DEBUG (can be noisy)
+             if (!previewContainer || !tweetContainer) return; // Ensure elements exist
 
-            previewContainer.innerHTML = ''; // Clear previous preview
-            const tweets = Array.from(tweetContainer.querySelectorAll('.tweet-container textarea'));
+             previewContainer.innerHTML = ''; // Clear previous preview
+             const tweets = Array.from(tweetContainer.querySelectorAll('.tweet-container textarea'));
 
-            if (tweets.length === 0) {
-                 previewContainer.innerHTML = '<p class="text-muted italic">Add tweets using the "Add Tweet" button.</p>';
-                 return;
-            }
+             if (tweets.length === 0) {
+                  previewContainer.innerHTML = '<p class="text-muted italic">Add tweets using the "Add Tweet" button.</p>';
+                  return;
+             }
 
-            let hasContent = false;
-            tweets.forEach((textarea, index) => {
-                const text = textarea.value.trim();
-                if (text) {
-                    hasContent = true;
-                    const previewItem = document.createElement('div');
-                    previewItem.className = 'preview-item pb-1 border-b border-gray-200 dark:border-gray-600 last:border-b-0';
-                    // Basic highlighting - consider a more robust library for complex cases
-                    const highlightedText = text
-                        .replace(/</g, "&lt;").replace(/>/g, "&gt;") // Basic HTML escaping
-                        .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline">$1</a>')
-                        .replace(/#(\w+)/g, '<span class="text-purple-500">#$1</span>')
-                        .replace(/@(\w+)/g, '<span class="text-green-500">@$1</span>');
+             let hasContent = false;
+             tweets.forEach((textarea, index) => {
+                 const text = textarea.value.trim();
+                 if (text) {
+                     hasContent = true;
+                     const previewItem = document.createElement('div');
+                     previewItem.className = 'preview-item pb-1 border-b border-gray-200 dark:border-gray-600 last:border-b-0';
+                     // Basic highlighting - consider a more robust library for complex cases
+                     const highlightedText = text
+                         .replace(/</g, "&lt;").replace(/>/g, "&gt;") // Basic HTML escaping
+                         .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline">$1</a>')
+                         .replace(/#(\w+)/g, '<span class="text-purple-500">#$1</span>')
+                         .replace(/@(\w+)/g, '<span class="text-green-500">@$1</span>');
 
-                    previewItem.innerHTML = `<span class="font-semibold">${index + 1}.</span> ${highlightedText}`;
-                    previewContainer.appendChild(previewItem);
-                }
-            });
+                     previewItem.innerHTML = `<span class="font-semibold">${index + 1}.</span> ${highlightedText}`;
+                     previewContainer.appendChild(previewItem);
+                 }
+             });
 
-             if (!hasContent && tweets.length > 0) {
-                 previewContainer.innerHTML = '<p class="text-muted italic">Start typing in the text boxes above to see the preview.</p>';
-            }
+              if (!hasContent && tweets.length > 0) {
+                  previewContainer.innerHTML = '<p class="text-muted italic">Start typing in the text boxes above to see the preview.</p>';
+             }
         }
 
         // --- Library Functions ---
@@ -426,172 +543,187 @@
                  return;
              }
 
-            libraryContainer.innerHTML = ''; // Clear previous content
-            const sortedTitles = Object.keys(library).sort((a, b) => a.localeCompare(b));
+             libraryContainer.innerHTML = ''; // Clear previous content
 
-            if (sortedTitles.length === 0) {
-                 libraryContainer.innerHTML = '<p class="text-muted italic text-center">Your saved threads will appear here.</p>';
-                 return;
-            }
+             // Use the in-memory 'library' object which should be loaded from DB
+             const sortedTitles = Object.keys(library).sort((a, b) => a.localeCompare(b));
 
-            // Iterate through each thread title
-            sortedTitles.forEach(title => {
-                const versions = library[title];
-                if (!versions || versions.length === 0) return; // Skip if no versions
+             if (sortedTitles.length === 0) {
+                  libraryContainer.innerHTML = '<p class="text-muted italic text-center">Your saved threads will appear here.</p>';
+                  return;
+             }
 
-                // Create container for the thread title and its versions
-                const threadGroup = document.createElement('div');
-                threadGroup.className = 'library-thread-group border border-color rounded-lg overflow-hidden'; // Added overflow-hidden
+             // Iterate through each thread title
+             sortedTitles.forEach(title => {
+                 const versions = library[title]?.versions; // Access the versions array within the stored object
+                 if (!versions || versions.length === 0) return; // Skip if no versions
 
-                // Add title header
-                const titleHeader = document.createElement('h3');
-                titleHeader.className = 'text-lg font-semibold text-secondary p-3 bg-gray-50 dark:bg-gray-700/50 border-b border-color';
-                titleHeader.textContent = title;
-                threadGroup.appendChild(titleHeader);
+                 // Create container for the thread title and its versions
+                 const threadGroup = document.createElement('div');
+                 threadGroup.className = 'library-thread-group border border-color rounded-lg overflow-hidden'; // Added overflow-hidden
 
-                // Sort versions: newest first for display
-                const sortedVersions = [...versions].sort((a, b) => b.timestamp - a.timestamp);
+                 // Add title header
+                 const titleHeader = document.createElement('h3');
+                 titleHeader.className = 'text-lg font-semibold text-secondary p-3 bg-gray-50 dark:bg-gray-700/50 border-b border-color';
+                 titleHeader.textContent = title;
+                 threadGroup.appendChild(titleHeader);
 
-                // Create container for versions list
-                const versionsList = document.createElement('div');
-                versionsList.className = 'divide-y divide-gray-200 dark:divide-gray-600'; // Use divide for separators
-                threadGroup.appendChild(versionsList);
+                 // Sort versions: newest first for display
+                 const sortedVersions = [...versions].sort((a, b) => b.timestamp - a.timestamp);
 
-                // Iterate through sorted versions for this title
-                sortedVersions.forEach((version, displayIndex) => {
-                    const versionElement = document.createElement('div');
-                    // Add alternating background for readability
-                    const bgColor = displayIndex % 2 === 0 ? 'bg-white dark:bg-gray-800' : 'bg-gray-50 dark:bg-gray-700/50';
-                    // Adjusted padding and flex direction for responsiveness
-                    versionElement.className = `library-version-item p-3 ${bgColor} flex flex-col sm:flex-row sm:items-center gap-3`;
+                 // Create container for versions list
+                 const versionsList = document.createElement('div');
+                 versionsList.className = 'divide-y divide-gray-200 dark:divide-gray-600'; // Use divide for separators
+                 threadGroup.appendChild(versionsList);
 
-                    // Content section (Timestamp, Latest Badge, Preview)
-                    const contentSection = document.createElement('div');
-                    contentSection.className = 'flex-grow space-y-1 mb-2 sm:mb-0'; // Add bottom margin only on small screens
+                 // Iterate through sorted versions for this title
+                 sortedVersions.forEach((version, displayIndex) => {
+                     const versionElement = document.createElement('div');
+                     // Add alternating background for readability
+                     const bgColor = displayIndex % 2 === 0 ? 'bg-white dark:bg-gray-800' : 'bg-gray-50 dark:bg-gray-700/50';
+                     // Adjusted padding and flex direction for responsiveness
+                     versionElement.className = `library-version-item p-3 ${bgColor} flex flex-col sm:flex-row sm:items-center gap-3`;
 
-                    const timeWrapper = document.createElement('div');
-                    timeWrapper.className = 'flex items-center gap-2 text-sm text-muted';
-                    const timeSpan = document.createElement('span');
-                    timeSpan.textContent = new Date(version.timestamp).toLocaleString();
-                    timeWrapper.appendChild(timeSpan);
+                     // Content section (Timestamp, Latest Badge, Preview)
+                     const contentSection = document.createElement('div');
+                     contentSection.className = 'flex-grow space-y-1 mb-2 sm:mb-0'; // Add bottom margin only on small screens
 
-                    // Add "Latest" badge for the first item (index 0 of sorted)
-                    if (displayIndex === 0) {
-                        const latestBadge = document.createElement('span');
-                        latestBadge.className = 'latest-badge bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300';
-                        latestBadge.textContent = 'Latest';
-                        timeWrapper.appendChild(latestBadge);
-                    }
-                    contentSection.appendChild(timeWrapper);
+                     const timeWrapper = document.createElement('div');
+                     timeWrapper.className = 'flex items-center gap-2 text-sm text-muted';
+                     const timeSpan = document.createElement('span');
+                     timeSpan.textContent = new Date(version.timestamp).toLocaleString();
+                     timeWrapper.appendChild(timeSpan);
 
-                    // Concept Preview
-                    const previewElement = document.createElement('p');
-                    previewElement.className = 'text-xs text-gray-600 dark:text-gray-400 italic truncate'; // Truncate long concepts
-                    previewElement.textContent = version.concept || '(No concept provided)';
-                    previewElement.title = version.concept || '(No concept provided)'; // Show full concept on hover
-                    contentSection.appendChild(previewElement);
+                     // Add "Latest" badge for the first item (index 0 of sorted)
+                     if (displayIndex === 0) {
+                         const latestBadge = document.createElement('span');
+                         latestBadge.className = 'latest-badge bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300';
+                         latestBadge.textContent = 'Latest';
+                         timeWrapper.appendChild(latestBadge);
+                     }
+                     contentSection.appendChild(timeWrapper);
 
-                    versionElement.appendChild(contentSection);
+                     // Concept Preview
+                     const previewElement = document.createElement('p');
+                     previewElement.className = 'text-xs text-gray-600 dark:text-gray-400 italic truncate'; // Truncate long concepts
+                     previewElement.textContent = version.concept || '(No concept provided)';
+                     previewElement.title = version.concept || '(No concept provided)'; // Show full concept on hover
+                     contentSection.appendChild(previewElement);
 
-                    // Action Buttons Section - Adjusted for responsiveness
-                    const actionsSection = document.createElement('div');
-                     // Stack vertically by default, row on sm+, align items end when stacked, justify end when row
-                    actionsSection.className = 'flex flex-col sm:flex-row flex-shrink-0 gap-2 items-end sm:items-center sm:justify-end';
+                     versionElement.appendChild(contentSection);
 
-                    // Load Button
-                    const loadButton = document.createElement('button');
-                    loadButton.className = 'load-entry btn btn-xs bg-blue-600 hover:bg-blue-700 w-full sm:w-auto'; // Full width on mobile
-                    loadButton.title = 'Load this version into the editor';
-                    loadButton.dataset.timestamp = version.timestamp; // Use timestamp to identify version
-                    loadButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-xs mr-1"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>Load`;
-                    loadButton.addEventListener('click', (event) => { event.stopPropagation(); const ts = event.currentTarget.dataset.timestamp; console.log("Load library entry clicked:", title, ts); loadThreadFromLibrary(title, ts); playHapticFeedback(); });
-                    actionsSection.appendChild(loadButton);
+                     // Action Buttons Section - Adjusted for responsiveness
+                     const actionsSection = document.createElement('div');
+                      // Stack vertically by default, row on sm+, align items end when stacked, justify end when row
+                     actionsSection.className = 'flex flex-col sm:flex-row flex-shrink-0 gap-2 items-end sm:items-center sm:justify-end';
 
-                    // Export Button
-                    const exportButton = document.createElement('button');
-                    exportButton.className = 'export-entry btn btn-xs bg-green-600 hover:bg-green-700 w-full sm:w-auto'; // Full width on mobile
-                    exportButton.title = 'Export this version as TXT';
-                    exportButton.dataset.timestamp = version.timestamp; // Use timestamp
-                    exportButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-xs mr-1"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>Export`;
-                    exportButton.addEventListener('click', (event) => { event.stopPropagation(); const ts = event.currentTarget.dataset.timestamp; console.log("Export library entry clicked:", title, ts); exportSpecificThreadVersion(title, ts); playHapticFeedback(); });
-                    actionsSection.appendChild(exportButton);
+                     // Load Button
+                     const loadButton = document.createElement('button');
+                     loadButton.className = 'load-entry btn btn-xs bg-blue-600 hover:bg-blue-700 w-full sm:w-auto'; // Full width on mobile
+                     loadButton.title = 'Load this version into the editor';
+                     loadButton.dataset.title = title; // Store title
+                     loadButton.dataset.timestamp = version.timestamp; // Use timestamp to identify version
+                     loadButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-xs mr-1"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>Load`;
+                     // Event listener calls loadThreadFromLibrary (which uses in-memory 'library')
+                     loadButton.addEventListener('click', (event) => { event.stopPropagation(); const t = event.currentTarget.dataset.title; const ts = event.currentTarget.dataset.timestamp; console.log("Load library entry clicked:", t, ts); loadThreadFromLibrary(t, ts); playHapticFeedback(); });
+                     actionsSection.appendChild(loadButton);
 
-                    // Delete Button
-                    const deleteButton = document.createElement('button');
-                    deleteButton.className = 'delete-entry btn btn-xs bg-red-600 hover:bg-red-700 w-full sm:w-auto'; // Full width on mobile
-                    deleteButton.title = 'Delete this version';
-                    deleteButton.dataset.timestamp = version.timestamp; // Use timestamp
-                    deleteButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-xs mr-1"><circle cx="12" cy="12" r="10"/><line x1="15" x2="9" y1="9" y2="15"/><line x1="9" x2="15" y1="9" y2="15"/></svg>Delete`;
-                    deleteButton.addEventListener('click', (event) => { event.stopPropagation(); const ts = event.currentTarget.dataset.timestamp; console.log("Delete library entry clicked:", title, ts); deleteThreadVersion(title, ts); playHapticFeedback(); });
-                    actionsSection.appendChild(deleteButton);
+                     // Export Button
+                     const exportButton = document.createElement('button');
+                     exportButton.className = 'export-entry btn btn-xs bg-green-600 hover:bg-green-700 w-full sm:w-auto'; // Full width on mobile
+                     exportButton.title = 'Export this version as TXT';
+                     exportButton.dataset.title = title; // Store title
+                     exportButton.dataset.timestamp = version.timestamp; // Use timestamp
+                     exportButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-xs mr-1"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>Export`;
+                     // Event listener calls exportSpecificThreadVersion (uses in-memory 'library')
+                     exportButton.addEventListener('click', (event) => { event.stopPropagation(); const t = event.currentTarget.dataset.title; const ts = event.currentTarget.dataset.timestamp; console.log("Export library entry clicked:", t, ts); exportSpecificThreadVersion(t, ts); playHapticFeedback(); });
+                     actionsSection.appendChild(exportButton);
 
-                    versionElement.appendChild(actionsSection);
-                    versionsList.appendChild(versionElement);
+                     // Delete Button
+                     const deleteButton = document.createElement('button');
+                     deleteButton.className = 'delete-entry btn btn-xs bg-red-600 hover:bg-red-700 w-full sm:w-auto'; // Full width on mobile
+                     deleteButton.title = 'Delete this version';
+                     deleteButton.dataset.title = title; // Store title
+                     deleteButton.dataset.timestamp = version.timestamp; // Use timestamp
+                     deleteButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-xs mr-1"><circle cx="12" cy="12" r="10"/><line x1="15" x2="9" y1="9" y2="15"/><line x1="9" x2="15" y1="9" y2="15"/></svg>Delete`;
+                     // Event listener calls deleteThreadVersion (which updates DB and in-memory 'library')
+                     deleteButton.addEventListener('click', (event) => { event.stopPropagation(); const t = event.currentTarget.dataset.title; const ts = event.currentTarget.dataset.timestamp; console.log("Delete library entry clicked:", t, ts); deleteThreadVersion(t, ts); playHapticFeedback(); });
+                     actionsSection.appendChild(deleteButton);
 
-                    // Log listener attachment confirmation
-                    console.log(`Attached listeners for version ${version.timestamp} of: ${title}`); // DEBUG
-                });
+                     versionElement.appendChild(actionsSection);
+                     versionsList.appendChild(versionElement);
 
-                libraryContainer.appendChild(threadGroup);
-                // Apply button styles dynamically to the newly added elements
-                applyDynamicStyles(threadGroup);
-            });
+                     // Log listener attachment confirmation
+                     // console.log(`Attached listeners for version ${version.timestamp} of: ${title}`); // DEBUG
+                 });
+
+                 libraryContainer.appendChild(threadGroup);
+                 // Apply button styles dynamically to the newly added elements
+                 applyDynamicStyles(threadGroup);
+             });
         }
 
 
-        function saveToLibrary() {
-            console.log("Attempting to save to library..."); // DEBUG
-            if (!threadTitleInput) {
+        async function saveToLibrary() {
+             console.log("Attempting to save to library..."); // DEBUG
+             if (!threadTitleInput) {
                  console.error("Thread title input not found!"); // DEBUG
                  return;
-            }
-            const title = threadTitleInput.value.trim();
-            if (!title) {
-                showNotification('Please enter a thread title before saving.', 'error');
-                threadTitleInput.focus();
-                return;
-            }
+             }
+             const title = threadTitleInput.value.trim();
+             if (!title) {
+                 showNotification('Please enter a thread title before saving.', 'error');
+                 threadTitleInput.focus();
+                 return;
+             }
 
-            if (!library[title]) {
-                library[title] = [];
-            }
+             // Load current entry from DB to modify it
+             let libraryEntry = await loadFromDB(LIBRARY_STORE_NAME, title);
+             if (!libraryEntry) {
+                 // Create new entry if title doesn't exist
+                 libraryEntry = { title: title, versions: [] };
+                 console.log(`Creating new library entry for title: ${title}`); // DEBUG
+             } else {
+                 console.log(`Found existing library entry for title: ${title}`); // DEBUG
+             }
 
-            const threadData = {
-                concept: threadConceptInput?.value.trim() || '',
-                tweets: Array.from(tweetContainer?.querySelectorAll('.tweet-container textarea') || []).map(textarea => textarea.value),
-                timestamp: Date.now()
-            };
-             console.log("Saving data:", threadData); // DEBUG
+             const newVersionData = {
+                 concept: threadConceptInput?.value.trim() || '',
+                 tweets: Array.from(tweetContainer?.querySelectorAll('.tweet-container textarea') || []).map(textarea => textarea.value),
+                 timestamp: Date.now()
+             };
+             console.log("New version data:", newVersionData); // DEBUG
 
-            const isDuplicate = library[title].some(v =>
-                v.concept === threadData.concept && JSON.stringify(v.tweets) === JSON.stringify(threadData.tweets)
-            );
+             // Check for duplicates within the specific title's versions
+             const isDuplicate = libraryEntry.versions.some(v =>
+                 v.concept === newVersionData.concept && JSON.stringify(v.tweets) === JSON.stringify(newVersionData.tweets)
+             );
 
-            if (!isDuplicate) {
-                library[title].push(threadData);
-                // No need to sort here, sorting happens during display
-                try {
-                    localStorage.setItem('threadLibrary', JSON.stringify(library));
-                     console.log("Library saved to localStorage."); // DEBUG
-                    updateLibraryDisplay(); // Update display if modal is open
-                    showNotification(`Thread "${title}" (New Version) saved to library.`, 'success');
-                    playHapticFeedback();
-                } catch (e) {
-                     console.error("Error saving library to localStorage:", e);
-                     showNotification("Could not save library. Storage might be full.", "error");
-                     // Optionally remove the just added item from memory if save failed
-                     const indexToRemove = library[title].findIndex(v => v.timestamp === threadData.timestamp);
-                     if (indexToRemove > -1) library[title].splice(indexToRemove, 1);
-                }
-            } else {
+             if (!isDuplicate) {
+                 libraryEntry.versions.push(newVersionData);
+                 try {
+                     await saveToDB(LIBRARY_STORE_NAME, libraryEntry); // Save the updated/new entry back to DB
+                     console.log(`Library entry "${title}" saved to IndexedDB.`); // DEBUG
+
+                     // Update in-memory cache AFTER successful DB save
+                     library[title] = libraryEntry;
+                     updateLibraryDisplay(); // Update display if modal is open
+                     showNotification(`Thread "${title}" (New Version) saved to library.`, 'success');
+                     playHapticFeedback();
+                 } catch (e) {
+                     console.error("Error saving library entry to IndexedDB:", e);
+                     showNotification("Could not save library entry.", "error");
+                     // No need to revert in-memory 'library' as it wasn't updated yet
+                 }
+             } else {
                  console.log("Duplicate version detected, not saving."); // DEBUG
                  showNotification(`This exact version of "${title}" is already saved.`, 'info');
-            }
+             }
         }
 
-        // Modified to accept timestamp instead of index
+        // Loads thread FROM THE IN-MEMORY LIBRARY CACHE into the editor
         function loadThreadFromLibrary(title, timestamp) {
-             console.log(`Attempting to load from library: ${title}, timestamp ${timestamp}`); // DEBUG
+             console.log(`Attempting to load from IN-MEMORY library: ${title}, timestamp ${timestamp}`); // DEBUG
              const versionTimestamp = parseInt(timestamp, 10);
              if (isNaN(versionTimestamp)) {
                  console.error("Invalid timestamp provided for loadThreadFromLibrary:", timestamp);
@@ -599,28 +731,29 @@
                  return;
              }
 
-             const versionToLoad = library[title]?.find(v => v.timestamp === versionTimestamp);
+             // Find version in the in-memory 'library' object
+             const versionToLoad = library[title]?.versions?.find(v => v.timestamp === versionTimestamp);
 
-            if (versionToLoad && threadTitleInput && threadConceptInput && tweetContainer) {
+             if (versionToLoad && threadTitleInput && threadConceptInput && tweetContainer) {
                  console.log("Loading data:", versionToLoad); // DEBUG
-                threadTitleInput.value = title;
-                threadConceptInput.value = versionToLoad.concept;
-                tweetContainer.innerHTML = '';
+                 threadTitleInput.value = title;
+                 threadConceptInput.value = versionToLoad.concept;
+                 tweetContainer.innerHTML = '';
 
-                versionToLoad.tweets.forEach(tweet => createTweetElement(tweet));
-                updatePreview();
-                if(libraryModal) libraryModal.style.display = 'none';
-                showNotification(`Loaded "${title}" (Saved: ${new Date(versionTimestamp).toLocaleString()}).`, 'success');
-                autoSave();
-            } else {
-                 console.error("Failed to load from library - version not found or elements missing for title/timestamp:", title, versionTimestamp); // DEBUG
+                 versionToLoad.tweets.forEach(tweet => createTweetElement(tweet));
+                 updatePreview();
+                 if(libraryModal) libraryModal.style.display = 'none';
+                 showNotification(`Loaded "${title}" (Saved: ${new Date(versionTimestamp).toLocaleString()}).`, 'success');
+                 autoSave(); // Update autosave in DB with the loaded content
+             } else {
+                 console.error("Failed to load from library - version not found in memory or elements missing for title/timestamp:", title, versionTimestamp); // DEBUG
                  showNotification(`Error loading thread "${title}". Version not found or elements missing.`, 'error');
-            }
+             }
         }
 
-         // Modified to accept timestamp instead of index
-         function exportSpecificThreadVersion(title, timestamp) {
-             console.log(`Attempting to export library version: ${title}, timestamp ${timestamp}`); // DEBUG
+        // Exports specific version FROM THE IN-MEMORY LIBRARY CACHE as TXT
+        function exportSpecificThreadVersion(title, timestamp) {
+             console.log(`Attempting to export IN-MEMORY library version: ${title}, timestamp ${timestamp}`); // DEBUG
              const versionTimestamp = parseInt(timestamp, 10);
              if (isNaN(versionTimestamp)) {
                  console.error("Invalid timestamp provided for exportSpecificThreadVersion:", timestamp);
@@ -628,25 +761,25 @@
                  return;
              }
 
-             const versionToExport = library[title]?.find(v => v.timestamp === versionTimestamp);
+             const versionToExport = library[title]?.versions?.find(v => v.timestamp === versionTimestamp);
 
-            if (versionToExport) {
-                let content = `Thread Title: ${title}\n\nThread Concept:\n${versionToExport.concept || '(No concept)'}\n\nTweets:\n\n`;
-                versionToExport.tweets.forEach((tweet, idx) => {
-                    content += `${idx + 1}. ${tweet || '(Empty tweet)'}\n\n`;
-                });
-                content += `\n\nSaved on: ${new Date(versionTimestamp).toLocaleString()}`;
+             if (versionToExport) {
+                 let content = `Thread Title: ${title}\n\nThread Concept:\n${versionToExport.concept || '(No concept)'}\n\nTweets:\n\n`;
+                 versionToExport.tweets.forEach((tweet, idx) => {
+                     content += `${idx + 1}. ${tweet || '(Empty tweet)'}\n\n`;
+                 });
+                 content += `\n\nSaved on: ${new Date(versionTimestamp).toLocaleString()}`;
 
-                downloadFile(`${title}_${versionTimestamp}.txt`, content, 'text/plain');
-                showNotification(`Exported "${title}" (Saved: ${new Date(versionTimestamp).toLocaleString()}).`, 'success');
-            } else {
-                 console.error("Failed to export library version - data missing for title/timestamp:", title, versionTimestamp); // DEBUG
+                 downloadFile(`${title}_${versionTimestamp}.txt`, content, 'text/plain');
+                 showNotification(`Exported "${title}" (Saved: ${new Date(versionTimestamp).toLocaleString()}).`, 'success');
+             } else {
+                 console.error("Failed to export library version - data missing in memory for title/timestamp:", title, versionTimestamp); // DEBUG
                  showNotification(`Error exporting thread "${title}". Version not found.`, 'error');
-            }
+             }
         }
 
-        // Modified to accept timestamp instead of index
-        function deleteThreadVersion(title, timestamp) {
+        // Deletes version from DB and IN-MEMORY library cache
+        async function deleteThreadVersion(title, timestamp) {
              console.log(`Attempting to delete library version: ${title}, timestamp ${timestamp}`); // DEBUG
              const versionTimestamp = parseInt(timestamp, 10);
              if (isNaN(versionTimestamp)) {
@@ -655,48 +788,75 @@
                  return;
              }
 
-             const versionIndex = library[title]?.findIndex(v => v.timestamp === versionTimestamp);
+             // Load the entry from DB first to ensure we have the latest
+             let libraryEntry = await loadFromDB(LIBRARY_STORE_NAME, title);
 
-             if (versionIndex === undefined || versionIndex === -1) {
-                 console.error("Failed to delete library version - data missing for title/timestamp:", title, versionTimestamp); // DEBUG
+             if (!libraryEntry || !libraryEntry.versions) {
+                  console.error("Failed to delete library version - entry not found in DB for title:", title); // DEBUG
+                  showNotification(`Error deleting thread "${title}". Entry not found.`, 'error');
+                  return;
+             }
+
+             const versionIndex = libraryEntry.versions.findIndex(v => v.timestamp === versionTimestamp);
+
+             if (versionIndex === -1) {
+                 console.error("Failed to delete library version - version timestamp not found in DB entry:", title, versionTimestamp); // DEBUG
                  showNotification(`Error deleting thread "${title}". Version not found.`, 'error');
                  return;
              }
 
              if (confirm(`Are you sure you want to delete this version of "${title}" (Saved: ${new Date(versionTimestamp).toLocaleString()})? This cannot be undone.`)) {
-                library[title].splice(versionIndex, 1); // Remove the version by index
-                if (library[title].length === 0) {
-                    delete library[title];
-                    console.log(`Deleted title entry "${title}" as no versions remain.`); // DEBUG
-                }
-                try {
-                    localStorage.setItem('threadLibrary', JSON.stringify(library));
-                    console.log("Library updated in localStorage after deletion."); // DEBUG
-                    updateLibraryDisplay(); // Refresh the modal view
-                    showNotification(`Deleted version of "${title}" (Saved: ${new Date(versionTimestamp).toLocaleString()}).`, 'success');
-                } catch (e) {
-                    console.error("Error saving library after deletion:", e);
-                    showNotification("Could not update library storage after deletion.", "error");
-                    // NOTE: Consider reverting the change in memory if save fails
-                    // This part is complex and omitted for now. The UI might be out of sync with storage if this fails.
-                    // Reloading the library from storage might be needed in a real app.
-                    loadLibraryFromStorage(); // Attempt to reload to resync memory state
-                    updateLibraryDisplay(); // Update display again after reload
-                }
-            } else {
+                 libraryEntry.versions.splice(versionIndex, 1); // Remove the version
+
+                 try {
+                     if (libraryEntry.versions.length === 0) {
+                         // If no versions left, delete the entire entry from DB
+                         await deleteFromDB(LIBRARY_STORE_NAME, title);
+                         console.log(`Deleted title entry "${title}" from DB as no versions remain.`); // DEBUG
+                         // Remove from in-memory cache
+                         delete library[title];
+                     } else {
+                         // Otherwise, save the modified entry back to DB
+                         await saveToDB(LIBRARY_STORE_NAME, libraryEntry);
+                         console.log(`Updated library entry "${title}" in DB after deletion.`); // DEBUG
+                         // Update in-memory cache
+                         library[title] = libraryEntry;
+                     }
+
+                     // Update display AFTER successful DB operation
+                     updateLibraryDisplay();
+                     showNotification(`Deleted version of "${title}" (Saved: ${new Date(versionTimestamp).toLocaleString()}).`, 'success');
+                 } catch (e) {
+                     console.error("Error updating library DB after deletion:", e);
+                     showNotification("Could not update library storage after deletion.", "error");
+                     // Attempt to reload the library from DB to resync the in-memory state
+                     await loadLibraryFromDB();
+                     updateLibraryDisplay();
+                 }
+             } else {
                  console.log("Deletion cancelled."); // DEBUG
-            }
+             }
         }
 
-        function exportLibrary() {
+        async function exportLibrary() {
              console.log("Attempting to export entire library..."); // DEBUG
-             if (Object.keys(library).length === 0) {
-                 showNotification('Library is empty. Nothing to export.', 'info');
-                 return;
+             // Load fresh data from DB for export
+             const allLibraryEntries = await loadAllFromDB(LIBRARY_STORE_NAME);
+             if (!allLibraryEntries || allLibraryEntries.length === 0) {
+                  showNotification('Library is empty. Nothing to export.', 'info');
+                  return;
              }
+
+             // Convert array of {title, versions} back to the original { title: versions } format for export compatibility
+             const exportData = allLibraryEntries.reduce((acc, entry) => {
+                 acc[entry.title] = entry.versions; // Exporting only versions array under the title key
+                 return acc;
+             }, {});
+
+
              try {
-                 const libraryJson = JSON.stringify(library, null, 2);
-                 downloadFile('280Thread_Library.json', libraryJson, 'application/json');
+                 const libraryJson = JSON.stringify(exportData, null, 2);
+                 downloadFile('280Thread_Library_DB_Export.json', libraryJson, 'application/json');
                  showNotification('Library exported successfully.', 'success');
              } catch (e) {
                   console.error("Error stringifying library for export:", e);
@@ -704,386 +864,458 @@
              }
         }
 
-        function importLibrary(file) {
-             console.log("Attempting to import library from file:", file?.name); // DEBUG
-             if (!file) return;
-             const reader = new FileReader();
-             reader.onload = function(e) {
-                 try {
-                     // Add basic check for empty file content
-                     if (!e.target.result) {
-                         throw new Error("File is empty.");
-                     }
-                     const importedLibrary = JSON.parse(e.target.result);
-                     console.log("Parsed imported library data:", importedLibrary); // DEBUG
-                     if (typeof importedLibrary !== 'object' || importedLibrary === null) {
-                         throw new Error('Invalid library format. Expected a JSON object.');
-                     }
+        async function importLibrary(file) {
+            console.log("Attempting to import library from file:", file?.name); // DEBUG
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = async function(e) { // Make onload async
+                try {
+                    // Add basic check for empty file content
+                    if (!e.target.result) {
+                        throw new Error("File is empty.");
+                    }
+                    const importedLibraryData = JSON.parse(e.target.result); // Expects { title: versionsArray, ... }
+                    console.log("Parsed imported library data:", importedLibraryData); // DEBUG
+                    if (typeof importedLibraryData !== 'object' || importedLibraryData === null) {
+                        throw new Error('Invalid library format. Expected a JSON object.');
+                    }
 
-                     let importedCount = 0;
-                     let mergedCount = 0;
-                     Object.entries(importedLibrary).forEach(([title, versions]) => {
-                         if (Array.isArray(versions)) {
-                            if (!library[title]) {
-                                library[title] = [];
+                    let importedCount = 0;
+                    let mergedCount = 0;
+                    let titlesProcessed = 0;
+
+                    // Load existing library entries from DB to merge
+                    const existingEntriesArray = await loadAllFromDB(LIBRARY_STORE_NAME);
+                    const existingLibraryMap = existingEntriesArray.reduce((map, entry) => {
+                        map[entry.title] = entry; // Map by title { title: string, versions: Array }
+                        return map;
+                    }, {});
+
+                    for (const [title, importedVersions] of Object.entries(importedLibraryData)) {
+                         titlesProcessed++;
+                        if (Array.isArray(importedVersions)) {
+                            let targetEntry = existingLibraryMap[title];
+                            let isNewEntry = false;
+                            if (!targetEntry) {
+                                // If title doesn't exist in DB, create a new entry structure
+                                targetEntry = { title: title, versions: [] };
+                                isNewEntry = true;
                             }
-                            versions.forEach(importedVersion => {
+
+                            let versionsAddedToThisTitle = 0;
+                            importedVersions.forEach(importedVersion => {
                                 // Basic validation of imported version structure
                                 if (importedVersion?.timestamp && Array.isArray(importedVersion.tweets)) {
-                                    // Check if a version with the same timestamp already exists
-                                    if (!library[title].some(existing => existing.timestamp === importedVersion.timestamp)) {
-                                        library[title].push(importedVersion);
+                                    // Check if a version with the same timestamp already exists in the target entry
+                                    if (!targetEntry.versions.some(existing => existing.timestamp === importedVersion.timestamp)) {
+                                        targetEntry.versions.push(importedVersion);
+                                        versionsAddedToThisTitle++;
                                         importedCount++;
                                     }
                                 } else {
-                                     console.warn(`Skipping invalid version structure during import for title "${title}":`, importedVersion); // DEBUG
+                                    console.warn(`Skipping invalid version structure during import for title "${title}":`, importedVersion); // DEBUG
                                 }
                             });
-                             // No need to sort here, sorting happens on display
-                             mergedCount++;
+
+                            // Only save back to DB if versions were actually added or if it's a completely new entry with versions
+                            if (versionsAddedToThisTitle > 0 || (isNewEntry && targetEntry.versions.length > 0)) {
+                                try {
+                                     await saveToDB(LIBRARY_STORE_NAME, targetEntry);
+                                     // Update in-memory cache immediately after DB save
+                                     library[title] = targetEntry;
+                                     mergedCount++;
+                                } catch(saveError) {
+                                    console.error(`Error saving merged entry for title "${title}" during import:`, saveError);
+                                    showNotification(`Error saving imported data for "${title}".`, "error");
+                                    // Optionally: Decide whether to stop the import or continue with other titles
+                                }
+                            }
                          } else {
                              console.warn(`Skipping invalid entry in imported library for title "${title}": versions is not an array.`); // DEBUG
                          }
-                     });
+                    } // End of loop through imported titles
 
-                     localStorage.setItem('threadLibrary', JSON.stringify(library));
-                      console.log("Merged library saved to localStorage."); // DEBUG
-                     updateLibraryDisplay();
-                     showNotification(`Library import complete. Processed ${mergedCount} titles, added ${importedCount} new versions.`, 'success', 5000);
-                     playHapticFeedback();
+                    // Update the display after all imports/merges are attempted
+                    updateLibraryDisplay();
+                    showNotification(`Library import complete. Processed ${titlesProcessed} titles, added ${importedCount} new versions across ${mergedCount} entries.`, 'success', 5000);
+                    playHapticFeedback();
 
-                 } catch (error) {
-                     showNotification(`Error importing library: ${error.message}`, 'error', 5000);
-                     console.error("Library import error:", error);
-                 }
-             };
-             reader.onerror = (err) => {
-                 console.error("FileReader error:", err); // DEBUG
-                 showNotification('Error reading library file.', 'error');
-             };
-             reader.readAsText(file);
-             if(importLibraryFileInput) importLibraryFileInput.value = ''; // Reset file input
+                } catch (error) {
+                    showNotification(`Error importing library: ${error.message}`, 'error', 5000);
+                    console.error("Library import error:", error);
+                }
+            }; // End of reader.onload
+            reader.onerror = (err) => {
+                console.error("FileReader error:", err); // DEBUG
+                showNotification('Error reading library file.', 'error');
+            };
+            reader.readAsText(file);
+            if(importLibraryFileInput) importLibraryFileInput.value = ''; // Reset file input
         }
 
 
-        // --- TXT Import/Export ---
+        // --- TXT Import/Export (No change needed, works on current editor state) ---
         function saveThreadToTxt() {
              console.log("Attempting to save thread as TXT..."); // DEBUG
              if (!threadTitleInput || !threadConceptInput || !tweetContainer) {
-                  console.error("Required elements for saveThreadToTxt not found."); // DEBUG
-                  return;
+                 console.error("Required elements for saveThreadToTxt not found."); // DEBUG
+                 return;
              }
 
-            const title = threadTitleInput.value.trim() || 'Untitled Thread';
-            const concept = threadConceptInput.value.trim();
-            let content = `Thread Title: ${title}\n\nThread Concept:\n${concept || '(No concept)'}\n\nTweets:\n\n`;
-            let tweetCount = 0;
+             const title = threadTitleInput.value.trim() || 'Untitled Thread';
+             const concept = threadConceptInput.value.trim();
+             let content = `Thread Title: ${title}\n\nThread Concept:\n${concept || '(No concept)'}\n\nTweets:\n\n`;
+             let tweetCount = 0;
 
-            Array.from(tweetContainer.querySelectorAll('.tweet-container textarea')).forEach((textarea, index) => {
-                const tweetText = textarea.value;
-                content += `${index + 1}. ${tweetText}\n\n`;
-                if (tweetText.trim()) tweetCount++;
-            });
+             Array.from(tweetContainer.querySelectorAll('.tweet-container textarea')).forEach((textarea, index) => {
+                 const tweetText = textarea.value;
+                 content += `${index + 1}. ${tweetText}\n\n`;
+                 if (tweetText.trim()) tweetCount++;
+             });
 
-            if (tweetCount === 0 && !concept && title === 'Untitled Thread') {
-                showNotification('Nothing to export. Add some content first.', 'info');
-                return;
-            }
+             if (tweetCount === 0 && !concept && title === 'Untitled Thread') {
+                 showNotification('Nothing to export. Add some content first.', 'info');
+                 return;
+             }
 
-            const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-            downloadFile(`${title}_${timestamp}.txt`, content, 'text/plain');
-            showNotification('Thread exported as TXT.', 'success');
+             const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+             downloadFile(`${title}_${timestamp}.txt`, content, 'text/plain');
+             showNotification('Thread exported as TXT.', 'success');
         }
 
         function importFromTxt(file) {
              console.log("Attempting to import from TXT file:", file?.name); // DEBUG
              if (!file || !threadTitleInput || !threadConceptInput || !tweetContainer) {
-                  console.error("Required elements or file for importFromTxt not found."); // DEBUG
-                  return;
+                 console.error("Required elements or file for importFromTxt not found."); // DEBUG
+                 return;
              }
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                     // Add basic check for empty file content
-                     if (!e.target.result) {
-                         throw new Error("File is empty.");
-                     }
-                    const content = e.target.result;
-                    console.log("Read TXT content:", content); // DEBUG
-                    const lines = content.split('\n');
-                    let title = '';
-                    let concept = '';
-                    const tweets = [];
-                    let currentSection = '';
-                    let currentTweet = '';
+             const reader = new FileReader();
+             reader.onload = function(e) {
+                 try {
+                      // Add basic check for empty file content
+                      if (!e.target.result) {
+                          throw new Error("File is empty.");
+                      }
+                     const content = e.target.result;
+                     console.log("Read TXT content:", content); // DEBUG
+                     const lines = content.split('\n');
+                     let title = '';
+                     let concept = '';
+                     const tweets = [];
+                     let currentSection = '';
+                     let currentTweet = '';
 
-                    lines.forEach(line => {
-                        const trimmedLine = line.trim();
-                        if (trimmedLine.startsWith('Thread Title:')) {
-                            title = trimmedLine.substring('Thread Title:'.length).trim();
-                            currentSection = 'title';
-                        } else if (trimmedLine.startsWith('Thread Concept:')) {
-                            currentSection = 'concept';
-                            concept = ''; // Reset concept buffer
-                        } else if (trimmedLine.startsWith('Tweets:')) {
-                            currentSection = 'tweets';
-                            currentTweet = ''; // Reset tweet buffer
-                        }
-                        else if (currentSection === 'concept') {
-                            concept += line + '\n';
-                        } else if (currentSection === 'tweets') {
-                            if (/^\d+\.\s*/.test(line)) {
-                                if (currentTweet) tweets.push(currentTweet.trim());
-                                currentTweet = line.replace(/^\d+\.\s*/, '');
-                            } else if (!trimmedLine.startsWith('Saved on:')) {
-                                currentTweet += '\n' + line;
-                            }
-                        }
-                    });
-                     if (currentTweet) tweets.push(currentTweet.trim());
+                     lines.forEach(line => {
+                         const trimmedLine = line.trim();
+                         if (trimmedLine.startsWith('Thread Title:')) {
+                             title = trimmedLine.substring('Thread Title:'.length).trim();
+                             currentSection = 'title';
+                         } else if (trimmedLine.startsWith('Thread Concept:')) {
+                             currentSection = 'concept';
+                             concept = ''; // Reset concept buffer
+                         } else if (trimmedLine.startsWith('Tweets:')) {
+                             currentSection = 'tweets';
+                             currentTweet = ''; // Reset tweet buffer
+                         }
+                         else if (currentSection === 'concept') {
+                             concept += line + '\n';
+                         } else if (currentSection === 'tweets') {
+                             if (/^\d+\.\s*/.test(line)) {
+                                 if (currentTweet) tweets.push(currentTweet.trim());
+                                 currentTweet = line.replace(/^\d+\.\s*/, '');
+                             } else if (!trimmedLine.startsWith('Saved on:')) { // Ignore potential saved date line
+                                 currentTweet += '\n' + line;
+                             }
+                         }
+                     });
+                      if (currentTweet) tweets.push(currentTweet.trim());
 
-                     console.log("Parsed TXT data:", { title, concept, tweets }); // DEBUG
+                      console.log("Parsed TXT data:", { title, concept, tweets }); // DEBUG
 
-                    threadTitleInput.value = title;
-                    threadConceptInput.value = concept.trim();
-                    tweetContainer.innerHTML = '';
-                    tweets.forEach(tweetText => createTweetElement(tweetText));
-                    updatePreview();
-                    autoSave();
-                    showNotification('Thread imported successfully from TXT.', 'success');
-                    playHapticFeedback();
+                     threadTitleInput.value = title;
+                     threadConceptInput.value = concept.trim();
+                     tweetContainer.innerHTML = '';
+                     tweets.forEach(tweetText => createTweetElement(tweetText));
+                     updatePreview();
+                     autoSave(); // Save the imported content to DB autosave
+                     showNotification('Thread imported successfully from TXT.', 'success');
+                     playHapticFeedback();
 
-                } catch (error) {
-                     showNotification(`Error parsing TXT file: ${error.message}`, 'error', 5000);
-                     console.error("TXT import error:", error);
-                }
-            };
-             reader.onerror = (err) => {
-                 console.error("FileReader error:", err); // DEBUG
-                 showNotification('Error reading TXT file.', 'error');
+                 } catch (error) {
+                      showNotification(`Error parsing TXT file: ${error.message}`, 'error', 5000);
+                      console.error("TXT import error:", error);
+                 }
              };
-            reader.readAsText(file);
-             if(importThreadFileInput) importThreadFileInput.value = ''; // Reset file input
+              reader.onerror = (err) => {
+                  console.error("FileReader error:", err); // DEBUG
+                  showNotification('Error reading TXT file.', 'error');
+              };
+             reader.readAsText(file);
+              if(importThreadFileInput) importThreadFileInput.value = ''; // Reset file input
         }
 
         // --- Utility Functions ---
         function downloadFile(filename, content, mimeType) {
-            try {
-                console.log(`Downloading file: ${filename}, Type: ${mimeType}`); // DEBUG
-                const blob = new Blob([content], { type: mimeType });
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(blob);
-                link.download = filename;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                URL.revokeObjectURL(link.href);
-            } catch (e) {
-                 console.error("Error downloading file:", e);
-                 showNotification("File download failed.", "error");
-            }
+             try {
+                 console.log(`Downloading file: ${filename}, Type: ${mimeType}`); // DEBUG
+                 const blob = new Blob([content], { type: mimeType });
+                 const link = document.createElement('a');
+                 link.href = URL.createObjectURL(blob);
+                 link.download = filename;
+                 document.body.appendChild(link);
+                 link.click();
+                 document.body.removeChild(link);
+                 URL.revokeObjectURL(link.href);
+             } catch (e) {
+                  console.error("Error downloading file:", e);
+                  showNotification("File download failed.", "error");
+             }
         }
 
         function playHapticFeedback() {
-            // console.log("Attempting haptic feedback..."); // DEBUG (can be noisy)
-            if ('vibrate' in navigator) {
-                try {
-                    navigator.vibrate(50);
-                } catch (e) { /* Ignore */ }
-            }
+             // console.log("Attempting haptic feedback..."); // DEBUG (can be noisy)
+             if ('vibrate' in navigator) {
+                 try {
+                     navigator.vibrate(50);
+                 } catch (e) { /* Ignore */ }
+             }
         }
 
-        function autoSave() {
+        // --- AutoSave using IndexedDB ---
+        async function autoSave() {
              // console.log("Autosaving..."); // DEBUG (very noisy)
              if (!threadTitleInput || !threadConceptInput || !tweetContainer) return;
-            const threadData = {
-                title: threadTitleInput.value,
-                concept: threadConceptInput.value,
-                tweets: Array.from(tweetContainer.querySelectorAll('.tweet-container textarea')).map(textarea => textarea.value),
-                timestamp: Date.now()
-            };
-            try {
-                 localStorage.setItem('autoSaveThread', JSON.stringify(threadData));
-            } catch (e) {
-                console.error("Error during autosave:", e);
-                showNotification("Could not auto-save. Local storage might be full.", "error");
-            }
+             const threadData = {
+                 title: threadTitleInput.value,
+                 concept: threadConceptInput.value,
+                 tweets: Array.from(tweetContainer.querySelectorAll('.tweet-container textarea')).map(textarea => textarea.value),
+                 timestamp: Date.now() // Keep track of last save time
+             };
+
+             // Structure for DB: use a fixed key
+             const autoSaveEntry = {
+                 id: AUTOSAVE_KEY,
+                 data: threadData
+             };
+
+             try {
+                 await saveToDB(AUTOSAVE_STORE_NAME, autoSaveEntry);
+                 // console.log("Autosave successful to IndexedDB"); // DEBUG (very noisy)
+             } catch (e) {
+                 console.error("Error during autosave to IndexedDB:", e);
+                 showNotification("Could not auto-save. Storage might be full.", "error");
+             }
         }
 
-        function loadAutoSave() {
-            console.log("Loading autosave data..."); // DEBUG
-            if (!threadTitleInput || !threadConceptInput || !tweetContainer) {
+        async function loadAutoSave() {
+             console.log("Loading autosave data from IndexedDB..."); // DEBUG
+             if (!threadTitleInput || !threadConceptInput || !tweetContainer) {
                  console.error("Required elements for loadAutoSave not found."); // DEBUG
                  return;
-            }
-            try {
-                const savedData = localStorage.getItem('autoSaveThread');
-                if (savedData) {
-                    console.log("Found autosave data."); // DEBUG
-                    const threadData = JSON.parse(savedData);
-                    threadTitleInput.value = threadData.title || '';
-                    threadConceptInput.value = threadData.concept || '';
-                    tweetContainer.innerHTML = '';
-                    if (threadData.tweets?.length > 0) {
-                         threadData.tweets.forEach(tweet => createTweetElement(tweet));
-                    } else {
-                        createTweetElement(); // Start with one if none saved
-                    }
-                    updatePreview();
-                } else {
-                     console.log("No autosave data found, creating initial tweet."); // DEBUG
-                     createTweetElement(); // Start fresh with one tweet
-                     updatePreview();
-                }
-            } catch (e) {
-                 console.error("Error loading autosave:", e);
-                 showNotification("Could not restore auto-saved session.", "error");
-                 tweetContainer.innerHTML = ''; // Clear potentially broken state
-                 createTweetElement();
-                 updatePreview();
-                 // Also clear potentially corrupted autosave data
-                 try { localStorage.removeItem('autoSaveThread'); } catch (removeError) { console.error("Failed to remove potentially corrupted autosave data:", removeError); }
-            }
-        }
-
-        function loadLibraryFromStorage() {
-             console.log("Loading library from storage..."); // DEBUG
-             try {
-                const savedLibrary = localStorage.getItem('threadLibrary');
-                library = savedLibrary ? JSON.parse(savedLibrary) : {};
-                 console.log("Library loaded:", library); // DEBUG
-                // Add validation if needed
-            } catch (e) {
-                 console.error("Error loading library from storage:", e);
-                 showNotification("Could not load thread library. Starting fresh.", "error");
-                 library = {};
-                 // Clear potentially corrupted data
-                 try { localStorage.removeItem('threadLibrary'); } catch (removeError) { console.error("Failed to remove potentially corrupted library data:", removeError); }
-            }
-        }
-
-        // --- Theme Toggling ---
-         function toggleTheme() {
-             console.log("Toggling theme..."); // DEBUG
-            if (!themeToggleBtn) {
-                 console.error("Theme toggle button not found!"); // DEBUG
-                 return;
-            }
-            document.documentElement.classList.toggle('dark');
-            const isDarkMode = document.documentElement.classList.contains('dark');
-             try {
-                 localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-             } catch (e) {
-                  console.error("Error saving theme to localStorage:", e);
-                  showNotification("Could not save theme preference.", "error");
              }
-            // Update SVG inside button
-            if (isDarkMode) {
-                themeToggleBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon w-5 h-5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>`;
-                 console.log("Theme toggled to dark."); // DEBUG
-            } else {
-                themeToggleBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon w-5 h-5"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`;
-                 console.log("Theme toggled to light."); // DEBUG
-            }
-            playHapticFeedback();
+             try {
+                 const savedEntry = await loadFromDB(AUTOSAVE_STORE_NAME, AUTOSAVE_KEY);
+
+                 if (savedEntry && savedEntry.data) {
+                     console.log("Found autosave data in IndexedDB.", savedEntry.data); // DEBUG
+                     const threadData = savedEntry.data;
+                     threadTitleInput.value = threadData.title || '';
+                     threadConceptInput.value = threadData.concept || '';
+                     tweetContainer.innerHTML = '';
+                     if (threadData.tweets?.length > 0) {
+                          threadData.tweets.forEach(tweet => createTweetElement(tweet));
+                     } else {
+                         // If autosave exists but has no tweets, still start with one
+                         createTweetElement();
+                     }
+                     updatePreview();
+                     console.log(`Restored autosave from ${new Date(threadData.timestamp).toLocaleString()}`); // DEBUG
+                 } else {
+                      console.log("No autosave data found in IndexedDB, creating initial tweet."); // DEBUG
+                      tweetContainer.innerHTML = ''; // Ensure container is empty
+                      createTweetElement(); // Start fresh with one tweet
+                      updatePreview();
+                 }
+             } catch (e) {
+                  console.error("Error loading autosave from IndexedDB:", e);
+                  showNotification("Could not restore auto-saved session.", "error");
+                  tweetContainer.innerHTML = ''; // Clear potentially broken state
+                  createTweetElement();
+                  updatePreview();
+                  // Clear potentially corrupted autosave data from DB
+                  try { await deleteFromDB(AUTOSAVE_STORE_NAME, AUTOSAVE_KEY); } catch (removeError) { console.error("Failed to remove potentially corrupted autosave data from DB:", removeError); }
+             }
         }
+
+        // --- Load Library from IndexedDB into memory ---
+        async function loadLibraryFromDB() {
+             console.log("Loading library from IndexedDB into memory..."); // DEBUG
+             try {
+                const allEntries = await loadAllFromDB(LIBRARY_STORE_NAME);
+                // Convert array of {title, versions} back to { title: {title, versions} } map for easy access
+                library = allEntries.reduce((map, entry) => {
+                    map[entry.title] = entry;
+                    return map;
+                }, {});
+                 console.log("Library loaded into memory:", library); // DEBUG
+             } catch (e) {
+                 console.error("Error loading library from IndexedDB:", e);
+                 showNotification("Could not load thread library. Starting fresh.", "error");
+                 library = {}; // Reset in-memory library
+                 // Optionally clear the DB store if loading fails critically
+                 // try { await clearStoreDB(LIBRARY_STORE_NAME); } catch (clearError) { console.error("Failed to clear potentially corrupted library store:", clearError); }
+             }
+        }
+
+        // --- Theme Toggling (Uses localStorage) ---
+         function toggleTheme() {
+              console.log("Toggling theme..."); // DEBUG
+              if (!themeToggleBtn) {
+                  console.error("Theme toggle button not found!"); // DEBUG
+                  return;
+              }
+              document.documentElement.classList.toggle('dark');
+              const isDarkMode = document.documentElement.classList.contains('dark');
+              try {
+                  // Keep theme in localStorage
+                  localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+              } catch (e) {
+                   console.error("Error saving theme to localStorage:", e);
+                   showNotification("Could not save theme preference.", "error");
+              }
+              // Update SVG inside button
+              if (isDarkMode) {
+                  themeToggleBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon w-5 h-5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>`;
+                  console.log("Theme toggled to dark."); // DEBUG
+              } else {
+                  themeToggleBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon w-5 h-5"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`;
+                  console.log("Theme toggled to light."); // DEBUG
+              }
+              playHapticFeedback();
+         }
 
         // --- Apply Dynamic Styles ---
-        // Applies Tailwind classes to buttons added dynamically (e.g., in modals)
         function applyDynamicStyles(parentElement = document) {
-             // console.log("Applying dynamic styles to parent:", parentElement); // DEBUG (can be noisy)
-             // Base button styles
-             const baseBtnClasses = [
-                'text-white', 'font-semibold', 'py-2', 'px-4', 'rounded-md', 'shadow',
-                'transition-all', 'duration-200', 'ease-in-out', 'transform', 'hover:scale-105',
-                'flex', 'items-center', 'justify-center'
-             ];
-             // Small button adjustments
-             const btnSmClassesRemove = ['py-2', 'px-4'];
-             const btnSmClassesAdd = ['py-1', 'px-3', 'text-sm'];
-             // Extra small button adjustments
-             const btnXsClassesRemove = ['py-2', 'px-4', 'font-semibold'];
-             const btnXsClassesAdd = ['py-1', 'px-2', 'text-xs', 'font-medium'];
-             // Icon button styles
-             const btnIconClassesAdd = ['transition-colors', 'duration-150'];
+              // console.log("Applying dynamic styles to parent:", parentElement); // DEBUG (can be noisy)
+              // Base button styles
+              const baseBtnClasses = [
+                  'text-white', 'font-semibold', 'py-2', 'px-4', 'rounded-md', 'shadow',
+                  'transition-all', 'duration-200', 'ease-in-out', 'transform', 'hover:scale-105',
+                  'flex', 'items-center', 'justify-center'
+              ];
+              // Small button adjustments
+              const btnSmClassesRemove = ['py-2', 'px-4'];
+              const btnSmClassesAdd = ['py-1', 'px-3', 'text-sm'];
+              // Extra small button adjustments
+              const btnXsClassesRemove = ['py-2', 'px-4', 'font-semibold'];
+              const btnXsClassesAdd = ['py-1', 'px-2', 'text-xs', 'font-medium'];
+              // Icon button styles
+              const btnIconClassesAdd = ['transition-colors', 'duration-150'];
 
-             parentElement.querySelectorAll('.btn:not(.btn-sm):not(.btn-xs)').forEach(button => button.classList.add(...baseBtnClasses));
-             parentElement.querySelectorAll('.btn-sm').forEach(button => {
-                  button.classList.add(...baseBtnClasses); // Add base first
-                  button.classList.remove(...btnSmClassesRemove);
-                  button.classList.add(...btnSmClassesAdd);
-             });
-              parentElement.querySelectorAll('.btn-xs').forEach(button => {
-                  button.classList.add(...baseBtnClasses); // Add base first
-                  button.classList.remove(...btnXsClassesRemove);
-                  button.classList.add(...btnXsClassesAdd);
-             });
-             parentElement.querySelectorAll('.btn-icon').forEach(button => button.classList.add(...btnIconClassesAdd));
+              parentElement.querySelectorAll('.btn:not(.btn-sm):not(.btn-xs)').forEach(button => button.classList.add(...baseBtnClasses));
+              parentElement.querySelectorAll('.btn-sm').forEach(button => {
+                   button.classList.add(...baseBtnClasses); // Add base first
+                   button.classList.remove(...btnSmClassesRemove);
+                   button.classList.add(...btnSmClassesAdd);
+              });
+               parentElement.querySelectorAll('.btn-xs').forEach(button => {
+                   button.classList.add(...baseBtnClasses); // Add base first
+                   button.classList.remove(...btnXsClassesRemove);
+                   button.classList.add(...btnXsClassesAdd);
+              });
+              parentElement.querySelectorAll('.btn-icon').forEach(button => button.classList.add(...btnIconClassesAdd));
         }
 
 
         // --- Initialization ---
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log("DOM fully loaded and parsed."); // DEBUG
+        document.addEventListener('DOMContentLoaded', async () => { // Make listener async
+             console.log("DOM fully loaded and parsed."); // DEBUG
 
-            // Cache DOM elements after they are loaded
-            threadTitleInput = document.getElementById('threadTitle');
-            threadConceptInput = document.getElementById('threadConcept');
-            tweetContainer = document.getElementById('tweetContainer');
-            previewContainer = document.getElementById('previewContainer');
-            libraryModal = document.getElementById('libraryModal');
-            libraryContainer = document.getElementById('libraryContainer');
-            importThreadFileInput = document.getElementById('importThreadFile');
-            importLibraryFileInput = document.getElementById('importLibraryFile');
-            notificationArea = document.getElementById('notificationArea');
-            themeToggleBtn = document.getElementById('themeToggle');
+             // Cache DOM elements after they are loaded
+             threadTitleInput = document.getElementById('threadTitle');
+             threadConceptInput = document.getElementById('threadConcept');
+             tweetContainer = document.getElementById('tweetContainer');
+             previewContainer = document.getElementById('previewContainer');
+             libraryModal = document.getElementById('libraryModal');
+             libraryContainer = document.getElementById('libraryContainer');
+             importThreadFileInput = document.getElementById('importThreadFile');
+             importLibraryFileInput = document.getElementById('importLibraryFile');
+             notificationArea = document.getElementById('notificationArea');
+             themeToggleBtn = document.getElementById('themeToggle');
              console.log("DOM elements cached."); // DEBUG
 
-            // Apply initial theme, load data
-            applyTheme(); // Sets initial SVG icon
-            loadLibraryFromStorage();
-            loadAutoSave();
+             // Apply initial theme (from localStorage)
+             applyTheme(); // Sets initial SVG icon
 
-            // Apply base styles to initially present buttons
-            applyDynamicStyles();
+             // Ensure DB is open, then load data
+             try {
+                await openDB(); // Make sure DB connection is established
+                await loadLibraryFromDB(); // Load library into memory
+                await loadAutoSave(); // Load autosave into editor
+             } catch (err) {
+                 console.error("Initialization Error (DB or Load):", err);
+                 showNotification("Error initializing app data.", "error");
+                 // Fallback: ensure at least one tweet box exists
+                 if (!tweetContainer.hasChildNodes()) {
+                    createTweetElement();
+                    updatePreview();
+                 }
+             }
+
+
+             // Apply base styles to initially present buttons
+             applyDynamicStyles();
              console.log("Initial styles applied."); // DEBUG
 
-            // --- Attach Event Listeners to Static Elements ---
+             // --- Attach Event Listeners to Static Elements ---
              console.log("Attaching event listeners..."); // DEBUG
-            document.getElementById('addTweetBtn')?.addEventListener('click', () => {
-                console.log("Add Tweet button clicked."); // DEBUG
-                const newTweet = createTweetElement();
-                newTweet?.querySelector('textarea')?.focus();
-                playHapticFeedback();
-            });
-            document.getElementById('saveThreadBtn')?.addEventListener('click', () => { console.log("Save Thread (TXT) button clicked."); saveThreadToTxt(); playHapticFeedback(); }); // DEBUG
-            document.getElementById('importThreadBtn')?.addEventListener('click', () => { console.log("Import Thread (TXT) button clicked."); importThreadFileInput?.click(); playHapticFeedback(); }); // DEBUG
-            importThreadFileInput?.addEventListener('change', event => { console.log("Import TXT file selected."); if (event.target.files.length > 0) importFromTxt(event.target.files[0]); }); // DEBUG
-            document.getElementById('clearAllBtn')?.addEventListener('click', () => {
-                console.log("Clear All button clicked."); // DEBUG
-                if (confirm('Are you sure you want to clear the current thread (title, concept, and all tweets)? This cannot be undone.')) {
-                    console.log("Clearing all confirmed."); // DEBUG
-                    if(threadTitleInput) threadTitleInput.value = '';
-                    if(threadConceptInput) threadConceptInput.value = '';
-                    if(tweetContainer) tweetContainer.innerHTML = '';
-                    createTweetElement(); // Add back one empty tweet
-                    updatePreview();
-                    autoSave();
-                    showNotification('Thread cleared.', 'info');
-                    playHapticFeedback();
-                } else {
-                     console.log("Clear all cancelled."); // DEBUG
-                }
-            });
-            document.getElementById('saveToLibraryBtn')?.addEventListener('click', () => { console.log("Save to Library button clicked."); saveToLibrary(); playHapticFeedback(); }); // DEBUG
-            document.getElementById('openLibraryBtn')?.addEventListener('click', () => { console.log("Manage Library button clicked."); updateLibraryDisplay(); if(libraryModal) libraryModal.style.display = 'flex'; playHapticFeedback(); }); // DEBUG
-            document.getElementById('closeLibraryBtn')?.addEventListener('click', () => { console.log("Close Library button clicked."); if(libraryModal) libraryModal.style.display = 'none'; playHapticFeedback(); }); // DEBUG
-            document.getElementById('exportLibraryBtn')?.addEventListener('click', () => { console.log("Export Library button clicked."); exportLibrary(); playHapticFeedback(); }); // DEBUG
-            document.getElementById('importLibraryBtnModal')?.addEventListener('click', () => { console.log("Import Library (Modal) button clicked."); importLibraryFileInput?.click(); playHapticFeedback(); }); // DEBUG
-            importLibraryFileInput?.addEventListener('change', event => { console.log("Import Library file selected."); if (event.target.files.length > 0) importLibrary(event.target.files[0]); }); // DEBUG
-            themeToggleBtn?.addEventListener('click', toggleTheme); // Listener remains on the button
-            threadTitleInput?.addEventListener('input', autoSave);
-            threadConceptInput?.addEventListener('input', autoSave);
+             document.getElementById('addTweetBtn')?.addEventListener('click', () => {
+                 console.log("Add Tweet button clicked."); // DEBUG
+                 const newTweet = createTweetElement();
+                 newTweet?.querySelector('textarea')?.focus();
+                 playHapticFeedback();
+             });
+             document.getElementById('saveThreadBtn')?.addEventListener('click', () => { console.log("Save Thread (TXT) button clicked."); saveThreadToTxt(); playHapticFeedback(); }); // DEBUG
+             document.getElementById('importThreadBtn')?.addEventListener('click', () => { console.log("Import Thread (TXT) button clicked."); importThreadFileInput?.click(); playHapticFeedback(); }); // DEBUG
+             importThreadFileInput?.addEventListener('change', event => { console.log("Import TXT file selected."); if (event.target.files.length > 0) importFromTxt(event.target.files[0]); }); // DEBUG
+             document.getElementById('clearAllBtn')?.addEventListener('click', async () => { // Made async for DB operation
+                 console.log("Clear All button clicked."); // DEBUG
+                 if (confirm('Are you sure you want to clear the current thread (title, concept, and all tweets)? This will also clear the auto-save.')) {
+                     console.log("Clearing all confirmed."); // DEBUG
+                     if(threadTitleInput) threadTitleInput.value = '';
+                     if(threadConceptInput) threadConceptInput.value = '';
+                     if(tweetContainer) tweetContainer.innerHTML = '';
+                     createTweetElement(); // Add back one empty tweet
+                     updatePreview();
+                     // Clear autosave from DB as well
+                     try {
+                         await deleteFromDB(AUTOSAVE_STORE_NAME, AUTOSAVE_KEY);
+                         console.log("Autosave cleared from DB."); // DEBUG
+                         showNotification('Thread cleared.', 'info');
+                     } catch (clearError) {
+                         console.error("Failed to clear autosave from DB:", clearError);
+                         showNotification('Thread cleared, but failed to clear auto-save.', 'error');
+                     }
+                     playHapticFeedback();
+                 } else {
+                      console.log("Clear all cancelled."); // DEBUG
+                 }
+             });
+             document.getElementById('saveToLibraryBtn')?.addEventListener('click', () => { console.log("Save to Library button clicked."); saveToLibrary(); playHapticFeedback(); }); // DEBUG (saveToLibrary is now async but doesn't need await here)
+             document.getElementById('openLibraryBtn')?.addEventListener('click', () => {
+                 console.log("Manage Library button clicked.");
+                 // No need to reload from DB here, display uses in-memory 'library'
+                 updateLibraryDisplay();
+                 if(libraryModal) libraryModal.style.display = 'flex';
+                 playHapticFeedback();
+                }); // DEBUG
+             document.getElementById('closeLibraryBtn')?.addEventListener('click', () => { console.log("Close Library button clicked."); if(libraryModal) libraryModal.style.display = 'none'; playHapticFeedback(); }); // DEBUG
+             document.getElementById('exportLibraryBtn')?.addEventListener('click', () => { console.log("Export Library button clicked."); exportLibrary(); playHapticFeedback(); }); // DEBUG (exportLibrary is async)
+             document.getElementById('importLibraryBtnModal')?.addEventListener('click', () => { console.log("Import Library (Modal) button clicked."); importLibraryFileInput?.click(); playHapticFeedback(); }); // DEBUG
+             importLibraryFileInput?.addEventListener('change', event => { console.log("Import Library file selected."); if (event.target.files.length > 0) importLibrary(event.target.files[0]); }); // DEBUG (importLibrary is async)
+             themeToggleBtn?.addEventListener('click', toggleTheme); // Theme uses localStorage
+             threadTitleInput?.addEventListener('input', autoSave); // autoSave is async
+             threadConceptInput?.addEventListener('input', autoSave); // autoSave is async
              console.log("Event listeners attached."); // DEBUG
         });
 
