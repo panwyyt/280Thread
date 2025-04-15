@@ -8,7 +8,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Custom styles for dark mode are applied via Tailwind dark: prefixes */
-
         /* Simple scrollbar styling */
         .scrollbar-thin {
             scrollbar-width: thin;
@@ -45,7 +44,6 @@
          }
          .icon-sm { width: 1em; height: 1em; }
          .icon-xs { width: 0.875em; height: 0.875em; }
-
          /* Base input styling (can be overridden by dark mode) */
          .input-bg {
              background-color: white;
@@ -67,7 +65,6 @@
               --tw-ring-color: #60a5fa; /* blue-400 */
               box-shadow: 0 0 0 2px var(--tw-ring-color);
             }
-
             /* Base text colors (can be overridden by dark mode) */
             body { color: #1f2937; /* gray-800 */ }
             .text-primary { color: #2563eb; /* blue-600 */ }
@@ -78,7 +75,6 @@
             .modal-bg { background-color: white; }
             .modal-overlay-bg { background-color: rgba(0, 0, 0, 0.6); }
             .text-warning { color: #ef4444; /* red-500 */ }
-
             /* Dark mode overrides */
             .dark body { color: #d1d5db; /* gray-300 */ }
             .dark .text-primary { color: #60a5fa; /* blue-400 */ }
@@ -89,7 +85,6 @@
             .dark .modal-bg { background-color: #374151; /* gray-700 */ }
             .dark .modal-overlay-bg { background-color: rgba(0, 0, 0, 0.7); }
             .dark .text-warning { color: #f87171; /* red-400 */ }
-
         /* --- NEW Image Preview Styles --- */
         .image-thumbnail-container {
             display: flex;
@@ -136,7 +131,6 @@
              width: 10px;
              height: 10px;
         }
-
         /* --- NEW Twitter Mockup Preview Styles --- */
         .tweet-preview-mockup {
             background-color: #ffffff; /* Twitter light bg */
@@ -172,11 +166,11 @@
 				.dark .tweet-mockup-name {
 						color: #e7e9ea; /* Twitter light gray */
 				}
-				.tweet-mockup- Pusername {
+				.tweet-mockup-username { /* Corrected selector */
 						color: #536471; /* Twitter gray */
 						font-size: 0.9375rem; /* ~15px */
 				}
-				.dark .tweet-mockup-username {
+				.dark .tweet-mockup-username { /* Corrected selector */
 						color: #71767b;
 				}
 				.tweet-mockup-content p {
@@ -219,7 +213,6 @@
         .image-count-3 .tweet-mockup-images-grid > *:nth-child(3) { aspect-ratio: 1 / 1; }
 				.image-count-4 .tweet-mockup-images-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;}
         .image-count-4 .tweet-mockup-images-grid img { aspect-ratio: 1 / 1; }
-
     </style>
     <script>
         // Basic Tailwind config for v4 browser build
@@ -241,10 +234,8 @@
                 console.error("Theme toggle button not found during applyTheme.");
                 return;
             }
-
             // Keep theme in localStorage - it's simple and sufficient
             const isDarkMode = localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
-
             if (isDarkMode) {
                 document.documentElement.classList.add('dark');
                 // Set Sun SVG
@@ -261,38 +252,30 @@
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 font-sans flex justify-center items-start min-h-screen p-4 transition-colors duration-300">
     <div id="appContainer" class="container-bg w-full max-w-2xl rounded-lg shadow-lg p-4 sm:p-6 md:p-8 relative transition-colors duration-300">
-
         <button id="themeToggle" title="Toggle Theme" class="absolute top-4 right-4 text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
             </button>
-
         <div class="text-center mb-6">
-            <h1 class="text-2xl sm:text-3xl font-bold text-primary mb-1">280Thread</h1>
-            <p class="text-sm text-muted">
-                Made with ❤️ by
-                <a href="https://x.com/hatchedboy" target="_blank" rel="noopener noreferrer"
-                   class="px-1.5 py-0.5 rounded no-underline hover:opacity-80 transition-opacity
-                          text-gray-900 bg-yellow-300 dark:text-yellow-300 dark:bg-gray-700">
-                    Hatchedboy
-                </a>
-            </p>
+             <h1 class="text-2xl sm:text-3xl font-bold text-primary mb-1">280Thread</h1>
+             <p class="text-sm text-muted">
+                 Made with ❤️ by
+                 <a href="https://x.com/hatchedboy" target="_blank" rel="noopener noreferrer"
+                    class="px-1.5 py-0.5 rounded no-underline hover:opacity-80 transition-opacity
+                           text-gray-900 bg-yellow-300 dark:text-yellow-300 dark:bg-gray-700">
+                     Hatchedboy
+                 </a>
+             </p>
         </div>
-
         <div id="notificationArea" class="mb-4 text-center text-sm font-medium min-h-[1.25rem]"></div>
-
         <div class="mb-4">
             <label for="threadTitle" class="block text-sm font-medium text-secondary mb-1">Thread Title</label>
             <input type="text" id="threadTitle" class="input-bg w-full p-2 border rounded-md shadow-sm transition-colors duration-300" placeholder="Enter a title for your thread">
         </div>
-
         <div class="mb-6">
             <label for="threadConcept" class="block text-sm font-medium text-secondary mb-1">Thread Concept</label>
             <textarea id="threadConcept" class="input-bg w-full p-2 border rounded-md shadow-sm transition-colors duration-300" placeholder="Briefly describe the main idea of your thread" rows="3"></textarea>
         </div>
-
         <div id="tweetContainer" class="space-y-4 mb-6">
-            <!-- Tweet elements will be inserted here -->
-        </div>
-
+            </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
             <button id="addTweetBtn" class="btn bg-blue-600 hover:bg-blue-700">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon mr-2"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="16"/><line x1="8" x2="16" y1="12" y2="12"/></svg>
@@ -321,15 +304,18 @@
         </div>
 
         <div class="mb-4">
-            <h3 class="text-lg font-semibold text-secondary mb-2">Preview (Twitter Mock-up)</h3>
-						<!-- Changed preview container -->
+            <div class="flex justify-between items-center mb-2">
+                 <h3 class="text-lg font-semibold text-secondary">Preview (Twitter Mock-up)</h3>
+                 <button id="openPreviewTabBtn" class="btn btn-xs bg-teal-600 hover:bg-teal-700" title="Open Preview in New Tab">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-xs mr-1"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                     Open Tab
+                 </button>
+            </div>
             <div id="previewContainer" class="bg-gray-100 dark:bg-gray-800 border border-color rounded-md p-4 max-h-96 overflow-y-auto space-y-3 transition-colors duration-300 scrollbar-thin">
                 <p class="text-muted italic text-center">Add tweets (and maybe images!) to see the preview.</p>
             </div>
         </div>
     </div>
-
-    <!-- Library Modal (No changes needed here) -->
     <div id="libraryModal" class="fixed inset-0 modal-overlay-bg hidden justify-center items-center p-4 z-50 transition-opacity duration-300">
         <div class="modal-bg rounded-lg shadow-xl p-6 w-full max-w-2xl max-h-[85vh] overflow-y-auto relative transition-colors duration-300 scrollbar-thin">
             <button id="closeLibraryBtn" title="Close Library" class="absolute top-3 right-3 text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors duration-200 p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600">
@@ -351,49 +337,44 @@
             </div>
         </div>
     </div>
-
-    <!-- Hidden File Inputs -->
     <input type="file" id="importThreadFile" class="hidden" accept=".txt">
     <input type="file" id="importLibraryFile" class="hidden" accept=".json">
 
     <script>
-        // Constants
+        // Constants (keep as is)
         const MAX_TWEET_LENGTH = 280;
         const MAX_IMAGES_PER_TWEET = 4;
         const DB_NAME = '280ThreadDB';
-        const DB_VERSION = 1; // Keep version 1 unless schema changes
-        const LIBRARY_STORE_NAME = 'threads'; // Stores { title: string, versions: Array<ThreadVersion> }
-        const AUTOSAVE_STORE_NAME = 'autosave'; // Stores { id: 'currentDraft', data: ThreadData }
+        const DB_VERSION = 1;
+        const LIBRARY_STORE_NAME = 'threads';
+        const AUTOSAVE_STORE_NAME = 'autosave';
         const AUTOSAVE_KEY = 'currentDraft';
 
-        // Global State
-        let library = {}; // In-memory cache of the library, loaded from DB
-        let tweetImages = {}; // { tweetElementId: [dataUrl1, dataUrl2, ...] } - NEW storage for image dataURLs
-        let notificationTimeout; // Store timeout ID for notifications
-        let dbPromise; // Holds the promise for the IndexedDB connection
+        // Global State (keep as is)
+        let library = {};
+        let tweetImages = {};
+        let notificationTimeout;
+        let dbPromise;
 
-        // DOM Elements (cache references on load)
+        // DOM Elements (add new button reference)
         let threadTitleInput, threadConceptInput, tweetContainer, previewContainer,
             libraryModal, libraryContainer, importThreadFileInput, importLibraryFileInput,
-            notificationArea, themeToggleBtn;
+            notificationArea, themeToggleBtn, openPreviewTabBtn; // <-- Added openPreviewTabBtn
 
-        // --- IndexedDB Helper Functions (No changes needed) ---
+        // --- IndexedDB Helper Functions (Keep as is) ---
         function openDB() {
             if (!dbPromise) {
                 console.log(`Opening IndexedDB: ${DB_NAME} v${DB_VERSION}`); // DEBUG
                 dbPromise = new Promise((resolve, reject) => {
                     const request = indexedDB.open(DB_NAME, DB_VERSION);
-
                     request.onerror = (event) => {
                         console.error("IndexedDB error:", event.target.error);
                         reject("Error opening IndexedDB.");
                     };
-
                     request.onsuccess = (event) => {
                         console.log("IndexedDB opened successfully."); // DEBUG
                         resolve(event.target.result);
                     };
-
                     request.onupgradeneeded = (event) => {
                         console.log("IndexedDB upgrade needed."); // DEBUG
                         const db = event.target.result;
@@ -410,55 +391,46 @@
             }
             return dbPromise;
         }
-
         async function saveToDB(storeName, data) {
             const db = await openDB();
             return new Promise((resolve, reject) => {
                 const transaction = db.transaction(storeName, 'readwrite');
                 const store = transaction.objectStore(storeName);
-                const request = store.put(data); // Use put for insert/update
-
+                const request = store.put(data);
                 request.onsuccess = () => resolve();
                 request.onerror = (event) => { reject(`Error saving data to ${storeName}.`); }
             });
         }
-
         async function loadFromDB(storeName, key) {
             const db = await openDB();
             return new Promise((resolve, reject) => {
                 const transaction = db.transaction(storeName, 'readonly');
                 const store = transaction.objectStore(storeName);
                 const request = store.get(key);
-
-                request.onsuccess = () => resolve(request.result); // Returns the object or undefined
+                request.onsuccess = () => resolve(request.result);
                 request.onerror = (event) => { reject(`Error loading data from ${storeName}.`); }
             });
         }
-
         async function loadAllFromDB(storeName) {
             const db = await openDB();
             return new Promise((resolve, reject) => {
                 const transaction = db.transaction(storeName, 'readonly');
                 const store = transaction.objectStore(storeName);
                 const request = store.getAll();
-
-                request.onsuccess = () => resolve(request.result || []); // Returns array of objects
+                request.onsuccess = () => resolve(request.result || []);
                 request.onerror = (event) => { reject(`Error loading all data from ${storeName}.`); }
             });
         }
-
         async function deleteFromDB(storeName, key) {
             const db = await openDB();
             return new Promise((resolve, reject) => {
                 const transaction = db.transaction(storeName, 'readwrite');
                 const store = transaction.objectStore(storeName);
                 const request = store.delete(key);
-
                 request.onsuccess = () => resolve();
                 request.onerror = (event) => { reject(`Error deleting data from ${storeName}.`); }
             });
         }
-
         async function clearStoreDB(storeName) {
             const db = await openDB();
             return new Promise((resolve, reject) => {
@@ -470,9 +442,8 @@
             });
         }
 
-        // --- Notification Function (No changes) ---
+        // --- Notification Function (Keep as is) ---
         function showNotification(message, type = 'success', duration = 3000) {
-             // console.log(`Showing notification: ${message} (Type: ${type})`); // DEBUG
              if (!notificationArea) return;
              if (notificationTimeout) clearTimeout(notificationTimeout);
              notificationArea.textContent = message;
@@ -485,38 +456,24 @@
              notificationTimeout = setTimeout(() => { notificationArea.style.opacity = 0; }, duration);
          }
 
-
-        // --- Tweet Element Creation & Management (MODIFIED) ---
-
-        // NEW: Helper to get images for a tweet element ID
+        // --- Tweet Element Creation & Management (Keep as is) ---
         function getImagesForTweet(tweetId) {
             return tweetImages[tweetId] || [];
         }
-
-        // NEW: Helper to set images for a tweet element ID
         function setImagesForTweet(tweetId, imagesDataUrls) {
             tweetImages[tweetId] = imagesDataUrls || [];
-            // Ensure autosave and preview update when images change
             autoSave();
             updatePreview();
         }
-
-        // MODIFIED: createTweetElement to handle initial images
         function createTweetElement(tweetData = { text: '', images: [] }, index) {
-            // console.log(`Creating tweet element at index ${index === undefined ? 'end' : index}`, tweetData); // DEBUG
             if (!tweetContainer) return null;
-
-            const tweetId = `tweet-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`; // Unique ID
+            const tweetId = `tweet-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
             const tweetElement = document.createElement('div');
             tweetElement.id = tweetId;
             tweetElement.className = 'tweet-container border border-color rounded-md p-4 relative transition-colors duration-300';
-
-            // Inner HTML structure INCLUDING image elements
             tweetElement.innerHTML = `
                 <textarea class="input-bg w-full p-2 border rounded-md shadow-sm transition-colors duration-300 resize-vertical min-h-[80px] tweet-text" placeholder="Write your tweet (${MAX_TWEET_LENGTH} chars max)" rows="4">${tweetData.text || ''}</textarea>
                 <div class="text-xs text-right mt-1 text-muted character-count">${(tweetData.text || '').length}/${MAX_TWEET_LENGTH}</div>
-
-                <!-- Image Upload Section -->
                 <div class="mt-3 pt-3 border-t border-color">
                     <div class="flex items-center justify-between">
                         <button title="Add Image (up to ${MAX_IMAGES_PER_TWEET})" class="add-image-button btn-icon p-1 rounded-full text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
@@ -525,12 +482,8 @@
                         <input type="file" class="hidden image-file-input" accept="image/png, image/jpeg, image/gif, image/webp" multiple>
                         <span class="text-xs text-muted image-count-indicator">0/${MAX_IMAGES_PER_TWEET} images</span>
                     </div>
-                    <div class="image-thumbnail-container mt-2">
-                        <!-- Image thumbnails will be added here -->
-                    </div>
+                    <div class="image-thumbnail-container mt-2"></div>
                 </div>
-
-                <!-- Action Buttons (Top Right) -->
                 <div class="absolute top-2 right-2 flex flex-col space-y-1">
                     <button title="Add Tweet Above" class="add-above-button btn-icon p-1 rounded-full text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm"><path d="m15 18-6-6 6-6"/><circle cx="12" cy="12" r="10"/></svg>
@@ -543,42 +496,26 @@
                     </button>
                 </div>
             `;
-
-            // Initialize image data for this new tweet
             setImagesForTweet(tweetId, tweetData.images || []);
-
-            // Insert into DOM
             if (typeof index === 'number' && tweetContainer.children[index]) {
                 tweetContainer.insertBefore(tweetElement, tweetContainer.children[index]);
             } else {
                 tweetContainer.appendChild(tweetElement);
             }
-
-            // Attach event listeners (including new image listeners)
             setTweetElementEvents(tweetElement);
-            // Render initial thumbnails if any were passed in tweetData
             renderTweetImageThumbnails(tweetElement);
-            // Apply styles
             applyDynamicStyles(tweetElement);
-
-            // Initial update of UI state based on images
             updateImageUIState(tweetElement);
-
-            // Update main preview and autosave
             updatePreview();
-            autoSave(); // Will now save text AND images
+            autoSave();
             return tweetElement;
         }
-
-        // NEW: Render thumbnails inside the tweet editor block
         function renderTweetImageThumbnails(tweetElement) {
             const container = tweetElement.querySelector('.image-thumbnail-container');
             if (!container) return;
-
             const tweetId = tweetElement.id;
             const images = getImagesForTweet(tweetId);
-            container.innerHTML = ''; // Clear existing thumbs
-
+            container.innerHTML = '';
             images.forEach((dataUrl, index) => {
                 const thumbItem = document.createElement('div');
                 thumbItem.className = 'image-thumbnail-item';
@@ -595,68 +532,46 @@
                 });
                 container.appendChild(thumbItem);
             });
-						 // Apply styles to the new remove buttons
-						applyDynamicStyles(container);
+            applyDynamicStyles(container);
         }
-
-        // NEW: Update add button state and count indicator
         function updateImageUIState(tweetElement) {
             const images = getImagesForTweet(tweetElement.id);
             const count = images.length;
             const addButton = tweetElement.querySelector('.add-image-button');
             const countIndicator = tweetElement.querySelector('.image-count-indicator');
             const fileInput = tweetElement.querySelector('.image-file-input');
-
-            if (addButton) {
-                addButton.disabled = count >= MAX_IMAGES_PER_TWEET;
-            }
-            if (countIndicator) {
-                countIndicator.textContent = `${count}/${MAX_IMAGES_PER_TWEET} images`;
-            }
-            if (fileInput) {
-                // Ensure we don't exceed max when selecting multiple
-                const remainingSlots = MAX_IMAGES_PER_TWEET - count;
-                // Note: 'multiple' attribute doesn't directly support limiting *count*,
-                // we handle this in the file selection logic. This just clears the input.
-                fileInput.value = ''; // Reset file input
-            }
+            if (addButton) addButton.disabled = count >= MAX_IMAGES_PER_TWEET;
+            if (countIndicator) countIndicator.textContent = `${count}/${MAX_IMAGES_PER_TWEET} images`;
+            if (fileInput) fileInput.value = '';
         }
-
-        // NEW: Handle image file selection
         function handleImageSelection(event) {
             const fileInput = event.target;
             const tweetElement = fileInput.closest('.tweet-container');
             if (!tweetElement) return;
-
             const tweetId = tweetElement.id;
             const existingImages = getImagesForTweet(tweetId);
             const files = Array.from(fileInput.files);
             const allowedNewFiles = MAX_IMAGES_PER_TWEET - existingImages.length;
-
             if (files.length === 0) return;
-
             let filesProcessed = 0;
-            const newImageDataUrls = [...existingImages]; // Start with existing images
-
+            const newImageDataUrls = [...existingImages];
             files.slice(0, allowedNewFiles).forEach(file => {
                 if (file.type.startsWith('image/')) {
                     const reader = new FileReader();
                     reader.onload = (e) => {
                         newImageDataUrls.push(e.target.result);
                         filesProcessed++;
-                        // Update only when all selected valid files are processed
                         if (filesProcessed === Math.min(files.length, allowedNewFiles)) {
                             setImagesForTweet(tweetId, newImageDataUrls);
                             renderTweetImageThumbnails(tweetElement);
                             updateImageUIState(tweetElement);
-														playHapticFeedback();
+                            playHapticFeedback();
                         }
                     };
                     reader.onerror = () => {
                         showNotification(`Error reading file: ${file.name}`, 'error');
-                        filesProcessed++; // Count as processed even on error
+                        filesProcessed++;
                         if (filesProcessed === Math.min(files.length, allowedNewFiles)) {
-                            // Still update with potentially partially added images if needed
                              setImagesForTweet(tweetId, newImageDataUrls);
                              renderTweetImageThumbnails(tweetElement);
                              updateImageUIState(tweetElement);
@@ -665,57 +580,42 @@
                     reader.readAsDataURL(file);
                 } else {
                     showNotification(`File "${file.name}" is not a valid image type.`, 'warning');
-                    filesProcessed++; // Count non-images as processed too
+                    filesProcessed++;
                      if (filesProcessed === Math.min(files.length, allowedNewFiles)) {
-													// Update UI state even if only invalid files were 'processed'
-													 setImagesForTweet(tweetId, newImageDataUrls); // Re-set (might be unchanged)
-													 renderTweetImageThumbnails(tweetElement);
-													 updateImageUIState(tweetElement);
-											}
+                         setImagesForTweet(tweetId, newImageDataUrls);
+                         renderTweetImageThumbnails(tweetElement);
+                         updateImageUIState(tweetElement);
+                     }
                 }
             });
-
-            // If more files were selected than allowed, show a warning
             if (files.length > allowedNewFiles) {
                 showNotification(`You selected ${files.length} files, but only ${allowedNewFiles} more can be added (max ${MAX_IMAGES_PER_TWEET}).`, 'warning', 4000);
             }
-             // Reset file input after processing
              fileInput.value = '';
         }
-
-        // NEW: Remove an image from a tweet
         function removeImageFromTweet(tweetElement, indexToRemove) {
             const tweetId = tweetElement.id;
             const currentImages = getImagesForTweet(tweetId);
             if (indexToRemove >= 0 && indexToRemove < currentImages.length) {
                 currentImages.splice(indexToRemove, 1);
-                setImagesForTweet(tweetId, currentImages); // Update the central store
-                renderTweetImageThumbnails(tweetElement); // Re-render thumbnails
-                updateImageUIState(tweetElement); // Update button state/count
-								playHapticFeedback();
+                setImagesForTweet(tweetId, currentImages);
+                renderTweetImageThumbnails(tweetElement);
+                updateImageUIState(tweetElement);
+                playHapticFeedback();
             }
         }
-
-
-        // MODIFIED: setTweetElementEvents to include image listeners
         function setTweetElementEvents(tweetElement) {
-            // console.log("Setting events for tweet element:", tweetElement.id); // DEBUG
             const textarea = tweetElement.querySelector('.tweet-text');
             const countDisplay = tweetElement.querySelector('.character-count');
             const addAboveButton = tweetElement.querySelector('.add-above-button');
             const addBelowButton = tweetElement.querySelector('.add-below-button');
             const deleteButton = tweetElement.querySelector('.delete-tweet-button');
-             // NEW Image elements
              const addImageButton = tweetElement.querySelector('.add-image-button');
              const imageFileInput = tweetElement.querySelector('.image-file-input');
-
-
             if (!textarea || !countDisplay || !addAboveButton || !addBelowButton || !deleteButton || !addImageButton || !imageFileInput) {
                 console.error("Could not find all elements within tweetElement:", tweetElement);
                 return;
             }
-
-            // Textarea Input Listener
             textarea.addEventListener('input', () => {
                 const length = textarea.value.length;
                 countDisplay.textContent = `${length}/${MAX_TWEET_LENGTH}`;
@@ -723,118 +623,93 @@
                 countDisplay.classList.toggle('text-warning', isOverLimit);
                 countDisplay.classList.toggle('dark:text-red-400', isOverLimit);
                 countDisplay.classList.toggle('text-muted', !isOverLimit);
-                updatePreview(); // Now updates mock-up preview
+                updatePreview();
                 autoSave();
             });
-
-            // Add Image Button Listener - Triggers hidden file input
             addImageButton.addEventListener('click', (event) => {
                 event.stopPropagation();
                 if (!addImageButton.disabled) {
-                    imageFileInput.click(); // Programmatically click the hidden input
+                    imageFileInput.click();
                 }
             });
-
-            // Image File Input Listener
             imageFileInput.addEventListener('change', handleImageSelection);
-
-            // Add Tweet Above/Below/Delete Listeners (adjusted slightly)
             addAboveButton.addEventListener('click', (event) => {
                 event.stopPropagation();
                 const index = Array.from(tweetContainer.children).indexOf(tweetElement);
-                const newTweet = createTweetElement({ text: '', images: [] }, index); // Create with empty data
+                const newTweet = createTweetElement({ text: '', images: [] }, index);
                 if (newTweet) newTweet.querySelector('textarea')?.focus();
                 playHapticFeedback();
             });
-
             addBelowButton.addEventListener('click', (event) => {
                 event.stopPropagation();
                 const index = Array.from(tweetContainer.children).indexOf(tweetElement);
-                const newTweet = createTweetElement({ text: '', images: [] }, index + 1); // Create with empty data
+                const newTweet = createTweetElement({ text: '', images: [] }, index + 1);
                 if (newTweet) newTweet.querySelector('textarea')?.focus();
                 playHapticFeedback();
             });
-
             deleteButton.addEventListener('click', (event) => {
                 event.stopPropagation();
                 if (confirm('Are you sure you want to delete this tweet?')) {
                     const tweetId = tweetElement.id;
                     tweetElement.remove();
-                    // NEW: Clean up image data for the deleted tweet
                     delete tweetImages[tweetId];
-                    updatePreview(); // Update overall preview
-                    autoSave(); // Update autosave
+                    updatePreview();
+                    autoSave();
                     playHapticFeedback();
                     showNotification('Tweet deleted.', 'info', 1500);
                 }
             });
         }
 
-        // --- Update Preview (REWRITTEN for Twitter Mockup) ---
+        // --- Update Preview (Keep as is) ---
         function updatePreview() {
-             // console.log("Updating mock-up preview..."); // DEBUG
              if (!previewContainer || !tweetContainer) return;
-
              previewContainer.innerHTML = ''; // Clear previous preview
-
              const tweetElements = Array.from(tweetContainer.querySelectorAll('.tweet-container'));
-
              if (tweetElements.length === 0) {
                  previewContainer.innerHTML = '<p class="text-muted italic text-center">Add tweets using the "Add Tweet" button.</p>';
                  return;
              }
-
              let hasContent = false;
              tweetElements.forEach((tweetElement, index) => {
                  const tweetId = tweetElement.id;
                  const textarea = tweetElement.querySelector('.tweet-text');
                  const text = textarea.value.trim();
                  const images = getImagesForTweet(tweetId);
-
                  if (text || images.length > 0) {
                      hasContent = true;
-
                      const previewMockup = document.createElement('div');
-                     previewMockup.className = `tweet-preview-mockup image-count-${images.length}`; // Add class for image count styling
-
-                     // --- Mockup Header ---
-										 const header = document.createElement('div');
-										 header.className = 'tweet-mockup-header';
-										 header.innerHTML = `
-												 <div class="tweet-mockup-avatar">
-														 <img src="https://avatars.githubusercontent.com/u/86871974?v=4" alt="Hatchedboy Avatar">
-												 </div>
-												 <div class="tweet-mockup-author">
-														 <div class="tweet-mockup-name">Hatchedboy</div>
-														 <div class="tweet-mockup-username">@hatchedboy</div>
-												 </div>
-										 `;
-										 previewMockup.appendChild(header);
-
-
-                     // --- Mockup Content ---
+                     previewMockup.className = `tweet-preview-mockup image-count-${images.length}`;
+                     const header = document.createElement('div');
+                     header.className = 'tweet-mockup-header';
+                     header.innerHTML = `
+                         <div class="tweet-mockup-avatar">
+                             <img src="https://avatars.githubusercontent.com/u/86871974?v=4" alt="Hatchedboy Avatar">
+                         </div>
+                         <div class="tweet-mockup-author">
+                             <div class="tweet-mockup-name">Hatchedboy</div>
+                             <div class="tweet-mockup-username">@hatchedboy</div>
+                         </div>
+                     `;
+                     previewMockup.appendChild(header);
                      const contentDiv = document.createElement('div');
                      contentDiv.className = 'tweet-mockup-content';
                      if (text) {
-                         // Basic highlighting - same as before
                          const highlightedText = text
                              .replace(/</g, "&lt;").replace(/>/g, "&gt;")
                              .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-blue-500 dark:text-blue-400 hover:underline">$1</a>')
-                             .replace(/#(\w+)/g, '<span class="text-blue-500 dark:text-blue-400">#$1</span>') // Use blue for hashtags like Twitter
-                             .replace(/@(\w+)/g, '<span class="text-blue-500 dark:text-blue-400">@$1</span>'); // Use blue for mentions
+                             .replace(/#(\w+)/g, '<span class="text-blue-500 dark:text-blue-400">#$1</span>')
+                             .replace(/@(\w+)/g, '<span class="text-blue-500 dark:text-blue-400">@$1</span>');
                          contentDiv.innerHTML = `<p>${highlightedText}</p>`;
                      } else {
                          contentDiv.innerHTML = '<p class="text-muted italic">(Empty tweet text)</p>';
                      }
                      previewMockup.appendChild(contentDiv);
-
-                     // --- Mockup Images ---
                      if (images.length > 0) {
                          const imagesContainer = document.createElement('div');
                          imagesContainer.className = 'tweet-mockup-images';
                          const imageGrid = document.createElement('div');
                          imageGrid.className = 'tweet-mockup-images-grid';
-
                          images.forEach((dataUrl) => {
                              const img = document.createElement('img');
                              img.src = dataUrl;
@@ -844,58 +719,43 @@
                          imagesContainer.appendChild(imageGrid);
                          previewMockup.appendChild(imagesContainer);
                      }
-
                      previewContainer.appendChild(previewMockup);
                  }
              });
-
               if (!hasContent && tweetElements.length > 0) {
                  previewContainer.innerHTML = '<p class="text-muted italic text-center">Start typing or add images in the boxes above to see the preview.</p>';
               }
          }
 
-
-        // --- Library Functions (MODIFIED Storage Format) ---
-
-        // MODIFIED: updateLibraryDisplay to handle new tweet format potentially
+        // --- Library Functions (Keep as is) ---
         function updateLibraryDisplay() {
              console.log("Updating library display..."); // DEBUG
              if (!libraryContainer) return;
              libraryContainer.innerHTML = '';
-
              const sortedTitles = Object.keys(library).sort((a, b) => a.localeCompare(b));
-
              if (sortedTitles.length === 0) {
                  libraryContainer.innerHTML = '<p class="text-muted italic text-center">Your saved threads will appear here.</p>';
                  return;
              }
-
              sortedTitles.forEach(title => {
                  const versions = library[title]?.versions;
                  if (!versions || versions.length === 0) return;
-
                  const threadGroup = document.createElement('div');
                  threadGroup.className = 'library-thread-group border border-color rounded-lg overflow-hidden';
-
                  const titleHeader = document.createElement('h3');
                  titleHeader.className = 'text-lg font-semibold text-secondary p-3 bg-gray-50 dark:bg-gray-700/50 border-b border-color';
                  titleHeader.textContent = title;
                  threadGroup.appendChild(titleHeader);
-
                  const versionsList = document.createElement('div');
                  versionsList.className = 'divide-y divide-gray-200 dark:divide-gray-600';
                  threadGroup.appendChild(versionsList);
-
                  const sortedVersions = [...versions].sort((a, b) => b.timestamp - a.timestamp);
-
                  sortedVersions.forEach((version, displayIndex) => {
                      const versionElement = document.createElement('div');
                      const bgColor = displayIndex % 2 === 0 ? 'bg-white dark:bg-gray-800' : 'bg-gray-50 dark:bg-gray-700/50';
                      versionElement.className = `library-version-item p-3 ${bgColor} flex flex-col sm:flex-row sm:items-center gap-3`;
-
                      const contentSection = document.createElement('div');
                      contentSection.className = 'flex-grow space-y-1 mb-2 sm:mb-0';
-
                      const timeWrapper = document.createElement('div');
                      timeWrapper.className = 'flex items-center gap-2 text-sm text-muted';
                      const timeSpan = document.createElement('span');
@@ -908,14 +768,11 @@
                          timeWrapper.appendChild(latestBadge);
                      }
                      contentSection.appendChild(timeWrapper);
-
                      const previewElement = document.createElement('p');
                      previewElement.className = 'text-xs text-gray-600 dark:text-gray-400 italic truncate';
                      previewElement.textContent = version.concept || '(No concept provided)';
                      previewElement.title = version.concept || '(No concept provided)';
                      contentSection.appendChild(previewElement);
-
-                     // NEW: Indicate if tweets have images
                      const hasImages = version.tweets.some(t => t.images && t.images.length > 0);
                      if (hasImages) {
                          const imageIndicator = document.createElement('span');
@@ -923,13 +780,9 @@
                          imageIndicator.textContent = '(includes images)';
                          previewElement.appendChild(imageIndicator);
                      }
-
-
                      versionElement.appendChild(contentSection);
-
                      const actionsSection = document.createElement('div');
                      actionsSection.className = 'flex flex-col sm:flex-row flex-shrink-0 gap-2 items-end sm:items-center sm:justify-end';
-
                      const loadButton = document.createElement('button');
                      loadButton.className = 'load-entry btn btn-xs bg-blue-600 hover:bg-blue-700 w-full sm:w-auto';
                      loadButton.title = 'Load this version into the editor';
@@ -938,16 +791,14 @@
                      loadButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-xs mr-1"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>Load`;
                      loadButton.addEventListener('click', (event) => { event.stopPropagation(); const t = event.currentTarget.dataset.title; const ts = event.currentTarget.dataset.timestamp; loadThreadFromLibrary(t, ts); playHapticFeedback(); });
                      actionsSection.appendChild(loadButton);
-
                      const exportButton = document.createElement('button');
                      exportButton.className = 'export-entry btn btn-xs bg-green-600 hover:bg-green-700 w-full sm:w-auto';
-                     exportButton.title = 'Export this version as TXT (Images will be omitted)'; // Clarify TXT limitation
+                     exportButton.title = 'Export this version as TXT (Images will be omitted)';
                      exportButton.dataset.title = title;
                      exportButton.dataset.timestamp = version.timestamp;
                      exportButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-xs mr-1"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>Export TXT`;
                      exportButton.addEventListener('click', (event) => { event.stopPropagation(); const t = event.currentTarget.dataset.title; const ts = event.currentTarget.dataset.timestamp; exportSpecificThreadVersion(t, ts); playHapticFeedback(); });
                      actionsSection.appendChild(exportButton);
-
                      const deleteButton = document.createElement('button');
                      deleteButton.className = 'delete-entry btn btn-xs bg-red-600 hover:bg-red-700 w-full sm:w-auto';
                      deleteButton.title = 'Delete this version';
@@ -956,17 +807,13 @@
                      deleteButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-xs mr-1"><circle cx="12" cy="12" r="10"/><line x1="15" x2="9" y1="9" y2="15"/><line x1="9" x2="15" y1="9" y2="15"/></svg>Delete`;
                      deleteButton.addEventListener('click', (event) => { event.stopPropagation(); const t = event.currentTarget.dataset.title; const ts = event.currentTarget.dataset.timestamp; deleteThreadVersion(t, ts); playHapticFeedback(); });
                      actionsSection.appendChild(deleteButton);
-
                      versionElement.appendChild(actionsSection);
                      versionsList.appendChild(versionElement);
                  });
-
                  libraryContainer.appendChild(threadGroup);
                  applyDynamicStyles(threadGroup);
              });
          }
-
-        // MODIFIED: saveToLibrary to package tweets with images
         async function saveToLibrary() {
             console.log("Attempting to save to library..."); // DEBUG
             if (!threadTitleInput) return;
@@ -976,42 +823,32 @@
                 threadTitleInput.focus();
                 return;
             }
-
             let libraryEntry = await loadFromDB(LIBRARY_STORE_NAME, title);
             if (!libraryEntry) {
                 libraryEntry = { title: title, versions: [] };
             }
-
-             // NEW: Package tweets including text and images
              const currentTweetsData = Array.from(tweetContainer?.querySelectorAll('.tweet-container') || []).map(tweetElement => {
                  const tweetId = tweetElement.id;
                  const textarea = tweetElement.querySelector('.tweet-text');
                  return {
                      text: textarea ? textarea.value : '',
-                     images: getImagesForTweet(tweetId) // Get images using helper
+                     images: getImagesForTweet(tweetId)
                  };
              });
-
             const newVersionData = {
                 concept: threadConceptInput?.value.trim() || '',
-                tweets: currentTweetsData, // Store the array of tweet objects
+                tweets: currentTweetsData,
                 timestamp: Date.now()
             };
-            // console.log("New version data for library:", newVersionData); // DEBUG
-
-            // More robust duplicate check comparing serialized tweets data
-						// Note: Comparing large dataURLs in JSON.stringify might be slow for many images/tweets
-						const isDuplicate = libraryEntry.versions.some(v =>
-								 v.concept === newVersionData.concept &&
-								 JSON.stringify(v.tweets) === JSON.stringify(newVersionData.tweets) // Compare stringified tweet objects
-						 );
-
-
+            const isDuplicate = libraryEntry.versions.some(v =>
+                 v.concept === newVersionData.concept &&
+                 JSON.stringify(v.tweets) === JSON.stringify(newVersionData.tweets)
+            );
             if (!isDuplicate) {
                 libraryEntry.versions.push(newVersionData);
                 try {
                     await saveToDB(LIBRARY_STORE_NAME, libraryEntry);
-                    library[title] = libraryEntry; // Update in-memory cache
+                    library[title] = libraryEntry;
                     updateLibraryDisplay();
                     showNotification(`Thread "${title}" (New Version) saved to library.`, 'success');
                     playHapticFeedback();
@@ -1020,37 +857,27 @@
                     showNotification("Could not save library entry.", "error");
                 }
             } else {
-                // console.log("Duplicate version detected, not saving."); // DEBUG
                 showNotification(`This exact version of "${title}" is already saved.`, 'info');
             }
         }
-
-        // MODIFIED: loadThreadFromLibrary to handle new tweet format
         function loadThreadFromLibrary(title, timestamp) {
             console.log(`Loading library version: ${title}, timestamp ${timestamp}`); // DEBUG
             const versionTimestamp = parseInt(timestamp, 10);
             if (isNaN(versionTimestamp)) {
                 showNotification("Error loading thread: Invalid version identifier.", "error"); return;
             }
-
             const versionToLoad = library[title]?.versions?.find(v => v.timestamp === versionTimestamp);
-
             if (versionToLoad && threadTitleInput && threadConceptInput && tweetContainer) {
                 threadTitleInput.value = title;
                 threadConceptInput.value = versionToLoad.concept;
-                tweetContainer.innerHTML = ''; // Clear existing tweets
-                tweetImages = {}; // Clear existing image data store
-
-                // Create tweet elements using the loaded data (which includes images)
+                tweetContainer.innerHTML = '';
+                tweetImages = {};
                 versionToLoad.tweets.forEach(tweetData => {
-                    // Ensure tweetData is an object; fallback for older saves without images
                     const data = typeof tweetData === 'object' ? tweetData : { text: tweetData, images: [] };
-                    createTweetElement(data); // Pass the whole object
+                    createTweetElement(data);
                 });
-
-                updatePreview(); // Update the mock-up preview
-                autoSave(); // Update autosave DB
-
+                updatePreview();
+                autoSave();
                  if(libraryModal) libraryModal.style.display = 'none';
                 showNotification(`Loaded "${title}" (Saved: ${new Date(versionTimestamp).toLocaleString()}).`, 'success');
             } else {
@@ -1058,100 +885,75 @@
                 showNotification(`Error loading thread "${title}". Version not found or elements missing.`, 'error');
             }
         }
-
-        // MODIFIED: exportSpecificThreadVersion to clarify image omission
         function exportSpecificThreadVersion(title, timestamp) {
             console.log(`Exporting library version as TXT: ${title}, timestamp ${timestamp}`); // DEBUG
             const versionTimestamp = parseInt(timestamp, 10);
             if (isNaN(versionTimestamp)) {
                 showNotification("Error exporting thread: Invalid version identifier.", "error"); return;
             }
-
             const versionToExport = library[title]?.versions?.find(v => v.timestamp === versionTimestamp);
-
             if (versionToExport) {
-                 // Create TXT content, explicitly stating images are not included
                 let content = `Thread Title: ${title}\n\nThread Concept:\n${versionToExport.concept || '(No concept)'}\n\nTweets (Images are not included in TXT export):\n\n`;
                 versionToExport.tweets.forEach((tweetData, idx) => {
-                    // Handle old string format vs new object format
                     const text = typeof tweetData === 'object' ? tweetData.text : tweetData;
                     content += `${idx + 1}. ${text || '(Empty tweet)'}\n\n`;
                 });
                 content += `\n\nSaved on: ${new Date(versionTimestamp).toLocaleString()}`;
-
-                downloadFile(`${title}_${versionTimestamp}_NoImages.txt`, content, 'text/plain'); // Add NoImages to filename
+                downloadFile(`${title}_${versionTimestamp}_NoImages.txt`, content, 'text/plain');
                 showNotification(`Exported "${title}" as TXT (Images omitted).`, 'success');
             } else {
                 showNotification(`Error exporting thread "${title}" as TXT. Version not found.`, 'error');
             }
         }
-
-        // MODIFIED: deleteThreadVersion (no structural change, but library format handled)
         async function deleteThreadVersion(title, timestamp) {
             console.log(`Deleting library version: ${title}, timestamp ${timestamp}`); // DEBUG
             const versionTimestamp = parseInt(timestamp, 10);
             if (isNaN(versionTimestamp)) {
                 showNotification("Error deleting thread: Invalid version identifier.", "error"); return;
             }
-
-            // Load fresh from DB to ensure consistency before delete
             let libraryEntry = await loadFromDB(LIBRARY_STORE_NAME, title);
             if (!libraryEntry || !libraryEntry.versions) {
                  showNotification(`Error deleting thread "${title}". Entry not found.`, 'error'); return;
             }
-
             const versionIndex = libraryEntry.versions.findIndex(v => v.timestamp === versionTimestamp);
             if (versionIndex === -1) {
                  showNotification(`Error deleting thread "${title}". Version not found.`, 'error'); return;
             }
-
             if (confirm(`Are you sure you want to delete this version of "${title}" (Saved: ${new Date(versionTimestamp).toLocaleString()})? This cannot be undone.`)) {
                 libraryEntry.versions.splice(versionIndex, 1);
                 try {
                     if (libraryEntry.versions.length === 0) {
                         await deleteFromDB(LIBRARY_STORE_NAME, title);
-                        delete library[title]; // Remove from in-memory
+                        delete library[title];
                     } else {
                         await saveToDB(LIBRARY_STORE_NAME, libraryEntry);
-                        library[title] = libraryEntry; // Update in-memory
+                        library[title] = libraryEntry;
                     }
                     updateLibraryDisplay();
                     showNotification(`Deleted version of "${title}" (Saved: ${new Date(versionTimestamp).toLocaleString()}).`, 'success');
                 } catch (e) {
                     console.error("Error updating library DB after deletion:", e);
                     showNotification("Could not update library after deletion.", "error");
-                     // Force reload from DB to resync memory on error
                      await loadLibraryFromDB();
                      updateLibraryDisplay();
                 }
             }
         }
-
-        // MODIFIED: exportLibrary (adjusts format, aware of new tweet structure)
         async function exportLibrary() {
              console.log("Exporting entire library..."); // DEBUG
              const allLibraryEntries = await loadAllFromDB(LIBRARY_STORE_NAME);
              if (!allLibraryEntries || allLibraryEntries.length === 0) {
                  showNotification('Library is empty. Nothing to export.', 'info'); return;
              }
-
-						// Export format: Keep as array of { title: string, versions: [...] } for easier import merging.
-            // The versions array ALREADY contains the tweet objects with images.
-             // const exportData = allLibraryEntries; // No transformation needed
-
              try {
-                 // Use replacer to potentially handle very large dataURLs if needed in future, but likely fine for now.
                  const libraryJson = JSON.stringify(allLibraryEntries, null, 2);
-                 downloadFile('280Thread_Library_Export_v2.json', libraryJson, 'application/json'); // v2 indicates image support
+                 downloadFile('280Thread_Library_Export_v2.json', libraryJson, 'application/json');
                  showNotification('Library exported successfully (including images).', 'success');
              } catch (e) {
                   console.error("Error stringifying library for export:", e);
                   showNotification("Could not prepare library for export.", "error");
-						 			// Consider specific warnings for QUOTA_EXCEEDED_ERR if stringification fails due to size
              }
         }
-
-        // MODIFIED: importLibrary (expects new format, merges carefully)
         async function importLibrary(file) {
             console.log("Importing library from file:", file?.name); // DEBUG
             if (!file) return;
@@ -1159,66 +961,53 @@
             reader.onload = async function(e) {
                 try {
                     if (!e.target.result) throw new Error("File is empty.");
-                    const importedLibraryArray = JSON.parse(e.target.result); // Expects array [{ title: '', versions: [] }, ...]
-                    // console.log("Parsed imported library data:", importedLibraryArray); // DEBUG
-
+                    const importedLibraryArray = JSON.parse(e.target.result);
                      if (!Array.isArray(importedLibraryArray)) {
                          throw new Error('Invalid library format. Expected a JSON array.');
                      }
-
                     let importedCount = 0;
                     let mergedCount = 0;
                     let titlesProcessed = 0;
-
                     const existingEntriesArray = await loadAllFromDB(LIBRARY_STORE_NAME);
                     const existingLibraryMap = existingEntriesArray.reduce((map, entry) => {
                         map[entry.title] = entry;
                         return map;
                     }, {});
-
                     for (const importedEntry of importedLibraryArray) {
                         if (!importedEntry || typeof importedEntry.title !== 'string' || !Array.isArray(importedEntry.versions)) {
-                            console.warn(`Skipping invalid entry structure during import:`, importedEntry); continue; // Skip invalid top-level entries
+                            console.warn(`Skipping invalid entry structure during import:`, importedEntry); continue;
                         }
-
                         const title = importedEntry.title;
                         titlesProcessed++;
-
                         let targetEntry = existingLibraryMap[title];
                         let isNewEntry = false;
                         if (!targetEntry) {
                             targetEntry = { title: title, versions: [] };
                             isNewEntry = true;
                         }
-
                         let versionsAddedToThisTitle = 0;
                         importedEntry.versions.forEach(importedVersion => {
-                            // Validate imported version structure (basic check)
                             if (importedVersion?.timestamp && Array.isArray(importedVersion.tweets)) {
-                                // Check for duplicate timestamp within this specific title
                                 if (!targetEntry.versions.some(existing => existing.timestamp === importedVersion.timestamp)) {
-                                     // **Crucially, validate tweet format inside version**
                                      const sanitizedTweets = importedVersion.tweets.map(t => ({
-                                         text: (typeof t === 'object' && t?.text) ? String(t.text) : (typeof t === 'string' ? t : ''), // Ensure text is string or empty
-                                         images: (typeof t === 'object' && Array.isArray(t.images)) ? t.images.filter(img => typeof img === 'string' && img.startsWith('data:image/')) : [] // Ensure images is array of valid dataURLs
+                                         text: (typeof t === 'object' && t?.text) ? String(t.text) : (typeof t === 'string' ? t : ''),
+                                         images: (typeof t === 'object' && Array.isArray(t.images)) ? t.images.filter(img => typeof img === 'string' && img.startsWith('data:image/')) : []
                                      }));
-
                                     targetEntry.versions.push({
-                                        ...importedVersion, // Keep other potential fields
-                                        tweets: sanitizedTweets, // Use sanitized tweets
-                                        timestamp: importedVersion.timestamp // Ensure timestamp is present
-                                    }); // Add the validated version
+                                        ...importedVersion,
+                                        tweets: sanitizedTweets,
+                                        timestamp: importedVersion.timestamp
+                                    });
                                     versionsAddedToThisTitle++;
                                 }
                             } else {
                                 console.warn(`Skipping version with invalid structure/timestamp for title "${title}":`, importedVersion);
                             }
                         });
-
                         if (versionsAddedToThisTitle > 0 || (isNewEntry && targetEntry.versions.length > 0)) {
                             try {
                                 await saveToDB(LIBRARY_STORE_NAME, targetEntry);
-                                library[title] = targetEntry; // Update in-memory cache
+                                library[title] = targetEntry;
                                 mergedCount++;
                                 importedCount += versionsAddedToThisTitle;
                             } catch(saveError) {
@@ -1226,12 +1015,10 @@
                                 showNotification(`Error saving imported data for "${title}".`, "error");
                             }
                         }
-                    } // End loop through imported entries
-
+                    }
                     updateLibraryDisplay();
                     showNotification(`Library import complete. Processed ${titlesProcessed} titles, added ${importedCount} new versions across ${mergedCount} entries.`, 'success', 5000);
                     playHapticFeedback();
-
                 } catch (error) {
                     showNotification(`Error importing library: ${error.message}`, 'error', 5000);
                     console.error("Library import error:", error);
@@ -1242,54 +1029,41 @@
             if(importLibraryFileInput) importLibraryFileInput.value = '';
         }
 
-
-        // --- TXT Import/Export (MODIFIED to warn about images) ---
+        // --- TXT Import/Export (Keep as is, except for minor logging/message clarification) ---
         function saveThreadToTxt() {
             console.log("Saving current thread as TXT..."); // DEBUG
             if (!threadTitleInput || !threadConceptInput || !tweetContainer) return;
-
             const title = threadTitleInput.value.trim() || 'Untitled Thread';
             const concept = threadConceptInput.value.trim();
-            let content = `Thread Title: ${title}\n\nThread Concept:\n${concept || '(No concept)'}\n\nTweets (Images are NOT included in TXT export):\n\n`; // Clarify limitation
+            let content = `Thread Title: ${title}\n\nThread Concept:\n${concept || '(No concept)'}\n\nTweets (Images are NOT included in TXT export):\n\n`;
             let tweetCount = 0;
-
             Array.from(tweetContainer.querySelectorAll('.tweet-container')).forEach((tweetElement, index) => {
                 const textarea = tweetElement.querySelector('.tweet-text');
                 const tweetText = textarea ? textarea.value : '';
                 const images = getImagesForTweet(tweetElement.id);
-
                  content += `${index + 1}. ${tweetText}`;
-                 // Optionally indicate if the original tweet had images
                  if (images.length > 0) {
                      content += ` [Had ${images.length} image(s)]`;
                  }
                  content += `\n\n`;
-
                 if (tweetText.trim() || images.length > 0) tweetCount++;
             });
-
             if (tweetCount === 0 && !concept && title === 'Untitled Thread') {
                 showNotification('Nothing to export. Add some content first.', 'info'); return;
             }
-
             const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-            downloadFile(`${title}_NoImages_${timestamp}.txt`, content, 'text/plain'); // Add NoImages to filename
+            downloadFile(`${title}_NoImages_${timestamp}.txt`, content, 'text/plain');
             showNotification('Thread exported as TXT (Images omitted).', 'success');
         }
-
-        // importFromTxt remains the same - it cannot import images from TXT
         function importFromTxt(file) {
             console.log("Importing from TXT file (images cannot be imported):", file?.name); // DEBUG
              if (!file || !threadTitleInput || !threadConceptInput || !tweetContainer) return;
-
             const reader = new FileReader();
             reader.onload = function(e) {
-						 // Clear existing content AND image data before importing TXT
-							if(threadTitleInput) threadTitleInput.value = '';
-              if(threadConceptInput) threadConceptInput.value = '';
-              if(tweetContainer) tweetContainer.innerHTML = '';
-							tweetImages = {}; // Clear image data
-
+                if(threadTitleInput) threadTitleInput.value = '';
+                if(threadConceptInput) threadConceptInput.value = '';
+                if(tweetContainer) tweetContainer.innerHTML = '';
+                tweetImages = {};
                 try {
                     if (!e.target.result) throw new Error("File is empty.");
                     const content = e.target.result;
@@ -1299,7 +1073,6 @@
                     const tweets = [];
                     let currentSection = '';
                     let currentTweet = '';
-
                     lines.forEach(line => {
                         const trimmedLine = line.trim();
                         if (trimmedLine.startsWith('Thread Title:')) {
@@ -1313,40 +1086,31 @@
                             currentTweet = '';
                         }
                         else if (currentSection === 'concept') {
-                            // Skip the initial "Thread Concept:" line itself if present on next line
                             if (line.trim() !== 'Thread Concept:') {
                                 concept += line + '\n';
                              }
                         } else if (currentSection === 'tweets') {
-                            // Handle lines like "1. Tweet text [Had image(s)]"
                             if (/^\d+\.\s*/.test(line)) {
-                                if (currentTweet.trim()) tweets.push(currentTweet.trim()); // Push previous completed tweet
-                                currentTweet = line.replace(/^\d+\.\s*/, '').replace(/\[Had \d+ image\(s\)\]$/, '').trim(); // Extract text, remove image marker
-                            } else if (trimmedLine && !trimmedLine.startsWith('Saved on:')) { // Append non-empty lines to current tweet
+                                if (currentTweet.trim()) tweets.push(currentTweet.trim());
+                                currentTweet = line.replace(/^\d+\.\s*/, '').replace(/\[Had \d+ image\(s\)\]$/, '').trim();
+                            } else if (trimmedLine && !trimmedLine.startsWith('Saved on:')) {
                                 currentTweet += '\n' + line;
                             }
                         }
                     });
-                    if (currentTweet.trim()) tweets.push(currentTweet.trim()); // Push the last tweet
-
-
+                    if (currentTweet.trim()) tweets.push(currentTweet.trim());
                     threadTitleInput.value = title;
-                    threadConceptInput.value = concept.trim(); // Trim the collected concept
-                    // tweetContainer already cleared
-                    tweets.forEach(tweetText => createTweetElement({ text: tweetText, images: [] })); // Create tweets WITHOUT images
-
-                    if(tweets.length === 0) { // Ensure at least one box if import was empty
+                    threadConceptInput.value = concept.trim();
+                    tweets.forEach(tweetText => createTweetElement({ text: tweetText, images: [] }));
+                    if(tweets.length === 0) {
                          createTweetElement();
                     }
-
                     updatePreview();
                     autoSave();
-                    showNotification('Thread imported from TXT. Images (if any) were not included.', 'success', 4000); // Updated message
+                    showNotification('Thread imported from TXT. Images (if any) were not included.', 'success', 4000);
                     playHapticFeedback();
-
                 } catch (error) {
                     showNotification(`Error parsing TXT file: ${error.message}`, 'error', 5000);
-                     // Ensure a clean slate on error
                      if(threadTitleInput) threadTitleInput.value = '';
                      if(threadConceptInput) threadConceptInput.value = '';
                      if(tweetContainer) tweetContainer.innerHTML = '';
@@ -1360,8 +1124,7 @@
              if(importThreadFileInput) importThreadFileInput.value = '';
         }
 
-
-        // --- Utility Functions (No changes) ---
+        // --- Utility Functions (Keep as is) ---
         function downloadFile(filename, content, mimeType) {
             try {
                  const blob = new Blob([content], { type: mimeType });
@@ -1376,98 +1139,77 @@
                 showNotification("File download failed.", "error");
             }
         }
-
         function playHapticFeedback() {
             if ('vibrate' in navigator) {
                 try { navigator.vibrate(50); } catch (e) { /* Ignore */ }
             }
         }
 
-        // --- AutoSave using IndexedDB (MODIFIED for images) ---
+        // --- AutoSave using IndexedDB (Keep as is) ---
         async function autoSave() {
-            // console.log("Autosaving..."); // DEBUG (noisy)
             if (!threadTitleInput || !threadConceptInput || !tweetContainer) return;
-
-             // Package tweets including text and images for autosave
              const currentTweetsData = Array.from(tweetContainer.querySelectorAll('.tweet-container')).map(tweetElement => {
                  const tweetId = tweetElement.id;
                  const textarea = tweetElement.querySelector('.tweet-text');
                  return {
                      text: textarea ? textarea.value : '',
-                     images: getImagesForTweet(tweetId) // Get current images
+                     images: getImagesForTweet(tweetId)
                  };
              });
-
             const threadData = {
                 title: threadTitleInput.value,
                 concept: threadConceptInput.value,
-                tweets: currentTweetsData, // Save the array of tweet objects
+                tweets: currentTweetsData,
                 timestamp: Date.now()
             };
-
             const autoSaveEntry = { id: AUTOSAVE_KEY, data: threadData };
-
             try {
                  await saveToDB(AUTOSAVE_STORE_NAME, autoSaveEntry);
-                 // console.log("Autosave successful"); // DEBUG (noisy)
             } catch (e) {
                  console.error("Error during autosave:", e);
                  showNotification("Could not auto-save.", "error");
             }
         }
-
-        // MODIFIED: loadAutoSave to handle images
         async function loadAutoSave() {
             console.log("Loading autosave data..."); // DEBUG
              if (!threadTitleInput || !threadConceptInput || !tweetContainer) return;
-
-             tweetContainer.innerHTML = ''; // Clear existing tweets first
-             tweetImages = {}; // Clear existing image data store
-
+             tweetContainer.innerHTML = '';
+             tweetImages = {};
             try {
                 const savedEntry = await loadFromDB(AUTOSAVE_STORE_NAME, AUTOSAVE_KEY);
-
                 if (savedEntry && savedEntry.data) {
                     console.log("Found autosave data.", savedEntry.data); // DEBUG
                     const threadData = savedEntry.data;
                     threadTitleInput.value = threadData.title || '';
                     threadConceptInput.value = threadData.concept || '';
-
                     if (threadData.tweets?.length > 0) {
                         threadData.tweets.forEach(tweetData => {
-                             // Ensure tweetData is object (fallback for older autosaves)
                              const data = typeof tweetData === 'object' ? tweetData : { text: tweetData, images: [] };
-                             createTweetElement(data); // Create tweet element with text and images
+                             createTweetElement(data);
                          });
                     } else {
-                         createTweetElement(); // Start with one empty if autosave had no tweets
+                         createTweetElement();
                     }
-                    updatePreview(); // Update mock-up preview
+                    updatePreview();
                     console.log(`Restored autosave from ${new Date(threadData.timestamp).toLocaleString()}`); // DEBUG
                 } else {
                     console.log("No autosave data found, creating initial tweet."); // DEBUG
-                    createTweetElement(); // Start fresh with one tweet
+                    createTweetElement();
                      updatePreview();
                 }
             } catch (e) {
                 console.error("Error loading autosave:", e);
                 showNotification("Could not restore auto-saved session.", "error");
-                createTweetElement(); // Ensure one tweet box exists on error
+                createTweetElement();
                 updatePreview();
-                 // Clear potentially corrupted autosave
                  try { await deleteFromDB(AUTOSAVE_STORE_NAME, AUTOSAVE_KEY); } catch (removeError) { /* Ignore */ }
             }
         }
-
-
-        // MODIFIED: loadLibraryFromDB (no structural change, just awareness of format)
         async function loadLibraryFromDB() {
             console.log("Loading library from IndexedDB into memory..."); // DEBUG
             try {
                 const allEntries = await loadAllFromDB(LIBRARY_STORE_NAME);
-                // Store as map { title: { title: '...', versions: [...] } }
                 library = allEntries.reduce((map, entry) => {
-                    // Optional: Add validation here if needed for older data formats
                     map[entry.title] = entry;
                     return map;
                  }, {});
@@ -1475,11 +1217,11 @@
             } catch (e) {
                 console.error("Error loading library from IndexedDB:", e);
                 showNotification("Could not load thread library.", "error");
-                library = {}; // Reset in-memory library
+                library = {};
             }
         }
 
-        // --- Theme Toggling (No changes) ---
+        // --- Theme Toggling (Keep as is) ---
         function toggleTheme() {
              if (!themeToggleBtn) return;
              document.documentElement.classList.toggle('dark');
@@ -1493,26 +1235,23 @@
              playHapticFeedback();
          }
 
-        // --- Apply Dynamic Styles (No changes) ---
+        // --- Apply Dynamic Styles (Keep as is) ---
         function applyDynamicStyles(parentElement = document) {
             const baseBtnClasses = ['text-white','font-semibold','py-2','px-4','rounded-md','shadow','transition-all','duration-200','ease-in-out','transform','hover:scale-105','flex','items-center','justify-center'];
             const btnSmClassesRemove = ['py-2','px-4'];
             const btnSmClassesAdd = ['py-1','px-3','text-sm'];
             const btnXsClassesRemove = ['py-2','px-4','font-semibold'];
             const btnXsClassesAdd = ['py-1','px-2','text-xs','font-medium'];
-            const btnIconClassesAdd = ['transition-colors', 'duration-150']; // For icon-only buttons like add/delete image
-
+            const btnIconClassesAdd = ['transition-colors', 'duration-150'];
             parentElement.querySelectorAll('.btn:not(.btn-sm):not(.btn-xs)').forEach(button => button.classList.add(...baseBtnClasses));
             parentElement.querySelectorAll('.btn-sm').forEach(button => { button.classList.add(...baseBtnClasses); button.classList.remove(...btnSmClassesRemove); button.classList.add(...btnSmClassesAdd); });
             parentElement.querySelectorAll('.btn-xs').forEach(button => { button.classList.add(...baseBtnClasses); button.classList.remove(...btnXsClassesRemove); button.classList.add(...btnXsClassesAdd); });
-						// Apply to simple icon buttons (like add/remove image, add/delete tweet)
             parentElement.querySelectorAll('.btn-icon').forEach(button => button.classList.add(...btnIconClassesAdd));
          }
 
         // --- Initialization (MODIFIED) ---
         document.addEventListener('DOMContentLoaded', async () => {
             console.log("DOM loaded."); // DEBUG
-
             // Cache DOM elements
             threadTitleInput = document.getElementById('threadTitle');
             threadConceptInput = document.getElementById('threadConcept');
@@ -1524,41 +1263,38 @@
             importLibraryFileInput = document.getElementById('importLibraryFile');
             notificationArea = document.getElementById('notificationArea');
             themeToggleBtn = document.getElementById('themeToggle');
+            openPreviewTabBtn = document.getElementById('openPreviewTabBtn'); // <-- Cache new button
             console.log("DOM elements cached."); // DEBUG
-
             applyTheme(); // Initial theme
-
             try {
                 await openDB();
                 await loadLibraryFromDB();
-                await loadAutoSave(); // Loads editor state including images
+                await loadAutoSave();
             } catch (err) {
                 console.error("Initialization Error:", err);
                 showNotification("Error initializing app data.", "error");
-                if (!tweetContainer.hasChildNodes()) createTweetElement(); // Fallback
+                if (!tweetContainer.hasChildNodes()) createTweetElement();
                 updatePreview();
             }
-
             applyDynamicStyles(); // Initial styles
 
-            // --- Attach Event Listeners ---
+            // --- Attach Event Listeners (Add listener for new button) ---
             console.log("Attaching main event listeners..."); // DEBUG
             document.getElementById('addTweetBtn')?.addEventListener('click', () => {
-                const newTweet = createTweetElement(); // Creates empty tweet
+                const newTweet = createTweetElement();
                 newTweet?.querySelector('textarea')?.focus();
                 playHapticFeedback();
             });
             document.getElementById('saveThreadBtn')?.addEventListener('click', () => { saveThreadToTxt(); playHapticFeedback(); });
             document.getElementById('importThreadBtn')?.addEventListener('click', () => { importThreadFileInput?.click(); playHapticFeedback(); });
             importThreadFileInput?.addEventListener('change', event => { if (event.target.files.length > 0) importFromTxt(event.target.files[0]); });
-
             document.getElementById('clearAllBtn')?.addEventListener('click', async () => {
                 if (confirm('Are you sure you want to clear the current thread (title, concept, tweets, and images)? This will also clear the auto-save.')) {
                     if(threadTitleInput) threadTitleInput.value = '';
                     if(threadConceptInput) threadConceptInput.value = '';
                     if(tweetContainer) tweetContainer.innerHTML = '';
-                    tweetImages = {}; // CLEAR IMAGE DATA
-                    createTweetElement(); // Add back one empty tweet
+                    tweetImages = {};
+                    createTweetElement();
                     updatePreview();
                     try {
                         await deleteFromDB(AUTOSAVE_STORE_NAME, AUTOSAVE_KEY);
@@ -1569,26 +1305,70 @@
                     playHapticFeedback();
                 }
             });
-
-            document.getElementById('saveToLibraryBtn')?.addEventListener('click', () => { saveToLibrary(); playHapticFeedback(); }); // saveToLibrary is async
+            document.getElementById('saveToLibraryBtn')?.addEventListener('click', () => { saveToLibrary(); playHapticFeedback(); });
             document.getElementById('openLibraryBtn')?.addEventListener('click', () => {
-                updateLibraryDisplay(); // Uses in-memory cache
+                updateLibraryDisplay();
                 if(libraryModal) libraryModal.style.display = 'flex';
                 playHapticFeedback();
             });
             document.getElementById('closeLibraryBtn')?.addEventListener('click', () => { if(libraryModal) libraryModal.style.display = 'none'; playHapticFeedback(); });
-            document.getElementById('exportLibraryBtn')?.addEventListener('click', () => { exportLibrary(); playHapticFeedback(); }); // exportLibrary is async
+            document.getElementById('exportLibraryBtn')?.addEventListener('click', () => { exportLibrary(); playHapticFeedback(); });
             document.getElementById('importLibraryBtnModal')?.addEventListener('click', () => { importLibraryFileInput?.click(); playHapticFeedback(); });
-            importLibraryFileInput?.addEventListener('change', event => { if (event.target.files.length > 0) importLibrary(event.target.files[0]); }); // importLibrary is async
-
+            importLibraryFileInput?.addEventListener('change', event => { if (event.target.files.length > 0) importLibrary(event.target.files[0]); });
             themeToggleBtn?.addEventListener('click', toggleTheme);
-            threadTitleInput?.addEventListener('input', autoSave); // AutoSave is async
-            threadConceptInput?.addEventListener('input', autoSave); // AutoSave is async
+            threadTitleInput?.addEventListener('input', autoSave);
+            threadConceptInput?.addEventListener('input', autoSave);
+
+            // START MODIFICATION: Add event listener for the "Open Preview Tab" button
+            openPreviewTabBtn?.addEventListener('click', () => {
+                console.log("Opening preview in new tab...");
+                if (!previewContainer) return;
+
+                const previewHTML = previewContainer.innerHTML;
+                const currentTitle = threadTitleInput?.value.trim() || 'Untitled Thread';
+                const isDarkMode = document.documentElement.classList.contains('dark');
+
+                // Get the entire <style> block content from the current document head
+                const styleContent = document.head.querySelector('style')?.textContent || '';
+                // Get the tailwind config script content
+                const tailwindConfigScriptContent = Array.from(document.scripts).find(s => s.textContent.includes('tailwind.config ='))?.textContent || '';
+
+
+                const newWindow = window.open('', '_blank');
+                if (newWindow) {
+                    newWindow.document.open();
+                    newWindow.document.write(`
+                        <!DOCTYPE html>
+                        <html lang="en"${isDarkMode ? ' class="dark"' : ''}>
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                            <title>Preview: ${currentTitle.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</title>
+                            <script src="https://cdn.tailwindcss.com"><\/script>
+                            <style>${styleContent}<\/style>
+                            <script>${tailwindConfigScriptContent}<\/script>
+                        </head>
+                        <body class="bg-gray-100 dark:bg-gray-900 font-sans p-4">
+                            <div class="max-w-2xl mx-auto container-bg rounded-lg shadow-lg p-4 sm:p-6 md:p-8">
+                                <h1 class="text-xl font-bold text-primary mb-4 text-center">Thread Preview</h1>
+                                <div class="space-y-3">
+                                    ${previewHTML}
+                                </div>
+                            </div>
+                        </body>
+                        </html>
+                    `);
+                    newWindow.document.close();
+                    playHapticFeedback();
+                } else {
+                    showNotification('Could not open new tab. Please check your pop-up blocker settings.', 'error', 5000);
+                }
+            });
+            // END MODIFICATION
 
             console.log("Event listeners attached."); // DEBUG
             console.log("App Initialized."); // DEBUG
         });
-
     </script>
 </body>
 </html>
