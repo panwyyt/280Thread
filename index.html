@@ -1,1733 +1,940 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>280Thread</title>
-    <link rel="icon" href="https://raw.githubusercontent.com/panwyyt/280Thread/refs/heads/main/Hathedboy.ico" type="image/x-icon">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom styles for dark mode are applied via Tailwind dark: prefixes */
-        /* Simple scrollbar styling */
-        .scrollbar-thin {
-            scrollbar-width: thin;
-            scrollbar-color: rgba(156, 163, 175, 0.5) rgba(243, 244, 246, 0.1); /* gray-400/50 gray-100/10 */
-        }
-        .dark .scrollbar-thin {
-             scrollbar-color: rgba(107, 114, 128, 0.5) rgba(55, 65, 81, 0.5); /* gray-500/50 gray-700/50 */
-        }
-        .scrollbar-thin::-webkit-scrollbar {
-            width: 8px;
-        }
-        .scrollbar-thin::-webkit-scrollbar-track {
-            background: rgba(243, 244, 246, 0.1); /* gray-100/10 */
-            border-radius: 4px;
-        }
-        .dark .scrollbar-thin::-webkit-scrollbar-track {
-             background: rgba(55, 65, 81, 0.5); /* gray-700/50 */
-        }
-        .scrollbar-thin::-webkit-scrollbar-thumb {
-            background-color: rgba(156, 163, 175, 0.5); /* gray-400/50 */
-            border-radius: 4px;
-            border: 2px solid transparent;
-            background-clip: content-box;
-        }
-         .dark .scrollbar-thin::-webkit-scrollbar-thumb {
-             background-color: rgba(107, 114, 128, 0.5); /* gray-500/50 */
-         }
-         /* Utility for inline SVGs */
-         .icon {
-             display: inline-block;
-             vertical-align: middle; /* Adjust alignment as needed */
-             width: 1.25em; /* Default size, matches font-size */
-             height: 1.25em;
-         }
-         .icon-sm { width: 1em; height: 1em; }
-         .icon-xs { width: 0.875em; height: 0.875em; }
-         /* Base input styling (can be overridden by dark mode) */
-         .input-bg {
-             background-color: white;
-             border-color: #d1d5db; /* gray-300 */
-             color: #111827; /* gray-900 */
-         }
-         .dark .input-bg {
-             background-color: #374151; /* gray-700 */
-             border-color: #4b5563; /* gray-600 */
-             color: #f9fafb; /* gray-50 */
-         }
-         .input-bg:focus {
-            border-color: #3b82f6; /* blue-500 */
-            --tw-ring-color: #3b82f6; /* blue-500 */
-            box-shadow: 0 0 0 2px var(--tw-ring-color);
-         }
-         .dark .input-bg:focus {
-            border-color: #60a5fa; /* blue-400 */
-            --tw-ring-color: #60a5fa; /* blue-400 */
-            box-shadow: 0 0 0 2px var(--tw-ring-color);
-           }
-           /* Base text colors (can be overridden by dark mode) */
-           body { color: #1f2937; /* gray-800 */ }
-           .text-primary { color: #2563eb; /* blue-600 */ }
-           .text-secondary { color: #374151; /* gray-700 */ }
-           .text-muted { color: #6b7280; /* gray-500 */ }
-           .container-bg { background-color: white; }
-           .border-color { border-color: #e5e7eb; /* gray-200 */ }
-           .modal-bg { background-color: white; }
-           .modal-overlay-bg { background-color: rgba(0, 0, 0, 0.6); }
-           .text-warning { color: #ef4444; /* red-500 */ }
-           /* Dark mode overrides */
-           .dark body { color: #d1d5db; /* gray-300 */ }
-           .dark .text-primary { color: #60a5fa; /* blue-400 */ }
-           .dark .text-secondary { color: #d1d5db; /* gray-300 */ }
-           .dark .text-muted { color: #9ca3af; /* gray-400 */ }
-           .dark .container-bg { background-color: #1f2937; /* gray-800 */ }
-           .dark .border-color { border-color: #4b5563; /* gray-600 */ }
-           .dark .modal-bg { background-color: #374151; /* gray-700 */ }
-           .dark .modal-overlay-bg { background-color: rgba(0, 0, 0, 0.7); }
-           .dark .text-warning { color: #f87171; /* red-400 */ }
-        /* --- Image Preview Styles --- */
-        .image-thumbnail-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem; /* 8px */
-            margin-top: 0.5rem; /* 8px */
-        }
-        .image-thumbnail-item {
-            position: relative;
-            width: 50px;
-            height: 50px;
-            border-radius: 0.375rem; /* 6px */
-            overflow: hidden;
-            border: 1px solid #e5e7eb; /* gray-200 */
-        }
-        .dark .image-thumbnail-item {
-            border-color: #4b5563; /* gray-600 */
-        }
-        .image-thumbnail-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        .remove-image-btn {
-            position: absolute;
-            top: -4px;
-            right: -4px;
-            background-color: rgba(0, 0, 0, 0.6);
-            color: white;
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            padding: 0;
-            border: 1px solid white;
-            line-height: 1; /* Important for small buttons */
-            font-size: 10px; /* Smaller X */
-        }
-        .remove-image-btn svg { /* Style SVG directly if needed */
-             width: 10px;
-             height: 10px;
-        }
-        /* --- Twitter Mockup Preview Styles --- */
-        .tweet-preview-mockup {
-            background-color: #ffffff; /* Twitter light bg */
-            border: 1px solid #e5e7eb; /* gray-200 */
-            border-radius: 0.75rem; /* 12px */
-            padding: 0.75rem; /* 12px */
-            margin-bottom: 0.75rem; /* 12px */
-            font-family: "TwitterChirp", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            /* ^ Add Twitter font stack if desired, otherwise falls back */
-        }
-        .dark .tweet-preview-mockup {
-            background-color: #1f2937; /* Your dark bg */
-            border-color: #4b5563; /* gray-600 */
-        }
-        .tweet-mockup-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem; /* 12px */
-            margin-bottom: 0.5rem; /* 8px */
-        }
-        .tweet-mockup-avatar img {
-            width: 48px;
-            height: 48px;
-            border-radius: 9999px; /* Full circle */
-        }
-        .tweet-mockup-author {
-            flex-grow: 1;
-        }
-        .tweet-mockup-name {
-            font-weight: 700;
-            color: #0f1419; /* Twitter black */
-        }
-        .dark .tweet-mockup-name {
-            color: #e7e9ea; /* Twitter light gray */
-        }
-        .tweet-mockup-username { /* Corrected selector */
-            color: #536471; /* Twitter gray */
-            font-size: 0.9375rem; /* ~15px */
-        }
-        .dark .tweet-mockup-username { /* Corrected selector */
-            color: #71767b;
-        }
-        .tweet-mockup-content p {
-            color: #0f1419;
-            font-size: 0.9375rem; /* ~15px */
-            line-height: 1.3125; /* Twitter line height */
-            white-space: pre-wrap; /* Preserve line breaks */
-            word-wrap: break-word; /* Break long words */
-        }
-        .dark .tweet-mockup-content p {
-            color: #e7e9ea;
-        }
-        .tweet-mockup-images {
-            margin-top: 0.75rem; /* 12px */
-            border-radius: 0.75rem; /* 12px */
-            overflow: hidden;
-            border: 1px solid #cfd9de; /* Twitter image border light */
-        }
-        .dark .tweet-mockup-images {
-            border-color: #38444d; /* Twitter image border dark */
-        }
-        .tweet-mockup-images-grid {
-            display: grid;
-            gap: 2px; /* Small gap between images */
-        }
-        .tweet-mockup-images-grid img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            aspect-ratio: 1 / 1; /* Default square ratio */
-        }
-        /* Specific Grid Layouts for Twitter Image Preview */
-        .image-count-1 .tweet-mockup-images-grid { grid-template-columns: 1fr; }
-        .image-count-1 .tweet-mockup-images-grid img { aspect-ratio: 16 / 9; } /* Adjust aspect for single image */
-        .image-count-2 .tweet-mockup-images-grid { grid-template-columns: 1fr 1fr; }
-        .image-count-2 .tweet-mockup-images-grid img { aspect-ratio: 1 / 1; }
-        .image-count-3 .tweet-mockup-images-grid { grid-template-columns: 1fr 1fr; }
-        .image-count-3 .tweet-mockup-images-grid > *:nth-child(1) { grid-row: span 2; aspect-ratio: 1 / 2; } /* First image tall */
-        .image-count-3 .tweet-mockup-images-grid > *:nth-child(2) { aspect-ratio: 1 / 1; }
-        .image-count-3 .tweet-mockup-images-grid > *:nth-child(3) { aspect-ratio: 1 / 1; }
-        .image-count-4 .tweet-mockup-images-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;}
-        .image-count-4 .tweet-mockup-images-grid img { aspect-ratio: 1 / 1; }
-    </style>
-    <script>
-        // Basic Tailwind config for v4 browser build
-        tailwind.config = {
-          darkMode: 'class', // Enable dark mode using a class
-          theme: {
-            extend: {
-              fontFamily: {
-                sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'], // Set Inter as primary sans-serif font
-              },
-            }
-          }
-        }
-        // Function to apply saved theme preference (Uses localStorage)
-        function applyTheme() {
-            console.log("Applying theme..."); // DEBUG
-            const themeToggleBtn = document.getElementById('themeToggle');
-            if (!themeToggleBtn) {
-                console.error("Theme toggle button not found during applyTheme.");
-                return;
-            }
-            // Keep theme in localStorage - it's simple and sufficient
-            const isDarkMode = localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
-            if (isDarkMode) {
-                document.documentElement.classList.add('dark');
-                // Set Sun SVG
-                themeToggleBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon w-5 h-5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>`;
-                console.log("Theme set to dark."); // DEBUG
-            } else {
-                document.documentElement.classList.remove('dark');
-                 // Set Moon SVG
-                themeToggleBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon w-5 h-5"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`;
-                console.log("Theme set to light."); // DEBUG
-            }
-        }
-    </script>
+  <meta charset="UTF-8">
+  <title>280thread</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Draft your Twitter threads with version control">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/panwyyt/280Thread/refs/heads/main/1F970_color.png?v=2" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/panwyyt/280Thread/refs/heads/main/1F970_color.png?v=2" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/panwyyt/280Thread/refs/heads/main/1F970_color.png?v=2" />
+  <link rel="shortcut icon" href="https://raw.githubusercontent.com/panwyyt/280Thread/refs/heads/main/1F970_color.png?v=2" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+  <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    /* ================= CSS STYLES ================= */
+    /* Reset & Base */
+    * { box-sizing: border-box; }
+
+    :root {
+      --bg: #020617;
+      --bg-soft: #020617;
+      --bg-card: #0b1220;
+      --bg-header: #020617;
+      --fg: #e5e7eb;
+      --fg-muted: #9ca3af;
+      --accent: #1d9bf0;
+      --accent-soft: rgba(29, 155, 240, 0.2);
+      --danger: #f87171;
+      --border-soft: #1f2937;
+      --input-bg: #020617;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    [data-theme="light"] {
+      --bg: #f3f4f6;
+      --bg-soft: #e5e7eb;
+      --bg-card: #ffffff;
+      --bg-header: #f9fafb;
+      --fg: #0f172a;
+      --fg-muted: #6b7280;
+      --accent: #0f766e;
+      --accent-soft: rgba(15, 118, 110, 0.16);
+      --danger: #b91c1c;
+      --border-soft: #d1d5db;
+      --input-bg: #f9fafb;
+      --shadow-soft: 0 14px 30px rgba(148, 163, 184, 0.45);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      min-height: 100vh;
+      color: var(--fg);
+      font-family: "Anuphan", system-ui, -apple-system, sans-serif;
+    }
+
+    input, textarea, button, select {
+      font-family: inherit;
+    }
+
+    /* Layout */
+    #content {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 12px 40px;
+    }
+
+    .screen { display: none; }
+    .screen--active { display: block; }
+
+    /* Lock Screen */
+    .lock-screen {
+      min-height: 100vh;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: var(--bg);
+      padding: 24px 16px;
+      text-align: center;
+    }
+    .screen--active.lock-screen { display: flex; }
+
+    .lock-box {
+      width: 100%;
+      max-width: 360px;
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 20px 22px 24px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border-soft);
+    }
+
+    .lock-title { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+    .lock-subtitle { font-size: 13px; color: var(--fg-muted); margin-bottom: 16px; }
+    .lock-label { display: block; text-align: left; font-size: 13px; margin-bottom: 6px; }
+
+    .lock-input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: var(--input-bg);
+      color: var(--fg);
+      font-size: 14px;
+    }
+    .lock-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent-soft);
+    }
+
+    .lock-button {
+      margin-top: 12px;
+      width: 100%;
+      border-radius: 999px;
+      border: none;
+      padding: 10px 16px;
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.08s ease;
+    }
+    .lock-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+      filter: brightness(1.1);
+    }
+
+    .lock-error { margin-top: 8px; font-size: 12px; color: var(--danger); min-height: 16px; }
+    .lock-hint { margin-top: 8px; font-size: 11px; color: #6b7280; }
+
+    /* Meme Screen */
+    .meme-screen {
+      position: fixed; inset: 0;
+      background: black;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 16px;
+      text-align: center;
+    }
+    .screen--active.meme-screen { display: flex; }
+
+    .meme-screen img {
+      max-width: 100%; max-height: 90vh;
+      border-radius: 24px;
+      cursor: pointer;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+      object-fit: contain;
+    }
+    .meme-hint { margin-top: 10px; font-size: 12px; color: #9ca3af; }
+
+    /* Toast */
+    #toast {
+      position: fixed; left: 50%; top: 18px;
+      transform: translateX(-50%) translateY(-20px);
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--bg-header);
+      color: var(--fg);
+      font-size: 13px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.15s ease;
+      z-index: 8000;
+      max-width: 90%;
+      text-align: center;
+      border: 1px solid var(--border-soft);
+    }
+    #toast.toast--visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+    #toast.toast--success { border-color: #22c55e; }
+    #toast.toast--error { border-color: #f87171; }
+
+    /* Header */
+    #header {
+      padding: 16px 0 12px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    #blog-title { margin: 0; font-size: 32px; font-weight: 800; letter-spacing: 1px; }
+    #description { margin: 0; font-size: 20px; color: var(--fg-muted); }
+
+    .logo-spin {
+      width: 150px; height: 150px;
+      margin: 4px auto;
+      animation: spinEmoji 6s linear infinite;
+    }
+    .logo-spin img { width: 100%; height: 100%; display: block; }
+    @keyframes spinEmoji { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    /* App Container */
+    .app {
+      width: 100%; max-width: 720px; margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 20px 24px 24px;
+      box-shadow: var(--shadow-soft);
+      color: var(--fg);
+      border: 1px solid var(--border-soft);
+    }
+
+    .app-header-row {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 12px; margin-bottom: 12px; flex-wrap: wrap;
+    }
+
+    .field-group { margin-bottom: 14px; }
+    .field-label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 13px; }
+
+    .input-text, .textarea-main {
+      width: 100%; padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
+      background: var(--input-bg);
+      color: var(--fg);
+      font-size: 14px;
+    }
+    .textarea-main { resize: vertical; min-height: 60px; }
+    .input-text:focus, .textarea-main:focus {
+      outline: none; border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent-soft);
+    }
+    .field-help { margin-top: 4px; font-size: 11px; color: var(--fg-muted); }
+
+    /* Buttons */
+    .actions-top { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px; }
+
+    .btn {
+      border-radius: 999px; border: none; padding: 8px 14px;
+      font-size: 13px; font-weight: 600; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: all 0.08s ease; white-space: nowrap; font-family: inherit;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35); }
+
+    .btn-cloud-load { background: #0ea5e9; color: #fff; }
+    .btn-cloud-load:hover { background: #0284c7; }
+
+    .btn-cloud-save { background: #16a34a; color: #fff; }
+    .btn-cloud-save:hover { background: #15803d; }
+
+    .btn-secondary { background: var(--bg-header); color: var(--fg-muted); border: 1px solid var(--border-soft); }
+    .btn-danger { background: #b91c1c; color: #fee2e2; }
+    .btn-danger:hover { background: #991b1b; }
+
+    .btn-theme-toggle { font-size: 12px; padding-inline: 10px; background: var(--bg-header); border: 1px solid var(--border-soft); color: var(--fg-muted); }
+    [data-theme="light"] .btn-theme-toggle::before { content: "☾"; margin-right: 4px; }
+    [data-theme="dark"] .btn-theme-toggle::before { content: "☀"; margin-right: 4px; }
+
+    /* Tweets */
+    .tweets-container { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
+
+    .tweet-card {
+      border-radius: 12px; background: var(--bg-soft);
+      border: 1px solid var(--border-soft); padding: 10px;
+    }
+
+    .tweet-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 6px; font-size: 12px; color: var(--fg-muted);
+    }
+
+    .tweet-control-btn {
+      border: 1px solid var(--border-soft); padding: 2px 6px;
+      font-size: 11px; border-radius: 999px; cursor: pointer;
+      background: var(--bg); color: var(--fg-muted); font-family: inherit;
+    }
+    .tweet-control-btn:hover { background: var(--bg-header); color: var(--fg); }
+
+    .tweet-textarea {
+      width: 100%; border: none; resize: vertical;
+      min-height: 60px; max-height: 200px;
+      font-size: 14px; padding: 4px 0;
+      background: transparent; color: var(--fg); font-family: inherit;
+    }
+    .tweet-textarea:focus { outline: none; }
+
+    .tweet-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 4px; font-size: 11px; color: var(--fg-muted);
+    }
+
+    .char-counter--over { color: var(--danger); font-weight: 600; }
+
+    .status-line { margin-top: 6px; font-size: 12px; color: var(--fg-muted); min-height: 18px; }
+    .status-line--error { color: var(--danger); }
+    .status-line--success { color: #4ade80; }
+
+    /* Preview */
+    .preview-block { margin-top: 18px; border-top: 1px solid var(--border-soft); padding-top: 12px; }
+    .preview-title { font-size: 13px; color: var(--fg-muted); margin-bottom: 8px; }
+    .preview-list { max-height: 360px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+
+    .preview-card {
+      border-radius: 12px; background: var(--bg-soft);
+      border: 1px solid var(--border-soft); padding: 10px; font-size: 13px;
+    }
+    .preview-header { display: flex; gap: 8px; margin-bottom: 6px; }
+    .preview-avatar { width: 32px; height: 32px; border-radius: 999px; background: linear-gradient(135deg, #1d9bf0, #ef4444); flex-shrink: 0; }
+    .preview-name { font-weight: 600; font-size: 13px; }
+    .preview-username { font-size: 12px; color: var(--fg-muted); }
+    .preview-text { white-space: pre-wrap; word-wrap: break-word; margin-bottom: 6px; }
+    .preview-footer { margin-top: 6px; font-size: 11px; color: var(--fg-muted); }
+
+    /* Modals */
+    .cloud-modal-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(15, 23, 42, 0.78);
+      display: none; align-items: center; justify-content: center;
+      z-index: 5000; padding: 16px;
+    }
+    .cloud-modal-backdrop--open { display: flex; }
+    #dialogBackdrop { z-index: 6000; }
+
+    .cloud-modal {
+      width: 100%; max-width: 520px;
+      background: var(--bg); border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      padding: 16px 18px 18px;
+      box-shadow: var(--shadow-soft); color: var(--fg);
+    }
+
+    .cloud-modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .cloud-modal-title { font-size: 15px; font-weight: 600; }
+    .cloud-modal-close { border: none; background: transparent; color: var(--fg-muted); cursor: pointer; font-size: 16px; }
+
+    .cloud-modal-body { max-height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; font-size: 13px; }
+
+    .cloud-item {
+      border-radius: 10px; border: 1px solid var(--border-soft);
+      padding: 8px 10px; background: var(--bg-soft);
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;
+    }
+    .cloud-item-main { flex: 1; min-width: 0; }
+    .cloud-item-title { font-weight: 600; margin-bottom: 2px; font-size: 13px; }
+    .cloud-item-concept { font-size: 12px; color: var(--fg-muted); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cloud-item-meta { font-size: 11px; color: #6b7280; }
+    .cloud-item-actions { display: flex; flex-direction: column; gap: 4px; }
+    .cloud-modal-footer { margin-top: 8px; font-size: 12px; color: var(--fg-muted); }
+
+    @media (max-width: 640px) {
+      #content { padding: 16px 10px 28px; }
+      .actions-top { flex-direction: column; align-items: stretch; }
+      .actions-top .btn { width: 100%; justify-content: center; }
+    }
+  </style>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 font-sans flex justify-center items-start min-h-screen p-4 transition-colors duration-300">
-    <div id="appContainer" class="container-bg w-full max-w-2xl rounded-lg shadow-lg p-4 sm:p-6 md:p-8 relative transition-colors duration-300">
-        <button id="themeToggle" title="Toggle Theme" class="absolute top-4 right-4 text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
-            </button>
-        <div class="text-center mb-6">
-             <h1 class="text-2xl sm:text-3xl font-bold text-primary mb-1">280Thread</h1>
-             <p class="text-sm text-muted">
-                 Made with ❤️ by
-                 <a href="https://x.com/hatchedboy" target="_blank" rel="noopener noreferrer"
-                   class="px-1.5 py-0.5 rounded no-underline hover:opacity-80 transition-opacity
-                          text-gray-900 bg-yellow-300 dark:text-yellow-300 dark:bg-gray-700">
-                   Hatchedboy
-                 </a>
-             </p>
-        </div>
-        <div id="notificationArea" class="mb-4 text-center text-sm font-medium min-h-[1.25rem]"></div>
-        <div class="mb-4">
-            <label for="threadTitle" class="block text-sm font-medium text-secondary mb-1">Thread Title</label>
-            <input type="text" id="threadTitle" class="input-bg w-full p-2 border rounded-md shadow-sm transition-colors duration-300" placeholder="Enter a title for your thread">
-        </div>
-        <div class="mb-6">
-            <label for="threadConcept" class="block text-sm font-medium text-secondary mb-1">Thread Concept</label>
-            <textarea id="threadConcept" class="input-bg w-full p-2 border rounded-md shadow-sm transition-colors duration-300" placeholder="Briefly describe the main idea of your thread" rows="3"></textarea>
-        </div>
-        <div id="tweetContainer" class="space-y-4 mb-6">
-            </div>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
-            <button id="addTweetBtn" class="btn bg-blue-600 hover:bg-blue-700">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon mr-2"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="16"/><line x1="8" x2="16" y1="12" y2="12"/></svg>
-                Add Tweet
-            </button>
-            <button id="saveThreadBtn" class="btn bg-green-600 hover:bg-green-700">
-                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon mr-2"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
-                 Export TXT
-            </button>
-            <button id="importThreadBtn" class="btn bg-purple-600 hover:bg-purple-700">
-                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon mr-2"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"/><path d="M14 2v6h6"/><path d="M4 12.5V16a2 2 0 0 0 2 2h1"/><path d="M11 18h-1a2 2 0 0 0-2 2v2"/><path d="M7 18a5 5 0 0 1 5-5v0a5 5 0 0 1 5 5v0"/><path d="M12 13v6"/><path d="m9 16 3-3 3 3"/></svg>
-                 Import TXT
-            </button>
-            <button id="saveToLibraryBtn" class="btn bg-yellow-500 hover:bg-yellow-600 text-black dark:hover:bg-yellow-600">
-                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon mr-2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-                 Save to Library
-            </button>
-            <button id="openLibraryBtn" class="btn bg-indigo-600 hover:bg-indigo-700">
-                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon mr-2"><path d="m16 6 4 14"/><path d="M12 6v14"/><path d="M8 8v12"/><path d="M4 4v16"/></svg>
-                 Manage Library
-            </button>
-            <button id="clearAllBtn" class="btn bg-red-600 hover:bg-red-700">
-                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon mr-2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
-                 Clear All
-            </button>
-        </div>
 
-        <div class="mb-4">
-            <div class="flex justify-between items-center mb-2">
-                 <h3 class="text-lg font-semibold text-secondary">Preview (Twitter Mock-up)</h3>
-                 <button id="openPreviewTabBtn" class="btn btn-xs bg-teal-600 hover:bg-teal-700" title="Open Preview in New Tab">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-xs mr-1"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-                     Open Tab
-                 </button>
-            </div>
-            <div id="previewContainer" class="bg-gray-100 dark:bg-gray-800 border border-color rounded-md p-4 max-h-96 overflow-y-auto space-y-3 transition-colors duration-300 scrollbar-thin">
-                <p class="text-muted italic text-center">Add tweets (and maybe images!) to see the preview.</p>
-            </div>
-        </div>
+<body>
+  <div id="toast"></div>
+
+  <div id="loginScreen" class="screen lock-screen">
+    <div class="lock-box">
+      <div class="lock-title">280thread</div>
+      <div class="lock-subtitle">Sign in to access your threads</div>
+
+      <label class="lock-label" for="loginEmail">Email</label>
+      <input id="loginEmail" type="email" class="lock-input" placeholder="name@example.com" />
+
+      <label class="lock-label" for="loginPassword">Password</label>
+      <input id="loginPassword" type="password" class="lock-input" placeholder="••••••••" />
+
+      <button id="loginBtn" class="lock-button" type="button">Sign In</button>
+      <div id="loginError" class="lock-error"></div>
     </div>
-    <div id="libraryModal" class="fixed inset-0 modal-overlay-bg hidden justify-center items-center p-4 z-50 transition-opacity duration-300">
-        <div class="modal-bg rounded-lg shadow-xl p-6 w-full max-w-2xl max-h-[85vh] overflow-y-auto relative transition-colors duration-300 scrollbar-thin">
-            <button id="closeLibraryBtn" title="Close Library" class="absolute top-3 right-3 text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors duration-200 p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon w-5 h-5"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
-            </button>
-            <h2 class="text-2xl font-semibold text-primary mb-4">Thread Library</h2>
-            <div id="libraryContainer" class="space-y-6 mb-6">
-                <p class="text-muted italic text-center">Your saved threads will appear here.</p>
-            </div>
-            <div class="flex flex-wrap gap-3 justify-end border-t border-color pt-4 mt-auto">
-                <button id="exportLibraryBtn" class="btn btn-sm bg-green-600 hover:bg-green-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm mr-1"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" x2="12" y1="2" y2="15"/></svg>
-                    Export All
-                </button>
-                <button id="importLibraryBtnModal" class="btn btn-sm bg-purple-600 hover:bg-purple-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm mr-1"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"/><path d="M14 2v6h6"/><path d="M4 12.5V16a2 2 0 0 0 2 2h1"/><path d="M11 18h-1a2 2 0 0 0-2 2v2"/><path d="M7 18a5 5 0 0 1 5-5v0a5 5 0 0 1 5 5v0"/><path d="M12 13v6"/><path d="m9 16 3-3 3 3"/></svg>
-                    Import All
-                </button>
-            </div>
-        </div>
+  </div>
+
+  <div id="memeScreen" class="screen meme-screen">
+    <img id="memeImage"
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA0M1uTqnBkqNo9_nuqSG3pi9MoNoyC5UhLUp7Ut40wHUkJoIwHr_cJo0PCLxG7HzWYlA&amp;usqp=CAU"
+      alt="Nope" />
+    <div class="meme-hint">(tap image to try again)</div>
+  </div>
+
+  <div id="appScreen" class="screen">
     </div>
-    <input type="file" id="importThreadFile" class="hidden" accept=".txt">
-    <input type="file" id="importLibraryFile" class="hidden" accept=".json">
 
-    <script>
-        // Constants
-        const MAX_TWEET_LENGTH = 280;
-        const MAX_IMAGES_PER_TWEET = 4;
-        const DB_NAME = '280ThreadDB';
-        const DB_VERSION = 1;
-        const LIBRARY_STORE_NAME = 'threads';
-        const AUTOSAVE_STORE_NAME = 'autosave';
-        const AUTOSAVE_KEY = 'currentDraft';
+  <div id="dialogBackdrop" class="cloud-modal-backdrop">
+    <div class="cloud-modal">
+      <div class="cloud-modal-header">
+        <div id="dialogTitle" class="cloud-modal-title"></div>
+        <button id="dialogCloseBtn" class="cloud-modal-close" type="button">✕</button>
+      </div>
+      <div id="dialogBody" class="cloud-modal-body" style="max-height:none;"></div>
+      <div id="dialogFooter" class="cloud-modal-footer"></div>
+    </div>
+  </div>
 
-        // Global State
-        let library = {}; // In-memory cache of the library
-        let tweetImages = {}; // { tweetId: [dataUrl1, dataUrl2,...] }
-        let notificationTimeout;
-        let dbPromise; // Promise for the IndexedDB connection
+  <div id="cloudModalBackdrop" class="cloud-modal-backdrop">
+    <div class="cloud-modal">
+      <div class="cloud-modal-header">
+        <div class="cloud-modal-title">Cloud threads</div>
+        <button id="cloudCloseBtn" class="cloud-modal-close" type="button">✕</button>
+      </div>
+      <div id="cloudModalBody" class="cloud-modal-body"></div>
+      <div id="cloudModalFooter" class="cloud-modal-footer"></div>
+    </div>
+  </div>
 
-        // DOM Elements
-        let threadTitleInput, threadConceptInput, tweetContainer, previewContainer,
-            libraryModal, libraryContainer, importThreadFileInput, importLibraryFileInput,
-            notificationArea, themeToggleBtn, openPreviewTabBtn;
+  <script>
+    // ================= APP LOGIC =================
+    document.addEventListener('DOMContentLoaded', () => {
+      // --- Config ---
+      const SUPABASE_URL = "https://uhhkcmziporzhpxetsqd.supabase.co";
+      const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVoaGtjbXppcG9yemhweGV0c3FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzMjEyNzIsImV4cCI6MjA3ODg5NzI3Mn0.TBo37_Fb4QFtybmxYP1mjT9cj3cXINzc4Pxg77B_n8w";
+      const LOCAL_STORAGE_KEY = "280thread_autosave";
 
-        // --- IndexedDB Helper Functions ---
-        /**
-         * Opens (or creates/upgrades) the IndexedDB database.
-         * Returns a promise that resolves with the DB connection.
-         */
-        function openDB() {
-            if (!dbPromise) {
-                console.log(`Opening IndexedDB: ${DB_NAME} v${DB_VERSION}`); // DEBUG
-                dbPromise = new Promise((resolve, reject) => {
-                    const request = indexedDB.open(DB_NAME, DB_VERSION);
-                    request.onerror = (event) => {
-                        console.error("IndexedDB error:", event.target.error);
-                        reject("Error opening IndexedDB.");
-                    };
-                    request.onsuccess = (event) => {
-                        console.log("IndexedDB opened successfully."); // DEBUG
-                        resolve(event.target.result);
-                    };
-                    request.onupgradeneeded = (event) => {
-                        console.log("IndexedDB upgrade needed."); // DEBUG
-                        const db = event.target.result;
-                        if (!db.objectStoreNames.contains(LIBRARY_STORE_NAME)) {
-                            console.log(`Creating object store: ${LIBRARY_STORE_NAME}`); // DEBUG
-                            db.createObjectStore(LIBRARY_STORE_NAME, { keyPath: 'title' });
-                        }
-                        if (!db.objectStoreNames.contains(AUTOSAVE_STORE_NAME)) {
-                            console.log(`Creating object store: ${AUTOSAVE_STORE_NAME}`); // DEBUG
-                            db.createObjectStore(AUTOSAVE_STORE_NAME, { keyPath: 'id' });
-                        }
-                    };
-                });
-            }
-            return dbPromise;
-        }
+      // Initialize Supabase
+      const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        /** Saves data to a specific IndexedDB store. */
-        async function saveToDB(storeName, data) {
-            const db = await openDB();
-            return new Promise((resolve, reject) => {
-                const transaction = db.transaction(storeName, 'readwrite');
-                const store = transaction.objectStore(storeName);
-                const request = store.put(data);
-                request.onsuccess = () => resolve();
-                request.onerror = (event) => { console.error(`Error saving to ${storeName}:`, event.target.error); reject(`Error saving data to ${storeName}.`); }
-                transaction.oncomplete = () => console.log(`Transaction complete: Saved to ${storeName}`, data.title || data.id); // DEBUG
-                transaction.onerror = (event) => console.error(`Transaction error saving to ${storeName}:`, event.target.error); // DEBUG
-            });
-        }
+      // --- DOM Elements ---
+      const els = {
+        lockScreen: document.getElementById("loginScreen"),
+        memeScreen: document.getElementById("memeScreen"),
+        appScreen: document.getElementById("appScreen"),
+        loginEmail: document.getElementById("loginEmail"),
+        loginPass: document.getElementById("loginPassword"),
+        loginBtn: document.getElementById("loginBtn"),
+        loginError: document.getElementById("loginError"),
+        memeImg: document.getElementById("memeImage"),
+        toast: document.getElementById("toast"),
+        // Dynamic elements will be added later
+        dialogBackdrop: document.getElementById("dialogBackdrop"),
+        dialogTitle: document.getElementById("dialogTitle"),
+        dialogBody: document.getElementById("dialogBody"),
+        dialogFooter: document.getElementById("dialogFooter"),
+        dialogClose: document.getElementById("dialogCloseBtn"),
+        cloudBackdrop: document.getElementById("cloudModalBackdrop"),
+        cloudBody: document.getElementById("cloudModalBody"),
+        cloudFooter: document.getElementById("cloudModalFooter"),
+        cloudClose: document.getElementById("cloudCloseBtn")
+      };
 
-        /** Loads a single item from an IndexedDB store by key. */
-        async function loadFromDB(storeName, key) {
-            const db = await openDB();
-            return new Promise((resolve, reject) => {
-                const transaction = db.transaction(storeName, 'readonly');
-                const store = transaction.objectStore(storeName);
-                const request = store.get(key);
-                request.onsuccess = () => resolve(request.result);
-                request.onerror = (event) => { console.error(`Error loading from ${storeName}:`, event.target.error); reject(`Error loading data from ${storeName}.`); }
-            });
-        }
+      let currentCloudId = null;
+      let toastTimer = null;
+      let appInitialized = false;
 
-        /** Loads all items from an IndexedDB store. */
-        async function loadAllFromDB(storeName) {
-            const db = await openDB();
-            return new Promise((resolve, reject) => {
-                const transaction = db.transaction(storeName, 'readonly');
-                const store = transaction.objectStore(storeName);
-                const request = store.getAll();
-                request.onsuccess = () => resolve(request.result || []);
-                request.onerror = (event) => { console.error(`Error loading all from ${storeName}:`, event.target.error); reject(`Error loading all data from ${storeName}.`); }
-            });
-        }
+      // --- App Template ---
+      const APP_HTML = `
+        <div id="content">
+          <div id="header">
+            <div class="logo-spin">
+              <img src="https://openmoji.org/data/color/svg/1F62C.svg" alt="280thread logo" />
+            </div>
+            <h1 id="blog-title">280thread</h1>
+            <p id="description">Draft your Twitter threads with version control</p>
+          </div>
 
-        /** Deletes an item from an IndexedDB store by key. */
-        async function deleteFromDB(storeName, key) {
-            const db = await openDB();
-            return new Promise((resolve, reject) => {
-                const transaction = db.transaction(storeName, 'readwrite');
-                const store = transaction.objectStore(storeName);
-                const request = store.delete(key);
-                request.onsuccess = () => resolve();
-                request.onerror = (event) => { console.error(`Error deleting from ${storeName}:`, event.target.error); reject(`Error deleting data from ${storeName}.`); }
-            });
-        }
+          <div class="app">
+            <div class="app-header-row">
+              <div class="app-header-left">
+                <button id="themeToggleBtn" class="btn btn-theme-toggle" type="button">Light / Dark</button>
+              </div>
+              <button id="newDraftBtn" class="btn btn-danger" type="button">New</button>
+            </div>
 
-        /** Clears all items from an IndexedDB store. */
-        async function clearStoreDB(storeName) {
-            const db = await openDB();
-            return new Promise((resolve, reject) => {
-                const transaction = db.transaction(storeName, 'readwrite');
-                const store = transaction.objectStore(storeName);
-                const request = store.clear();
-                 request.onsuccess = () => resolve();
-                request.onerror = (event) => { console.error(`Error clearing store ${storeName}:`, event.target.error); reject(`Error clearing store ${storeName}.`); }
-            });
-        }
+            <div class="field-group">
+              <label class="field-label" for="threadTitle">Thread title</label>
+              <input id="threadTitle" class="input-text" type="text" placeholder="e.g. My awesome thread" />
+              <div class="field-help">Used as the name when you save to cloud.</div>
+            </div>
 
-        // --- Notification Function ---
-        /** Displays a notification message. */
-        function showNotification(message, type = 'success', duration = 3000) {
-             if (!notificationArea) return;
-             if (notificationTimeout) clearTimeout(notificationTimeout);
-             notificationArea.textContent = message;
-             notificationArea.className = `mb-4 text-center text-sm font-medium min-h-[1.25rem] transition-opacity duration-300 ease-in-out ${
-                 type === 'success' ? 'text-green-600 dark:text-green-400' :
-                 type === 'error' ? 'text-red-600 dark:text-red-400' :
-                 'text-blue-600 dark:text-blue-400' // info default
-             }`;
-             // Force reflow for transition
-             requestAnimationFrame(() => { notificationArea.style.opacity = 1; });
-             notificationTimeout = setTimeout(() => { notificationArea.style.opacity = 0; }, duration);
-         }
+            <div class="field-group">
+              <label class="field-label" for="threadConcept">Thread concept</label>
+              <textarea id="threadConcept" class="textarea-main" placeholder="Short note about the main idea…"></textarea>
+            </div>
 
-        // --- Tweet Element Creation & Management ---
-        /** Gets the array of image data URLs for a given tweet ID. */
-        function getImagesForTweet(tweetId) {
-            return tweetImages[tweetId] || [];
-        }
+            <div class="actions-top">
+              <button id="loadCloudBtn" class="btn btn-cloud-load" type="button">Load Cloud</button>
+              <button id="saveCloudBtn" class="btn btn-cloud-save" type="button">Save Cloud</button>
+            </div>
 
-        /** Sets the array of image data URLs for a tweet, updates storage and UI. */
-        function setImagesForTweet(tweetId, imagesDataUrls) {
-            tweetImages[tweetId] = imagesDataUrls || [];
-            autoSave(); // Save changes
-            updatePreview(); // Update the visual preview
-        }
+            <div id="tweetsContainer" class="tweets-container"></div>
+            <div id="statusLine" class="status-line"></div>
 
-        /** Creates a new tweet editing element and adds it to the container. */
-        function createTweetElement(tweetData = { text: '', images: [] }, index) {
-            if (!tweetContainer) return null;
-            const tweetId = `tweet-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
-            const tweetElement = document.createElement('div');
-            tweetElement.id = tweetId;
-            tweetElement.className = 'tweet-container border border-color rounded-md p-4 relative transition-colors duration-300';
-            // Use textContent for setting initial textarea value to handle special characters safely
-            const initialText = tweetData.text || '';
-            tweetElement.innerHTML = `
-                <textarea class="input-bg w-full p-2 border rounded-md shadow-sm transition-colors duration-300 resize-vertical min-h-[80px] tweet-text" placeholder="Write your tweet (${MAX_TWEET_LENGTH} chars max)" rows="4"></textarea>
-                <div class="text-xs text-right mt-1 text-muted character-count">${initialText.length}/${MAX_TWEET_LENGTH}</div>
-                <div class="mt-3 pt-3 border-t border-color">
-                    <div class="flex items-center justify-between">
-                        <button title="Add Image (up to ${MAX_IMAGES_PER_TWEET})" class="add-image-button btn-icon p-1 rounded-full text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
-                        </button>
-                        <input type="file" class="hidden image-file-input" accept="image/png, image/jpeg, image/gif, image/webp" multiple>
-                        <span class="text-xs text-muted image-count-indicator">0/${MAX_IMAGES_PER_TWEET} images</span>
-                    </div>
-                    <div class="image-thumbnail-container mt-2"></div>
-                </div>
-                <div class="absolute top-2 right-2 flex flex-col space-y-1">
-                    <button title="Add Tweet Above" class="add-above-button btn-icon p-1 rounded-full text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm"><path d="m15 18-6-6 6-6"/><circle cx="12" cy="12" r="10"/></svg>
-                    </button>
-                    <button title="Add Tweet Below" class="add-below-button btn-icon p-1 rounded-full text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm"><path d="m9 18 6-6-6-6"/><circle cx="12" cy="12" r="10"/></svg>
-                    </button>
-                    <button title="Delete Tweet" class="delete-tweet-button btn-icon p-1 rounded-full text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 transition-colors">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
-                    </button>
-                </div>
-            `;
-            // Set the initial text value after innerHTML is set
-            const textarea = tweetElement.querySelector('.tweet-text');
-            if (textarea) textarea.value = initialText;
+            <div class="preview-block">
+              <div class="preview-title">Preview</div>
+              <div id="previewList" class="preview-list"></div>
+            </div>
+          </div>
+        </div>
+      `;
 
-            // Store initial images associated with this tweet element
-            setImagesForTweet(tweetId, tweetData.images || []);
+      // --- Helpers ---
+      const showToast = (msg, type) => {
+        els.toast.textContent = msg;
+        els.toast.className = "toast--visible";
+        if (type) els.toast.classList.add(`toast--${type}`);
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => els.toast.classList.remove("toast--visible"), 2200);
+      };
 
-            // Insert into the DOM
-            if (typeof index === 'number' && tweetContainer.children[index]) {
-                tweetContainer.insertBefore(tweetElement, tweetContainer.children[index]);
+      const setStatus = (text, type) => {
+        if (!els.status) return;
+        els.status.textContent = text;
+        els.status.className = "status-line";
+        if (type) els.status.classList.add(`status-line--${type}`);
+      };
+
+      // --- Core App Logic (Lazy Loaded) ---
+      const initApp = () => {
+        if (appInitialized) return;
+
+        // Inject HTML
+        els.appScreen.innerHTML = APP_HTML;
+
+        // Bind Dynamic Elements
+        els.themeBtn = document.getElementById("themeToggleBtn");
+        els.title = document.getElementById("threadTitle");
+        els.concept = document.getElementById("threadConcept");
+        els.container = document.getElementById("tweetsContainer");
+        els.status = document.getElementById("statusLine");
+        els.preview = document.getElementById("previewList");
+        els.newBtn = document.getElementById("newDraftBtn");
+        els.loadBtn = document.getElementById("loadCloudBtn");
+        els.saveBtn = document.getElementById("saveCloudBtn");
+
+        // --- Theme ---
+        const applyTheme = (t) => {
+          document.documentElement.setAttribute("data-theme", t);
+          els.themeBtn.textContent = t === "light" ? "Light theme" : "Dark theme";
+          localStorage.setItem("280threadTheme", t);
+        };
+
+        const initTheme = () => {
+          const saved = localStorage.getItem("280threadTheme");
+          const sysDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          applyTheme(saved || (sysDark ? "dark" : "light"));
+        };
+        initTheme();
+        els.themeBtn.onclick = () => {
+          const curr = document.documentElement.getAttribute("data-theme");
+          applyTheme(curr === "dark" ? "light" : "dark");
+        };
+
+        // --- Editor Logic ---
+        const createTweetCard = (text = "") => {
+          const card = document.createElement("div");
+          card.className = "tweet-card";
+
+          card.innerHTML = `
+            <div class="tweet-header">
+              <span>Tweet ?</span>
+              <div class="tweet-controls">
+                <button type="button" class="tweet-control-btn btn-add-above">Add above</button>
+                <button type="button" class="tweet-control-btn btn-add-below">Add below</button>
+                <button type="button" class="tweet-control-btn btn-del">Delete</button>
+              </div>
+            </div>
+            <textarea class="tweet-textarea" maxlength="280"></textarea>
+            <div class="tweet-footer">
+              <div></div>
+              <div class="char-counter">0/280</div>
+            </div>
+          `;
+
+          const ta = card.querySelector("textarea");
+          const counter = card.querySelector(".char-counter");
+          ta.value = text;
+
+          const update = () => {
+            const len = ta.value.length;
+            counter.textContent = `${len}/280 (${280 - len} left)`;
+            counter.classList.toggle("char-counter--over", len > 280);
+            renderPreview();
+            saveLocalDraft();
+          };
+
+          ta.oninput = update;
+
+          card.querySelector(".btn-add-above").onclick = () => {
+            els.container.insertBefore(createTweetCard(""), card);
+            updateIndices();
+          };
+          card.querySelector(".btn-add-below").onclick = () => {
+            els.container.insertBefore(createTweetCard(""), card.nextSibling);
+            updateIndices();
+          };
+          card.querySelector(".btn-del").onclick = () => {
+            if (els.container.children.length > 1) {
+              card.remove();
+              updateIndices();
+              renderPreview();
+              saveLocalDraft();
             } else {
-                tweetContainer.appendChild(tweetElement);
+              ta.value = "";
+              update();
             }
-
-            // Set up event listeners and initial UI state
-            setTweetElementEvents(tweetElement);
-            renderTweetImageThumbnails(tweetElement); // Render any initial images
-            applyDynamicStyles(tweetElement); // Apply button styles etc.
-            updateImageUIState(tweetElement); // Set initial image count/button state
-            updatePreview(); // Update the main preview area
-            autoSave(); // Save the initial state
-            return tweetElement;
-        }
-
-        /** Renders image thumbnails within a specific tweet element. */
-        function renderTweetImageThumbnails(tweetElement) {
-            const container = tweetElement.querySelector('.image-thumbnail-container');
-            if (!container) return;
-            const tweetId = tweetElement.id;
-            const images = getImagesForTweet(tweetId);
-            container.innerHTML = ''; // Clear existing thumbnails
-            images.forEach((dataUrl, index) => {
-                const thumbItem = document.createElement('div');
-                thumbItem.className = 'image-thumbnail-item';
-                thumbItem.innerHTML = `
-                    <img src="${dataUrl}" alt="Thumbnail ${index + 1}">
-                    <button title="Remove Image" class="remove-image-btn" data-index="${index}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                    </button>
-                `;
-                // Add event listener to the remove button
-                thumbItem.querySelector('.remove-image-btn').addEventListener('click', (event) => {
-                     event.stopPropagation(); // Prevent triggering other clicks
-                     const imgIndexToRemove = parseInt(event.currentTarget.dataset.index, 10);
-                     removeImageFromTweet(tweetElement, imgIndexToRemove);
-                });
-                container.appendChild(thumbItem);
-            });
-            applyDynamicStyles(container); // Apply styles if needed within thumbnails
-        }
-
-        /** Updates the image count display and add button state for a tweet. */
-        function updateImageUIState(tweetElement) {
-            const images = getImagesForTweet(tweetElement.id);
-            const count = images.length;
-            const addButton = tweetElement.querySelector('.add-image-button');
-            const countIndicator = tweetElement.querySelector('.image-count-indicator');
-            const fileInput = tweetElement.querySelector('.image-file-input');
-
-            if (addButton) addButton.disabled = count >= MAX_IMAGES_PER_TWEET;
-            if (countIndicator) countIndicator.textContent = `${count}/${MAX_IMAGES_PER_TWEET} images`;
-            if (fileInput) fileInput.value = ''; // Clear file input after processing
-        }
-
-        /** Handles file selection for adding images to a tweet. */
-        function handleImageSelection(event) {
-            const fileInput = event.target;
-            const tweetElement = fileInput.closest('.tweet-container');
-            if (!tweetElement) return;
-
-            const tweetId = tweetElement.id;
-            const existingImages = getImagesForTweet(tweetId);
-            const files = Array.from(fileInput.files);
-            const allowedNewFilesCount = MAX_IMAGES_PER_TWEET - existingImages.length;
-
-            if (files.length === 0 || allowedNewFilesCount <= 0) return;
-
-            let filesProcessed = 0;
-            const newImageDataUrls = [...existingImages]; // Start with existing images
-
-            // Process only the allowed number of new files
-            files.slice(0, allowedNewFilesCount).forEach(file => {
-                if (file.type.startsWith('image/')) {
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        newImageDataUrls.push(e.target.result); // Add successful read
-                        filesProcessed++;
-                        // Check if all allowed files are processed
-                        if (filesProcessed === Math.min(files.length, allowedNewFilesCount)) {
-                            setImagesForTweet(tweetId, newImageDataUrls); // Update state
-                            renderTweetImageThumbnails(tweetElement); // Update UI
-                            updateImageUIState(tweetElement); // Update count/button
-                            playHapticFeedback();
-                        }
-                    };
-                    reader.onerror = () => {
-                        showNotification(`Error reading file: ${file.name}`, 'error');
-                        filesProcessed++; // Still count as processed (failed)
-                        if (filesProcessed === Math.min(files.length, allowedNewFilesCount)) {
-                             setImagesForTweet(tweetId, newImageDataUrls); // Update with potentially fewer images
-                             renderTweetImageThumbnails(tweetElement);
-                             updateImageUIState(tweetElement);
-                        }
-                    };
-                    reader.readAsDataURL(file);
-                } else {
-                    showNotification(`File "${file.name}" is not a valid image type.`, 'warning');
-                    filesProcessed++; // Count as processed (skipped)
-                     if (filesProcessed === Math.min(files.length, allowedNewFilesCount)) {
-                         setImagesForTweet(tweetId, newImageDataUrls);
-                         renderTweetImageThumbnails(tweetElement);
-                         updateImageUIState(tweetElement);
-                     }
-                }
-            });
-
-            // Notify if more files were selected than could be added
-            if (files.length > allowedNewFilesCount) {
-                showNotification(`You selected ${files.length} files, but only ${allowedNewFilesCount} more could be added (max ${MAX_IMAGES_PER_TWEET}).`, 'warning', 4000);
-            }
-             fileInput.value = ''; // Clear the input
-        }
-
-        /** Removes an image from a tweet by its index. */
-        function removeImageFromTweet(tweetElement, indexToRemove) {
-            const tweetId = tweetElement.id;
-            const currentImages = getImagesForTweet(tweetId);
-            if (indexToRemove >= 0 && indexToRemove < currentImages.length) {
-                currentImages.splice(indexToRemove, 1); // Remove the image
-                setImagesForTweet(tweetId, currentImages); // Update state
-                renderTweetImageThumbnails(tweetElement); // Update UI
-                updateImageUIState(tweetElement); // Update count/button
-                playHapticFeedback();
-            }
-        }
-
-        /** Attaches event listeners to the controls within a tweet element. */
-        function setTweetElementEvents(tweetElement) {
-            const textarea = tweetElement.querySelector('.tweet-text');
-            const countDisplay = tweetElement.querySelector('.character-count');
-            const addAboveButton = tweetElement.querySelector('.add-above-button');
-            const addBelowButton = tweetElement.querySelector('.add-below-button');
-            const deleteButton = tweetElement.querySelector('.delete-tweet-button');
-             const addImageButton = tweetElement.querySelector('.add-image-button');
-             const imageFileInput = tweetElement.querySelector('.image-file-input');
-
-            // Basic check if elements exist
-            if (!textarea || !countDisplay || !addAboveButton || !addBelowButton || !deleteButton || !addImageButton || !imageFileInput) {
-                console.error("Could not find all elements within tweetElement:", tweetElement);
-                return;
-            }
-
-            // Textarea input: Update character count and preview
-            textarea.addEventListener('input', () => {
-                const length = textarea.value.length;
-                countDisplay.textContent = `${length}/${MAX_TWEET_LENGTH}`;
-                const isOverLimit = length > MAX_TWEET_LENGTH;
-                // Toggle warning styles based on character limit
-                countDisplay.classList.toggle('text-warning', isOverLimit);
-                countDisplay.classList.toggle('dark:text-red-400', isOverLimit); // Ensure dark mode warning color
-                countDisplay.classList.toggle('text-muted', !isOverLimit); // Use muted color if not over limit
-                updatePreview();
-                autoSave();
-            });
-
-            // Add image button: Trigger file input click
-            addImageButton.addEventListener('click', (event) => {
-                event.stopPropagation();
-                if (!addImageButton.disabled) { // Respect the disabled state
-                    imageFileInput.click();
-                }
-            });
-
-            // File input change: Handle selected image files
-            imageFileInput.addEventListener('change', handleImageSelection);
-
-            // Add tweet above
-            addAboveButton.addEventListener('click', (event) => {
-                event.stopPropagation();
-                const index = Array.from(tweetContainer.children).indexOf(tweetElement);
-                const newTweet = createTweetElement({ text: '', images: [] }, index); // Create new empty tweet above
-                if (newTweet) newTweet.querySelector('textarea')?.focus(); // Focus new textarea
-                playHapticFeedback();
-            });
-
-            // Add tweet below
-            addBelowButton.addEventListener('click', (event) => {
-                event.stopPropagation();
-                const index = Array.from(tweetContainer.children).indexOf(tweetElement);
-                const newTweet = createTweetElement({ text: '', images: [] }, index + 1); // Create new empty tweet below
-                if (newTweet) newTweet.querySelector('textarea')?.focus(); // Focus new textarea
-                playHapticFeedback();
-            });
-
-            // Delete tweet button
-            deleteButton.addEventListener('click', (event) => {
-                event.stopPropagation();
-                if (confirm('Are you sure you want to delete this tweet?')) {
-                    const tweetId = tweetElement.id;
-                    tweetElement.remove(); // Remove from DOM
-                    delete tweetImages[tweetId]; // Remove associated images from state
-                    updatePreview();
-                    autoSave();
-                    playHapticFeedback();
-                    showNotification('Tweet deleted.', 'info', 1500);
-                }
-            });
-        }
-
-        // --- Update Preview ---
-        /** Updates the Twitter mock-up preview area based on current tweet elements. */
-        function updatePreview() {
-             if (!previewContainer || !tweetContainer) return;
-
-             previewContainer.innerHTML = ''; // Clear previous preview
-             const tweetElements = Array.from(tweetContainer.querySelectorAll('.tweet-container'));
-
-             if (tweetElements.length === 0) {
-                 previewContainer.innerHTML = '<p class="text-muted italic text-center">Add tweets using the "Add Tweet" button.</p>';
-                 return;
-             }
-
-             let hasContent = false; // Track if any tweet has text or images
-             tweetElements.forEach((tweetElement, index) => {
-                 const tweetId = tweetElement.id;
-                 const textarea = tweetElement.querySelector('.tweet-text');
-                 const text = textarea ? textarea.value.trim() : ''; // Get text, trim whitespace
-                 const images = getImagesForTweet(tweetId);
-
-                 // Only create a preview element if there's text or images
-                 if (text || images.length > 0) {
-                     hasContent = true;
-                     const previewMockup = document.createElement('div');
-                     // Add class indicating image count for CSS grid styling
-                     previewMockup.className = `tweet-preview-mockup image-count-${images.length}`;
-
-                     // --- Mockup Header ---
-                     const header = document.createElement('div');
-                     header.className = 'tweet-mockup-header';
-                     header.innerHTML = `
-                         <div class="tweet-mockup-avatar">
-                             <img src="https://avatars.githubusercontent.com/u/86871974?v=4" alt="Hatchedboy Avatar" onerror="this.style.display='none'">
-                         </div>
-                         <div class="tweet-mockup-author">
-                             <div class="tweet-mockup-name">Hatchedboy</div>
-                             <div class="tweet-mockup-username">@hatchedboy</div>
-                         </div>
-                     `;
-                     previewMockup.appendChild(header);
-
-                     // --- Mockup Content (Text) ---
-                     const contentDiv = document.createElement('div');
-                     contentDiv.className = 'tweet-mockup-content';
-                     if (text) {
-                         // Basic highlighting for links, hashtags, mentions (HTML escape first!)
-                         const escapedText = text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-                         const highlightedText = escapedText
-                             .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-blue-500 dark:text-blue-400 hover:underline">$1</a>')
-                             .replace(/#(\w+)/g, '<span class="text-blue-500 dark:text-blue-400">#$1</span>')
-                             .replace(/@(\w+)/g, '<span class="text-blue-500 dark:text-blue-400">@$1</span>');
-                         contentDiv.innerHTML = `<p>${highlightedText}</p>`;
-                     } else {
-                         contentDiv.innerHTML = '<p class="text-muted italic">(Empty tweet text)</p>'; // Placeholder if no text but has images
-                     }
-                     previewMockup.appendChild(contentDiv);
-
-                     // --- Mockup Images ---
-                     if (images.length > 0) {
-                         const imagesContainer = document.createElement('div');
-                         imagesContainer.className = 'tweet-mockup-images';
-                         const imageGrid = document.createElement('div');
-                         imageGrid.className = 'tweet-mockup-images-grid';
-                         images.forEach((dataUrl) => {
-                             const img = document.createElement('img');
-                             img.src = dataUrl;
-                             img.alt = 'Tweet image preview';
-                             img.onerror = (e) => { e.target.style.display='none'; }; // Hide broken images
-                             imageGrid.appendChild(img);
-                         });
-                         imagesContainer.appendChild(imageGrid);
-                         previewMockup.appendChild(imagesContainer);
-                     }
-
-                     previewContainer.appendChild(previewMockup);
-                 }
-             });
-
-             // If there are tweet elements but none have content, show a different placeholder
-             if (!hasContent && tweetElements.length > 0) {
-                 previewContainer.innerHTML = '<p class="text-muted italic text-center">Start typing or add images in the boxes above to see the preview.</p>';
-             }
-         }
-
-
-        // --- Library Functions ---
-        /** Updates the display of the thread library modal based on the in-memory 'library' object. */
-        function updateLibraryDisplay() {
-             console.log("Updating library display..."); // DEBUG
-             if (!libraryContainer) return;
-
-             libraryContainer.innerHTML = ''; // Clear existing display
-             const sortedTitles = Object.keys(library).sort((a, b) => a.localeCompare(b));
-
-             if (sortedTitles.length === 0) {
-                 libraryContainer.innerHTML = '<p class="text-muted italic text-center">Your saved threads will appear here.</p>';
-                 return;
-             }
-
-             sortedTitles.forEach(title => {
-                 const versions = library[title]?.versions;
-                 if (!versions || !Array.isArray(versions) || versions.length === 0) {
-                     console.warn(`Skipping display for title "${title}" due to missing or empty versions.`); // DEBUG
-                     return;
-                 };
-
-                 const threadGroup = document.createElement('div');
-                 threadGroup.className = 'library-thread-group border border-color rounded-lg overflow-hidden';
-
-                 const titleHeader = document.createElement('h3');
-                 titleHeader.className = 'text-lg font-semibold text-secondary p-3 bg-gray-50 dark:bg-gray-700/50 border-b border-color';
-                 titleHeader.textContent = title;
-                 threadGroup.appendChild(titleHeader);
-
-                 const versionsList = document.createElement('div');
-                 versionsList.className = 'divide-y divide-gray-200 dark:divide-gray-600';
-                 threadGroup.appendChild(versionsList);
-
-                 const sortedVersions = [...versions].sort((a, b) => b.timestamp - a.timestamp);
-
-                 sortedVersions.forEach((version, displayIndex) => {
-                     const versionElement = document.createElement('div');
-                     const bgColor = displayIndex % 2 === 0 ? 'bg-white dark:bg-gray-800' : 'bg-gray-50 dark:bg-gray-700/50';
-                     // --- MODIFICATION: Adjusted flex layout classes ---
-                     versionElement.className = `library-version-item p-3 ${bgColor} flex flex-col sm:flex-row items-start sm:items-center gap-3`;
-
-                     // --- Content Section (Timestamp, Concept Preview) ---
-                     const contentSection = document.createElement('div');
-                     // --- MODIFICATION: Added flex-1 and min-w-0 for proper truncation ---
-                     contentSection.className = 'flex-1 min-w-0 space-y-1 mb-2 sm:mb-0';
-
-                     const timeWrapper = document.createElement('div');
-                     timeWrapper.className = 'flex items-center gap-2 text-sm text-muted';
-                     const timeSpan = document.createElement('span');
-                     timeSpan.textContent = version.timestamp ? new Date(version.timestamp).toLocaleString() : 'Invalid Date';
-                     timeWrapper.appendChild(timeSpan);
-                     if (displayIndex === 0) {
-                         const latestBadge = document.createElement('span');
-                         latestBadge.className = 'latest-badge bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300';
-                         latestBadge.textContent = 'Latest';
-                         timeWrapper.appendChild(latestBadge);
-                     }
-                     contentSection.appendChild(timeWrapper);
-
-                     const previewElement = document.createElement('p');
-                     // --- MODIFICATION: Kept truncate class ---
-                     previewElement.className = 'text-xs text-gray-600 dark:text-gray-400 italic truncate'; // Truncate is important
-                     const conceptText = version.concept || '(No concept provided)';
-                     previewElement.textContent = conceptText;
-                     previewElement.title = conceptText; // Show full text on hover
-                     contentSection.appendChild(previewElement);
-
-                     const hasImages = Array.isArray(version.tweets) && version.tweets.some(t => t.images && t.images.length > 0);
-                     if (hasImages) {
-                         const imageIndicator = document.createElement('span');
-                         imageIndicator.className = 'text-xs text-blue-500 dark:text-blue-400 ml-1';
-                         imageIndicator.textContent = '(includes images)';
-                         previewElement.appendChild(imageIndicator);
-                     }
-                     versionElement.appendChild(contentSection);
-
-                     // --- Actions Section (Buttons) ---
-                     const actionsSection = document.createElement('div');
-                     // --- MODIFICATION: Adjusted width classes for responsiveness ---
-                     actionsSection.className = 'flex flex-col sm:flex-row flex-shrink-0 gap-2 items-end sm:items-center sm:justify-end w-full sm:w-auto';
-
-                     // Load Button
-                     const loadButton = document.createElement('button');
-                     loadButton.className = 'load-entry btn btn-xs bg-blue-600 hover:bg-blue-700 w-full sm:w-auto'; // Ensure consistent button classes
-                     loadButton.title = 'Load this version into the editor';
-                     loadButton.dataset.title = title;
-                     loadButton.dataset.timestamp = version.timestamp;
-                     loadButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-xs mr-1"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>Load`;
-                     loadButton.addEventListener('click', (event) => { event.stopPropagation(); const t = event.currentTarget.dataset.title; const ts = event.currentTarget.dataset.timestamp; loadThreadFromLibrary(t, ts); playHapticFeedback(); });
-                     actionsSection.appendChild(loadButton);
-
-                     // Export TXT Button
-                     const exportButton = document.createElement('button');
-                     exportButton.className = 'export-entry btn btn-xs bg-green-600 hover:bg-green-700 w-full sm:w-auto';
-                     exportButton.title = 'Export this version as TXT (Images will be omitted)';
-                     exportButton.dataset.title = title;
-                     exportButton.dataset.timestamp = version.timestamp;
-                     exportButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-xs mr-1"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>Export TXT`;
-                     exportButton.addEventListener('click', (event) => { event.stopPropagation(); const t = event.currentTarget.dataset.title; const ts = event.currentTarget.dataset.timestamp; exportSpecificThreadVersion(t, ts); playHapticFeedback(); });
-                     actionsSection.appendChild(exportButton);
-
-                     // Delete Button
-                     const deleteButton = document.createElement('button');
-                     deleteButton.className = 'delete-entry btn btn-xs bg-red-600 hover:bg-red-700 w-full sm:w-auto';
-                     deleteButton.title = 'Delete this version';
-                     deleteButton.dataset.title = title;
-                     deleteButton.dataset.timestamp = version.timestamp;
-                     deleteButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-xs mr-1"><circle cx="12" cy="12" r="10"/><line x1="15" x2="9" y1="9" y2="15"/><line x1="9" x2="15" y1="9" y2="15"/></svg>Delete`;
-                     deleteButton.addEventListener('click', (event) => { event.stopPropagation(); const t = event.currentTarget.dataset.title; const ts = event.currentTarget.dataset.timestamp; deleteThreadVersion(t, ts); playHapticFeedback(); });
-                     actionsSection.appendChild(deleteButton);
-
-                     versionElement.appendChild(actionsSection);
-                     versionsList.appendChild(versionElement);
-                 });
-
-                 libraryContainer.appendChild(threadGroup);
-                 applyDynamicStyles(threadGroup); // Apply button styles after adding to DOM
-             });
-         }
-
-        /** Saves the current thread state to the library (IndexedDB). */
-        async function saveToLibrary() {
-            console.log("Attempting to save to library..."); // DEBUG
-            if (!threadTitleInput) return;
-            const title = threadTitleInput.value.trim();
-            if (!title) {
-                showNotification('Please enter a thread title before saving.', 'error');
-                threadTitleInput.focus();
-                return;
-            }
-
-            // Fetch the existing entry or create a new one
-            let libraryEntry = await loadFromDB(LIBRARY_STORE_NAME, title);
-            if (!libraryEntry) {
-                libraryEntry = { title: title, versions: [] };
-            } else if (!Array.isArray(libraryEntry.versions)) {
-                // Handle potential corruption if versions isn't an array
-                console.warn(`Library entry for "${title}" has invalid versions format. Resetting.`);
-                libraryEntry.versions = [];
-            }
-
-            // Get current data from the editor
-             const currentTweetsData = Array.from(tweetContainer?.querySelectorAll('.tweet-container') || []).map(tweetElement => {
-                 const tweetId = tweetElement.id;
-                 const textarea = tweetElement.querySelector('.tweet-text');
-                 return {
-                     text: textarea ? textarea.value : '', // Get text value
-                     images: getImagesForTweet(tweetId) // Get associated images
-                 };
-             });
-
-            // Create the new version data object
-            const newVersionData = {
-                concept: threadConceptInput?.value.trim() || '',
-                tweets: currentTweetsData,
-                timestamp: Date.now() // Use current timestamp as version identifier
-            };
-
-            // Check if this exact version already exists (simple JSON string comparison)
-            const isDuplicate = libraryEntry.versions.some(v =>
-                 v.concept === newVersionData.concept &&
-                 JSON.stringify(v.tweets) === JSON.stringify(newVersionData.tweets)
-            );
-
-            if (!isDuplicate) {
-                libraryEntry.versions.push(newVersionData); // Add the new version
-                try {
-                    await saveToDB(LIBRARY_STORE_NAME, libraryEntry); // Save back to DB
-                    library[title] = libraryEntry; // Update in-memory cache
-                    updateLibraryDisplay(); // Refresh the library modal display
-                    showNotification(`Thread "${title}" (New Version) saved to library.`, 'success');
-                    playHapticFeedback();
-                } catch (e) {
-                    console.error("Error saving library entry:", e);
-                    showNotification("Could not save library entry.", "error");
-                }
-            } else {
-                showNotification(`This exact version of "${title}" is already saved.`, 'info');
-            }
-        }
-
-        /** Loads a specific thread version from the library into the editor. */
-        function loadThreadFromLibrary(title, timestamp) {
-            console.log(`Loading library version: ${title}, timestamp ${timestamp}`); // DEBUG
-            const versionTimestamp = parseInt(timestamp, 10); // Ensure timestamp is a number
-            if (isNaN(versionTimestamp)) {
-                showNotification("Error loading thread: Invalid version identifier.", "error"); return;
-            }
-
-            // Find the specific version in the in-memory library cache
-            const versionToLoad = library[title]?.versions?.find(v => v.timestamp === versionTimestamp);
-
-            if (versionToLoad && threadTitleInput && threadConceptInput && tweetContainer) {
-                // --- Clear current editor state ---
-                threadTitleInput.value = title;
-                threadConceptInput.value = versionToLoad.concept || ''; // Handle potentially missing concept
-                tweetContainer.innerHTML = ''; // Clear existing tweet elements
-                tweetImages = {}; // Clear existing image state
-
-                // --- Create tweet elements from loaded data ---
-                if (Array.isArray(versionToLoad.tweets)) {
-                    versionToLoad.tweets.forEach(tweetData => {
-                        // Ensure tweetData is an object with text/images, handle older formats if necessary
-                        const data = typeof tweetData === 'object' ? tweetData : { text: String(tweetData), images: [] };
-                        createTweetElement(data); // Create element with loaded data (handles images internally)
-                    });
-                     // If loaded thread had no tweets, add one empty one
-                     if (versionToLoad.tweets.length === 0) {
-                         createTweetElement();
-                     }
-                } else {
-                    console.warn(`Loaded version for "${title}" has invalid tweets format. Creating empty tweet.`);
-                    createTweetElement(); // Add one empty tweet if format is bad
-                }
-
-
-                updatePreview(); // Refresh the preview panel
-                autoSave(); // Auto-save the newly loaded state
-                 if(libraryModal) libraryModal.style.display = 'none'; // Close the library modal
-                showNotification(`Loaded "${title}" (Saved: ${new Date(versionTimestamp).toLocaleString()}).`, 'success');
-            } else {
-                console.error("Failed to load from library - version/elements missing:", title, versionTimestamp, library[title]); // DEBUG
-                showNotification(`Error loading thread "${title}". Version not found or core elements missing.`, 'error');
-            }
-        }
-
-        /** Exports a specific thread version as a TXT file (images omitted). */
-        function exportSpecificThreadVersion(title, timestamp) {
-            console.log(`Exporting library version as TXT: ${title}, timestamp ${timestamp}`); // DEBUG
-            const versionTimestamp = parseInt(timestamp, 10);
-            if (isNaN(versionTimestamp)) {
-                showNotification("Error exporting thread: Invalid version identifier.", "error"); return;
-            }
-
-            // Find the version in the in-memory cache
-            const versionToExport = library[title]?.versions?.find(v => v.timestamp === versionTimestamp);
-
-            if (versionToExport) {
-                // Construct the TXT content
-                let content = `Thread Title: ${title}\n\nThread Concept:\n${versionToExport.concept || '(No concept)'}\n\nTweets (Images are not included in TXT export):\n\n`;
-                if (Array.isArray(versionToExport.tweets)) {
-                    versionToExport.tweets.forEach((tweetData, idx) => {
-                        const text = typeof tweetData === 'object' ? (tweetData.text || '') : String(tweetData);
-                        const images = (typeof tweetData === 'object' && Array.isArray(tweetData.images)) ? tweetData.images : [];
-                        content += `${idx + 1}. ${text || '(Empty tweet)'}`;
-                        if (images.length > 0) {
-                            content += ` [Had ${images.length} image(s)]`; // Indicate images were present
-                        }
-                        content += `\n\n`;
-                    });
-                }
-                content += `\n\nSaved on: ${new Date(versionTimestamp).toLocaleString()}`;
-
-                // Trigger download
-                downloadFile(`${title}_${versionTimestamp}_NoImages.txt`, content, 'text/plain');
-                showNotification(`Exported "${title}" as TXT (Images omitted).`, 'success');
-            } else {
-                showNotification(`Error exporting thread "${title}" as TXT. Version not found.`, 'error');
-            }
-        }
-
-        /** Deletes a specific version of a thread from the library. */
-        async function deleteThreadVersion(title, timestamp) {
-            console.log(`Deleting library version: ${title}, timestamp ${timestamp}`); // DEBUG
-            const versionTimestamp = parseInt(timestamp, 10);
-            if (isNaN(versionTimestamp)) {
-                showNotification("Error deleting thread: Invalid version identifier.", "error"); return;
-            }
-
-            // Get the current entry from the in-memory cache
-            let libraryEntry = library[title];
-            if (!libraryEntry || !Array.isArray(libraryEntry.versions)) {
-                 showNotification(`Error deleting thread "${title}". Entry not found or invalid.`, 'error'); return;
-            }
-
-            const versionIndex = libraryEntry.versions.findIndex(v => v.timestamp === versionTimestamp);
-            if (versionIndex === -1) {
-                 showNotification(`Error deleting thread "${title}". Specific version not found.`, 'error'); return;
-            }
-
-            // Confirmation dialog
-            if (confirm(`Are you sure you want to delete this version of "${title}" (Saved: ${new Date(versionTimestamp).toLocaleString()})? This cannot be undone.`)) {
-                libraryEntry.versions.splice(versionIndex, 1); // Remove version from the array
-
-                try {
-                    // If no versions left, delete the entire entry; otherwise, update it
-                    if (libraryEntry.versions.length === 0) {
-                        await deleteFromDB(LIBRARY_STORE_NAME, title);
-                        delete library[title]; // Remove from in-memory cache
-                        console.log(`Deleted entire entry for "${title}" as it was the last version.`); // DEBUG
-                    } else {
-                        await saveToDB(LIBRARY_STORE_NAME, libraryEntry);
-                        library[title] = libraryEntry; // Ensure cache matches DB (though it should already)
-                        console.log(`Deleted version ${versionTimestamp} for "${title}". Remaining versions: ${libraryEntry.versions.length}`); // DEBUG
-                    }
-                    updateLibraryDisplay(); // Refresh the modal display
-                    showNotification(`Deleted version of "${title}" (Saved: ${new Date(versionTimestamp).toLocaleString()}).`, 'success');
-                } catch (e) {
-                    console.error("Error updating library DB after deletion:", e);
-                    showNotification("Could not update library after deletion.", "error");
-                     // Attempt to reload from DB to ensure consistency
-                     await loadLibraryFromDB();
-                     updateLibraryDisplay();
-                }
-            }
-        }
-
-        /** Exports the entire thread library as a JSON file. */
-        async function exportLibrary() {
-             console.log("Exporting entire library..."); // DEBUG
-             // Load fresh data directly from DB for export
-             const allLibraryEntries = await loadAllFromDB(LIBRARY_STORE_NAME);
-             if (!allLibraryEntries || allLibraryEntries.length === 0) {
-                 showNotification('Library is empty. Nothing to export.', 'info'); return;
-             }
-             try {
-                 // Stringify the array of library entries
-                 const libraryJson = JSON.stringify(allLibraryEntries, null, 2); // Pretty print JSON
-                 downloadFile('280Thread_Library_Export_v2.json', libraryJson, 'application/json');
-                 showNotification('Library exported successfully (including images).', 'success');
-             } catch (e) {
-                 console.error("Error stringifying library for export:", e);
-                 showNotification("Could not prepare library for export.", "error");
-             }
-        }
-
-        /** Imports threads from a JSON file into the library, merging with existing data. */
-        async function importLibrary(file) {
-            console.log("Importing library from file:", file?.name); // DEBUG
-            if (!file) return;
-
-            const reader = new FileReader();
-
-            reader.onload = async function(e) {
-                try {
-                    if (!e.target.result) throw new Error("File is empty.");
-                    const importedLibraryArray = JSON.parse(e.target.result);
-                    if (!Array.isArray(importedLibraryArray)) {
-                        throw new Error('Invalid library format. Expected a JSON array.');
-                    }
-
-                    let importedVersionCount = 0;
-                    let mergedEntryCount = 0;
-                    let titlesProcessed = 0;
-
-                    // Load existing data ONCE before the loop to merge into
-                    const existingEntriesArray = await loadAllFromDB(LIBRARY_STORE_NAME);
-                    const existingLibraryMap = existingEntriesArray.reduce((map, entry) => {
-                        // Ensure existing entries have a valid versions array
-                        if (entry && entry.title) {
-                            map[entry.title] = { ...entry, versions: Array.isArray(entry.versions) ? entry.versions : [] };
-                        }
-                        return map;
-                    }, {});
-
-                    // Use a Set to track titles that have been modified and need saving
-                    const titlesToSave = new Set();
-
-                    // Iterate through each entry (title) in the imported file
-                    for (const importedEntry of importedLibraryArray) {
-                        // Basic validation of the imported entry structure
-                        if (!importedEntry || typeof importedEntry.title !== 'string' || !Array.isArray(importedEntry.versions)) {
-                            console.warn(`Skipping invalid entry structure during import:`, importedEntry);
-                            continue; // Skip this entry
-                        }
-                        const title = importedEntry.title;
-                        titlesProcessed++;
-
-                        let targetEntry = existingLibraryMap[title]; // Find existing entry in our map
-                        let entryModified = false; // Track if we actually add versions to this entry
-
-                        // If the title doesn't exist in the current library, create a new entry object
-                        if (!targetEntry) {
-                            targetEntry = { title: title, versions: [] };
-                            existingLibraryMap[title] = targetEntry; // Add to map for consistency within the loop
-                        }
-
-                        let versionsAddedToThisTitle = 0;
-                        // Iterate through versions within the imported entry
-                        importedEntry.versions.forEach(importedVersion => {
-                            // Validate the imported version structure and timestamp
-                            if (importedVersion?.timestamp && Array.isArray(importedVersion.tweets)) {
-                                const versionTimestamp = parseInt(importedVersion.timestamp, 10); // Ensure number
-                                if (isNaN(versionTimestamp)) {
-                                     console.warn(`Skipping version with invalid timestamp for title "${title}":`, importedVersion);
-                                     return; // Skip this version
-                                }
-
-                                // Check if this exact timestamp already exists for this title in the target entry
-                                if (!targetEntry.versions.some(existing => existing.timestamp === versionTimestamp)) {
-                                    // Sanitize tweet data within the version
-                                    const sanitizedTweets = importedVersion.tweets.map(t => ({
-                                        text: (typeof t === 'object' && t?.text) ? String(t.text) : (typeof t === 'string' ? t : ''),
-                                        images: (typeof t === 'object' && Array.isArray(t.images))
-                                            ? t.images.filter(img => typeof img === 'string' && img.startsWith('data:image/')) // Keep only valid data URLs
-                                            : []
-                                    }));
-
-                                    // Add the sanitized version to the target entry
-                                    targetEntry.versions.push({
-                                        concept: importedVersion.concept || '', // Ensure concept exists
-                                        tweets: sanitizedTweets,
-                                        timestamp: versionTimestamp // Use the parsed timestamp
-                                    });
-                                    versionsAddedToThisTitle++;
-                                    entryModified = true; // Mark that this entry was changed
-                                }
-                            } else {
-                                console.warn(`Skipping version with invalid structure/timestamp for title "${title}":`, importedVersion);
-                            }
-                        }); // End loop through versions in importedEntry
-
-                        // If versions were added to this title, mark it for saving and count it
-                        if (entryModified) {
-                            mergedEntryCount++; // Count titles that had versions added/merged
-                            importedVersionCount += versionsAddedToThisTitle;
-                            titlesToSave.add(title); // Mark this title for saving to DB
-                        }
-                    } // End of loop through imported entries
-
-                    // Now, save all modified/new entries back to IndexedDB
-                    console.log("Saving modified library entries to DB...", Array.from(titlesToSave)); // DEBUG
-                    for (const title of titlesToSave) {
-                        try {
-                            // Save the potentially modified entry from our map
-                            await saveToDB(LIBRARY_STORE_NAME, existingLibraryMap[title]);
-                        } catch(saveError) {
-                            console.error(`Error saving merged entry for title "${title}" during import:`, saveError);
-                            showNotification(`Error saving imported data for "${title}".`, "error");
-                            // Continue trying to save others
-                        }
-                    }
-
-                    // --- CRITICAL STEP: Reload the entire library from DB ---
-                    // This ensures the in-memory 'library' object is perfectly synced with the DB
-                    console.log("Reloading library from DB after import..."); // DEBUG
-                    await loadLibraryFromDB(); // Refresh the global 'library' object
-
-                    // Now update the display based on the *refreshed* library from DB
-                    updateLibraryDisplay();
-
-                    showNotification(`Library import complete. Processed ${titlesProcessed} titles, added ${importedVersionCount} new versions across ${mergedEntryCount} entries.`, 'success', 5000);
-                    playHapticFeedback();
-
-                } catch (error) {
-                    // Catch JSON parsing errors or other unexpected issues
-                    showNotification(`Error importing library: ${error.message}`, 'error', 5000);
-                    console.error("Library import error:", error);
-                    // Attempt to reload and update display to show current DB state
-                    await loadLibraryFromDB();
-                    updateLibraryDisplay();
-                } finally {
-                     // Always clear the file input
-                     if(importLibraryFileInput) importLibraryFileInput.value = '';
-                }
-            }; // end reader.onload
-
-            reader.onerror = async (err) => {
-                 showNotification('Error reading library file.', 'error');
-                 // Ensure library display is consistent even on read error by reloading
-                 await loadLibraryFromDB();
-                 updateLibraryDisplay();
-            }
-
-            reader.readAsText(file); // Start reading the file
-        }
-
-
-        // --- TXT Import/Export ---
-        /** Saves the current thread editor content as a TXT file (images omitted). */
-        function saveThreadToTxt() {
-            console.log("Saving current thread as TXT..."); // DEBUG
-            if (!threadTitleInput || !threadConceptInput || !tweetContainer) return;
-
-            const title = threadTitleInput.value.trim() || 'Untitled Thread';
-            const concept = threadConceptInput.value.trim();
-            let content = `Thread Title: ${title}\n\nThread Concept:\n${concept || '(No concept)'}\n\nTweets (Images are NOT included in TXT export):\n\n`;
-            let tweetCount = 0; // Count tweets with actual content
-
-            Array.from(tweetContainer.querySelectorAll('.tweet-container')).forEach((tweetElement, index) => {
-                const textarea = tweetElement.querySelector('.tweet-text');
-                const tweetText = textarea ? textarea.value : '';
-                const images = getImagesForTweet(tweetElement.id);
-                 content += `${index + 1}. ${tweetText}`;
-                 if (images.length > 0) {
-                     content += ` [Had ${images.length} image(s)]`; // Note presence of images
-                 }
-                 content += `\n\n`;
-                if (tweetText.trim() || images.length > 0) tweetCount++; // Increment if text or images exist
-            });
-
-            // Prevent exporting completely empty threads
-            if (tweetCount === 0 && !concept && title === 'Untitled Thread') {
-                showNotification('Nothing to export. Add some content first.', 'info'); return;
-            }
-
-            const timestamp = new Date().toISOString().replace(/[:.]/g, '-'); // Create safe timestamp for filename
-            downloadFile(`${title}_NoImages_${timestamp}.txt`, content, 'text/plain');
-            showNotification('Thread exported as TXT (Images omitted).', 'success');
-        }
-
-        /** Imports thread content from a TXT file into the editor. */
-        function importFromTxt(file) {
-            console.log("Importing from TXT file (images cannot be imported):", file?.name); // DEBUG
-             if (!file || !threadTitleInput || !threadConceptInput || !tweetContainer) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                // --- Clear current editor state before import ---
-                if(threadTitleInput) threadTitleInput.value = '';
-                if(threadConceptInput) threadConceptInput.value = '';
-                if(tweetContainer) tweetContainer.innerHTML = '';
-                tweetImages = {}; // Clear image state
-
-                try {
-                    if (!e.target.result) throw new Error("File is empty.");
-                    const content = e.target.result;
-                    const lines = content.split('\n');
-
-                    let title = '';
-                    let concept = '';
-                    const tweets = [];
-                    let currentSection = ''; // Track parsing state: 'title', 'concept', 'tweets'
-                    let currentTweet = ''; // Buffer for multi-line tweets
-
-                    // Parse the TXT content line by line
-                    lines.forEach(line => {
-                        const trimmedLine = line.trim();
-                        if (trimmedLine.startsWith('Thread Title:')) {
-                            title = trimmedLine.substring('Thread Title:'.length).trim();
-                            currentSection = 'title';
-                        } else if (trimmedLine.startsWith('Thread Concept:')) {
-                            currentSection = 'concept';
-                            concept = ''; // Reset concept buffer
-                        } else if (trimmedLine.startsWith('Tweets:')) {
-                            currentSection = 'tweets';
-                            currentTweet = ''; // Reset tweet buffer
-                        }
-                        // Append lines to the current section's buffer
-                        else if (currentSection === 'concept') {
-                            // Add line to concept if it's not the header line itself
-                            if (line.trim() !== 'Thread Concept:') {
-                                concept += line + '\n';
-                             }
-                        } else if (currentSection === 'tweets') {
-                            // Check if line starts with a tweet number (e.g., "1.")
-                            if (/^\d+\.\s*/.test(line)) {
-                                // If buffer has content, push the previous tweet
-                                if (currentTweet.trim()) tweets.push(currentTweet.trim());
-                                // Start new tweet buffer, remove number and image indicator
-                                currentTweet = line.replace(/^\d+\.\s*/, '').replace(/\[Had \d+ image\(s\)\]$/, '').trim();
-                            } else if (trimmedLine && !trimmedLine.startsWith('Saved on:')) {
-                                // Append line to current tweet buffer if it's content
-                                currentTweet += '\n' + line;
-                            }
-                        }
-                    });
-                    // Push the last tweet in the buffer
-                    if (currentTweet.trim()) tweets.push(currentTweet.trim());
-
-                    // --- Populate the editor ---
-                    threadTitleInput.value = title;
-                    threadConceptInput.value = concept.trim(); // Trim final concept
-                    // Create tweet elements for each parsed tweet text
-                    tweets.forEach(tweetText => createTweetElement({ text: tweetText, images: [] })); // Images are not imported from TXT
-                    // If no tweets were found in the file, create one empty element
-                    if(tweets.length === 0) {
-                         createTweetElement();
-                    }
-
-                    updatePreview();
-                    autoSave();
-                    showNotification('Thread imported from TXT. Images (if any) were not included.', 'success', 4000);
-                    playHapticFeedback();
-
-                } catch (error) {
-                    // Handle parsing errors
-                    showNotification(`Error parsing TXT file: ${error.message}`, 'error', 5000);
-                     // Reset editor on error
-                     if(threadTitleInput) threadTitleInput.value = '';
-                     if(threadConceptInput) threadConceptInput.value = '';
-                     if(tweetContainer) tweetContainer.innerHTML = '';
-                     tweetImages = {};
-                     createTweetElement(); // Add one empty tweet
-                     updatePreview();
-                } finally {
-                    // Clear the file input regardless of success/failure
-                     if(importThreadFileInput) importThreadFileInput.value = '';
-                }
-            }; // end reader.onload
-
-             reader.onerror = (err) => {
-                showNotification('Error reading TXT file.', 'error');
-                if(importThreadFileInput) importThreadFileInput.value = ''; // Clear input on read error
-             }
-             reader.readAsText(file); // Start reading
-         }
-
-        // --- Utility Functions ---
-        /** Triggers a file download in the browser. */
-        function downloadFile(filename, content, mimeType) {
-            try {
-                 const blob = new Blob([content], { type: mimeType });
-                 const link = document.createElement('a');
-                 link.href = URL.createObjectURL(blob);
-                 link.download = filename;
-                 document.body.appendChild(link); // Append link to body
-                 link.click(); // Programmatically click the link
-                 document.body.removeChild(link); // Remove link from body
-                 URL.revokeObjectURL(link.href); // Release the object URL
-            } catch (e) {
-                 console.error("File download error:", e);
-                showNotification("File download failed.", "error");
-            }
-        }
-
-        /** Triggers haptic feedback (vibration) if supported. */
-        function playHapticFeedback() {
-            if ('vibrate' in navigator) {
-                try { navigator.vibrate(50); } catch (e) { /* Ignore errors */ }
-            }
-        }
-
-        // --- AutoSave using IndexedDB ---
-        /** Saves the current editor state to IndexedDB for session persistence. */
-        async function autoSave() {
-            // Debounce autosave? Maybe not necessary as IndexedDB is async
-            if (!threadTitleInput || !threadConceptInput || !tweetContainer) return; // Ensure elements exist
-
-             // Collect current data from the editor
-             const currentTweetsData = Array.from(tweetContainer.querySelectorAll('.tweet-container')).map(tweetElement => {
-                 const tweetId = tweetElement.id;
-                 const textarea = tweetElement.querySelector('.tweet-text');
-                 return {
-                     text: textarea ? textarea.value : '',
-                     images: getImagesForTweet(tweetId) // Get images associated with this tweet
-                 };
-             });
-
-            // Structure the data for saving
-            const threadData = {
-                title: threadTitleInput.value,
-                concept: threadConceptInput.value,
-                tweets: currentTweetsData,
-                timestamp: Date.now() // Record when it was saved
-            };
-            const autoSaveEntry = { id: AUTOSAVE_KEY, data: threadData }; // Use fixed key for autosave
-
-            // Save to IndexedDB
-            try {
-                 await saveToDB(AUTOSAVE_STORE_NAME, autoSaveEntry);
-                 // console.log("Autosave successful."); // DEBUG - Can be noisy
-            } catch (e) {
-                 console.error("Error during autosave:", e);
-                 showNotification("Could not auto-save.", "error"); // Notify user on failure
-            }
-        }
-
-        /** Loads the last auto-saved session from IndexedDB into the editor. */
-        async function loadAutoSave() {
-            console.log("Loading autosave data..."); // DEBUG
-             if (!threadTitleInput || !threadConceptInput || !tweetContainer) return; // Ensure elements exist
-
-             // Clear current editor state before loading
-             tweetContainer.innerHTML = '';
-             tweetImages = {};
-
-            try {
-                const savedEntry = await loadFromDB(AUTOSAVE_STORE_NAME, AUTOSAVE_KEY);
-                if (savedEntry && savedEntry.data) {
-                    console.log("Found autosave data.", savedEntry.data); // DEBUG
-                    const threadData = savedEntry.data;
-
-                    // Restore title and concept
-                    threadTitleInput.value = threadData.title || '';
-                    threadConceptInput.value = threadData.concept || '';
-
-                    // Restore tweets
-                    if (Array.isArray(threadData.tweets) && threadData.tweets.length > 0) {
-                        threadData.tweets.forEach(tweetData => {
-                            // Ensure data format consistency
-                             const data = typeof tweetData === 'object' ? tweetData : { text: String(tweetData), images: [] };
-                            createTweetElement(data); // Create element (handles images)
-                         });
-                    } else {
-                         // If no tweets in autosave, create one empty tweet
-                         createTweetElement();
-                    }
-                    updatePreview(); // Update preview after loading
-                    console.log(`Restored autosave from ${new Date(threadData.timestamp).toLocaleString()}`); // DEBUG
-                } else {
-                    // No autosave data found, start with a fresh state
-                    console.log("No autosave data found, creating initial tweet."); // DEBUG
-                    createTweetElement(); // Create one empty tweet
-                     updatePreview();
-                }
-            } catch (e) {
-                console.error("Error loading autosave:", e);
-                showNotification("Could not restore auto-saved session.", "error");
-                // Fallback to a fresh state on error
-                createTweetElement();
-                updatePreview();
-                 // Attempt to clear potentially corrupted autosave data
-                 try { await deleteFromDB(AUTOSAVE_STORE_NAME, AUTOSAVE_KEY); } catch (removeError) { /* Ignore */ }
-            }
-        }
-
-        /** Loads the entire library from IndexedDB into the in-memory 'library' object. */
-        async function loadLibraryFromDB() {
-            console.log("Loading library from IndexedDB into memory..."); // DEBUG
-            try {
-                const allEntries = await loadAllFromDB(LIBRARY_STORE_NAME);
-                // Convert array from DB into a map (object) keyed by title for easy access
-                library = allEntries.reduce((map, entry) => {
-                    // Basic validation: ensure entry has a title and versions is an array
-                    if (entry && entry.title) {
-                         map[entry.title] = { ...entry, versions: Array.isArray(entry.versions) ? entry.versions : [] };
-                    } else {
-                        console.warn("Skipping invalid entry during library load:", entry);
-                    }
-                    return map;
-                 }, {});
-                console.log("Library loaded into memory:", Object.keys(library).length, "entries"); // DEBUG
-            } catch (e) {
-                console.error("Error loading library from IndexedDB:", e);
-                showNotification("Could not load thread library.", "error");
-                library = {}; // Reset cache on error
-            }
-        }
-
-        // --- Theme Toggling ---
-        /** Toggles the dark/light theme and updates localStorage. */
-        function toggleTheme() {
-             if (!themeToggleBtn) return;
-             document.documentElement.classList.toggle('dark'); // Toggle class on <html>
-             const isDarkMode = document.documentElement.classList.contains('dark');
-             // Save preference to localStorage
-             try { localStorage.setItem('theme', isDarkMode ? 'dark' : 'light'); } catch (e) { console.warn("Could not save theme preference to localStorage."); }
-             // Update button icon
-             if (isDarkMode) {
-                 themeToggleBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon w-5 h-5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>`; // Sun icon
-             } else {
-                 themeToggleBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon w-5 h-5"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`; // Moon icon
-             }
-             playHapticFeedback();
-         }
-
-        // --- Apply Dynamic Styles ---
-        /** Applies common Tailwind classes to buttons programmatically. */
-        function applyDynamicStyles(parentElement = document) {
-            // Define base and size-specific classes
-            const baseBtnClasses = ['text-white','font-semibold','py-2','px-4','rounded-md','shadow','transition-all','duration-200','ease-in-out','transform','hover:scale-105','flex','items-center','justify-center'];
-            const btnSmClassesRemove = ['py-2','px-4'];
-            const btnSmClassesAdd = ['py-1','px-3','text-sm'];
-            const btnXsClassesRemove = ['py-2','px-4','font-semibold'];
-            const btnXsClassesAdd = ['py-1','px-2','text-xs','font-medium'];
-            const btnIconClassesAdd = ['transition-colors', 'duration-150']; // For icon-only buttons
-
-            // Apply styles based on button classes within the specified parent element
-            parentElement.querySelectorAll('.btn:not(.btn-sm):not(.btn-xs)').forEach(button => button.classList.add(...baseBtnClasses));
-            parentElement.querySelectorAll('.btn-sm').forEach(button => { button.classList.add(...baseBtnClasses); button.classList.remove(...btnSmClassesRemove); button.classList.add(...btnSmClassesAdd); });
-            parentElement.querySelectorAll('.btn-xs').forEach(button => { button.classList.add(...baseBtnClasses); button.classList.remove(...btnXsClassesRemove); button.classList.add(...btnXsClassesAdd); });
-            parentElement.querySelectorAll('.btn-icon').forEach(button => button.classList.add(...btnIconClassesAdd));
-         }
-
-        // --- Initialization ---
-        /** Runs when the DOM is fully loaded. Caches elements, loads data, attaches listeners. */
-        document.addEventListener('DOMContentLoaded', async () => {
-            console.log("DOM loaded."); // DEBUG
-            // Cache frequently used DOM elements
-            threadTitleInput = document.getElementById('threadTitle');
-            threadConceptInput = document.getElementById('threadConcept');
-            tweetContainer = document.getElementById('tweetContainer');
-            previewContainer = document.getElementById('previewContainer');
-            libraryModal = document.getElementById('libraryModal');
-            libraryContainer = document.getElementById('libraryContainer');
-            importThreadFileInput = document.getElementById('importThreadFile');
-            importLibraryFileInput = document.getElementById('importLibraryFile');
-            notificationArea = document.getElementById('notificationArea');
-            themeToggleBtn = document.getElementById('themeToggle');
-            openPreviewTabBtn = document.getElementById('openPreviewTabBtn');
-            console.log("DOM elements cached."); // DEBUG
-
-            applyTheme(); // Apply saved or system theme preference
-
-            // Initialize DB, load library cache, and load autosave
-            try {
-                await openDB(); // Ensure DB is open
-                await loadLibraryFromDB(); // Load library into memory
-                await loadAutoSave(); // Load last session or start fresh
-            } catch (err) {
-                console.error("Initialization Error:", err);
-                showNotification("Error initializing app data.", "error");
-                // Ensure there's at least one tweet element even if init fails
-                if (tweetContainer && !tweetContainer.hasChildNodes()) createTweetElement();
-                updatePreview();
-            }
-
-            applyDynamicStyles(); // Apply initial button styles
-
-            // --- Attach Global Event Listeners ---
-            console.log("Attaching main event listeners..."); // DEBUG
-
-            // Add Tweet Button
-            document.getElementById('addTweetBtn')?.addEventListener('click', () => {
-                const newTweet = createTweetElement(); // Add new empty tweet
-                newTweet?.querySelector('textarea')?.focus(); // Focus its textarea
-                playHapticFeedback();
-            });
-
-            // Export TXT Button (Current Thread)
-            document.getElementById('saveThreadBtn')?.addEventListener('click', () => { saveThreadToTxt(); playHapticFeedback(); });
-
-            // Import TXT Button (Current Thread)
-            document.getElementById('importThreadBtn')?.addEventListener('click', () => { importThreadFileInput?.click(); playHapticFeedback(); });
-            importThreadFileInput?.addEventListener('change', event => { if (event.target.files.length > 0) importFromTxt(event.target.files[0]); });
-
-            // Clear All Button (Current Thread)
-            document.getElementById('clearAllBtn')?.addEventListener('click', async () => {
-                if (confirm('Are you sure you want to clear the current thread (title, concept, tweets, and images)? This will also clear the auto-save.')) {
-                    if(threadTitleInput) threadTitleInput.value = '';
-                    if(threadConceptInput) threadConceptInput.value = '';
-                    if(tweetContainer) tweetContainer.innerHTML = '';
-                    tweetImages = {}; // Clear image state
-                    createTweetElement(); // Add one fresh tweet element
-                    updatePreview();
-                    try {
-                        await deleteFromDB(AUTOSAVE_STORE_NAME, AUTOSAVE_KEY); // Clear autosave
-                        showNotification('Thread cleared.', 'info');
-                    } catch (clearError) {
-                        showNotification('Thread cleared, but failed to clear auto-save.', 'error');
-                    }
-                    playHapticFeedback();
-                }
-            });
-
-            // Save to Library Button
-            document.getElementById('saveToLibraryBtn')?.addEventListener('click', () => { saveToLibrary(); playHapticFeedback(); });
-
-            // Open Library Modal Button
-            document.getElementById('openLibraryBtn')?.addEventListener('click', () => {
-                updateLibraryDisplay(); // Refresh display before showing
-                if(libraryModal) libraryModal.style.display = 'flex'; // Show modal
-                playHapticFeedback();
-            });
-
-            // Close Library Modal Button
-            document.getElementById('closeLibraryBtn')?.addEventListener('click', () => { if(libraryModal) libraryModal.style.display = 'none'; playHapticFeedback(); });
-
-            // Export Library Button (Modal)
-            document.getElementById('exportLibraryBtn')?.addEventListener('click', () => { exportLibrary(); playHapticFeedback(); });
-
-            // Import Library Button (Modal)
-            document.getElementById('importLibraryBtnModal')?.addEventListener('click', () => { importLibraryFileInput?.click(); playHapticFeedback(); });
-            importLibraryFileInput?.addEventListener('change', event => { if (event.target.files.length > 0) importLibrary(event.target.files[0]); });
-
-            // Theme Toggle Button
-            themeToggleBtn?.addEventListener('click', toggleTheme);
-
-            // Autosave listeners for title and concept inputs
-            threadTitleInput?.addEventListener('input', autoSave);
-            threadConceptInput?.addEventListener('input', autoSave);
-
-            // Open Preview in New Tab Button
-            openPreviewTabBtn?.addEventListener('click', () => {
-                console.log("Opening preview in new tab...");
-                if (!previewContainer) return;
-
-                const previewHTML = previewContainer.innerHTML; // Get current preview HTML
-                const currentTitle = threadTitleInput?.value.trim() || 'Untitled Thread';
-                const isDarkMode = document.documentElement.classList.contains('dark');
-
-                // Get styles and config from the current page to replicate in the new tab
-                const styleContent = document.head.querySelector('style')?.textContent || '';
-                const tailwindConfigScriptContent = Array.from(document.scripts).find(s => s.textContent.includes('tailwind.config ='))?.textContent || '';
-
-                // Open a new blank window/tab
-                const newWindow = window.open('', '_blank');
-                if (newWindow) {
-                    // Write the HTML structure for the new tab
-                    newWindow.document.open();
-                    newWindow.document.write(`
-                        <!DOCTYPE html>
-                        <html lang="en"${isDarkMode ? ' class="dark"' : ''}>
-                        <head>
-                            <meta charset="UTF-8">
-                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                            <title>Preview: ${currentTitle.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</title>
-                            <script src="https://cdn.tailwindcss.com"><\/script>
-                            <style>${styleContent}<\/style>
-                            <script>${tailwindConfigScriptContent}<\/script>
-                        </head>
-                        <body class="bg-gray-100 dark:bg-gray-900 font-sans p-4">
-                            <div class="max-w-2xl mx-auto container-bg rounded-lg shadow-lg p-4 sm:p-6 md:p-8">
-                                <h1 class="text-xl font-bold text-primary mb-4 text-center">Thread Preview</h1>
-                                <div class="space-y-3">
-                                    ${previewHTML}
-                                </div>
-                            </div>
-                        </body>
-                        </html>
-                    `);
-                    newWindow.document.close(); // Finish writing
-                    playHapticFeedback();
-                } else {
-                    // Handle pop-up blocker issues
-                    showNotification('Could not open new tab. Please check your pop-up blocker settings.', 'error', 5000);
-                }
-            });
-
-            console.log("Event listeners attached."); // DEBUG
-            console.log("App Initialized."); // DEBUG
+          };
+
+          els.container.appendChild(card);
+          updateIndices();
+          update();
+          return card;
+        };
+
+        const updateIndices = () => {
+          [...els.container.children].forEach((card, i) => {
+            card.querySelector(".tweet-header span").textContent = `Tweet ${i + 1}`;
+          });
+        };
+
+        const gatherState = () => ({
+          title: els.title.value.trim(),
+          concept: els.concept.value.trim(),
+          tweets: [...els.container.querySelectorAll("textarea")].map(t => t.value.trim())
         });
-    </script>
+
+        const renderPreview = () => {
+          const state = gatherState();
+          els.preview.innerHTML = "";
+
+          state.tweets.forEach((text, i) => {
+            if (!text) return;
+            const div = document.createElement("div");
+            div.className = "preview-card";
+            div.innerHTML = `
+              <div class="preview-header">
+                <div class="preview-avatar"></div>
+                <div>
+                  <div class="preview-name">Hatchedboy</div>
+                  <div class="preview-username">@hatchedboy · draft</div>
+                </div>
+              </div>
+              <div class="preview-text">${text}</div>
+              <div class="preview-footer">${i + 1}/${state.tweets.length} · not posted</div>
+            `;
+            els.preview.appendChild(div);
+          });
+        };
+
+        const saveLocalDraft = () => {
+          const state = gatherState();
+          localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
+          setStatus("Draft saved locally", "");
+        };
+
+        const loadLocalDraft = () => {
+          try {
+            const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
+            if (saved) {
+              const state = JSON.parse(saved);
+              els.title.value = state.title || "";
+              els.concept.value = state.concept || "";
+              els.container.innerHTML = "";
+              if (state.tweets && state.tweets.length) {
+                state.tweets.forEach(t => createTweetCard(t));
+              } else {
+                createTweetCard("");
+              }
+              renderPreview();
+              setStatus("Restored from local autosave", "success");
+            } else {
+              if (els.container.children.length === 0) createTweetCard("");
+            }
+          } catch (e) {
+            console.error("Autosave load error", e);
+          }
+        };
+
+        // --- Cloud Logic ---
+        els.newBtn.onclick = () => {
+          openDialog({
+            title: "Start new draft?",
+            message: "This will clear your current work.",
+            buttons: [{
+              label: "Cancel"
+            }, {
+              label: "Start New",
+              className: "btn btn-danger",
+              onClick: () => {
+                els.title.value = "";
+                els.concept.value = "";
+                els.container.innerHTML = "";
+                createTweetCard("");
+                renderPreview();
+                currentCloudId = null;
+                localStorage.removeItem(LOCAL_STORAGE_KEY);
+                setStatus("New draft created");
+              }
+            }]
+          });
+        };
+
+        els.loadBtn.onclick = async () => {
+          els.cloudBody.innerHTML = "Loading...";
+          els.cloudBackdrop.classList.add("cloud-modal-backdrop--open");
+
+          const {
+            data: rows,
+            error
+          } = await supabase
+            .from('threads')
+            .select('*')
+            .order('created_at', {
+              ascending: false
+            });
+
+          if (error) {
+            els.cloudBody.innerHTML = "Error loading threads.";
+            console.error(error);
+            return;
+          }
+
+          els.cloudBody.innerHTML = "";
+          if (!rows.length) return els.cloudBody.innerHTML = "No saved threads.";
+
+          rows.forEach(row => {
+            const item = document.createElement("div");
+            item.className = "cloud-item";
+            item.innerHTML = `
+              <div class="cloud-item-main">
+                <div class="cloud-item-title">${row.title || "(untitled)"}</div>
+                <div class="cloud-item-concept">${row.concept || ""}</div>
+                <div class="cloud-item-meta">${new Date(row.created_at).toLocaleString()}</div>
+              </div>
+              <div class="cloud-item-actions">
+                <button class="btn btn-secondary" style="font-size:11px">Load</button>
+                <button class="btn btn-danger" style="font-size:11px">Delete</button>
+              </div>
+            `;
+
+            item.querySelector(".btn-secondary").onclick = () => {
+              els.title.value = row.title || "";
+              els.concept.value = row.concept || "";
+              currentCloudId = row.id;
+              els.container.innerHTML = "";
+              const tweets = JSON.parse(row.tweets_json || "[]");
+              if (tweets.length) tweets.forEach(t => createTweetCard(t));
+              else createTweetCard("");
+              renderPreview();
+              saveLocalDraft();
+              els.cloudBackdrop.classList.remove("cloud-modal-backdrop--open");
+              showToast("Loaded from cloud", "success");
+            };
+
+            item.querySelector(".btn-danger").onclick = async () => {
+              if (!confirm("Delete this version?")) return;
+
+              const {
+                error
+              } = await supabase
+                .from('threads')
+                .delete()
+                .eq('id', row.id);
+
+              if (!error) {
+                item.remove();
+                showToast("Deleted", "success");
+              } else {
+                showToast("Delete failed", "error");
+              }
+            };
+
+            els.cloudBody.appendChild(item);
+          });
+        };
+
+        els.saveBtn.onclick = () => {
+          const state = gatherState();
+          if (!state.tweets.join("").trim() && !state.title) {
+            return showToast("Nothing to save", "error");
+          }
+
+          const payload = {
+            title: state.title,
+            concept: state.concept,
+            tweets_json: JSON.stringify(state.tweets)
+          };
+
+          const doSave = async (isNew) => {
+            els.saveBtn.disabled = true;
+            els.saveBtn.textContent = "Saving...";
+
+            let result;
+
+            if (isNew) {
+              result = await supabase
+                .from('threads')
+                .insert([payload])
+                .select();
+            } else {
+              result = await supabase
+                .from('threads')
+                .update(payload)
+                .eq('id', currentCloudId)
+                .select();
+            }
+
+            const {
+              data,
+              error
+            } = result;
+
+            if (error) {
+              console.error(error);
+              showToast("Error saving", "error");
+            } else {
+              const row = data[0];
+              if (row && row.id) {
+                currentCloudId = row.id;
+                showToast("Saved to cloud", "success");
+              }
+            }
+
+            els.saveBtn.disabled = false;
+            els.saveBtn.textContent = "Save Cloud";
+          };
+
+          if (currentCloudId) {
+            openDialog({
+              title: "Save version",
+              message: "Overwrite current cloud version or save as new?",
+              buttons: [{
+                label: "Overwrite",
+                onClick: () => doSave(false)
+              }, {
+                label: "Save as New",
+                onClick: () => doSave(true)
+              }]
+            });
+          } else {
+            doSave(true);
+          }
+        };
+
+        // Init
+        els.title.oninput = saveLocalDraft;
+        els.concept.oninput = saveLocalDraft;
+        loadLocalDraft();
+        appInitialized = true;
+      };
+
+      const showScreen = (name) => {
+        [els.lockScreen, els.memeScreen, els.appScreen].forEach(el => el.classList.remove("screen--active"));
+        if (name === "lock") {
+          els.lockScreen.classList.add("screen--active");
+          document.body.style.overflow = "hidden";
+          els.loginPass.value = "";
+          setTimeout(() => els.loginEmail.focus(), 50);
+        } else if (name === "meme") {
+          els.memeScreen.classList.add("screen--active");
+          document.body.style.overflow = "hidden";
+        } else if (name === "app") {
+          els.appScreen.classList.add("screen--active");
+          document.body.style.overflow = "auto";
+          initApp(); // Initialize app on show
+        }
+      };
+
+      // --- Dialogs (Static) ---
+      const openDialog = (conf) => {
+        els.dialogTitle.textContent = conf.title;
+        els.dialogBody.innerHTML = conf.message;
+        els.dialogFooter.innerHTML = "";
+        conf.buttons.forEach(b => {
+          const btn = document.createElement("button");
+          btn.className = b.className || "btn btn-secondary";
+          btn.textContent = b.label;
+          btn.onclick = () => {
+            els.dialogBackdrop.classList.remove("cloud-modal-backdrop--open");
+            if (b.onClick) b.onClick();
+          };
+          els.dialogFooter.appendChild(btn);
+        });
+        els.dialogBackdrop.classList.add("cloud-modal-backdrop--open");
+      };
+
+      els.dialogClose.onclick = () => els.dialogBackdrop.classList.remove("cloud-modal-backdrop--open");
+      els.cloudClose.onclick = () => els.cloudBackdrop.classList.remove("cloud-modal-backdrop--open");
+
+      // --- Auth Logic ---
+      const handleLogin = async () => {
+        const email = els.loginEmail.value.trim();
+        const password = els.loginPass.value.trim();
+
+        if (!email || !password) {
+          return els.loginError.textContent = "Please enter email and password.";
+        }
+
+        els.loginBtn.disabled = true;
+        els.loginBtn.textContent = "Signing in...";
+        els.loginError.textContent = "";
+
+        const {
+          data,
+          error
+        } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+
+        els.loginBtn.disabled = false;
+        els.loginBtn.textContent = "Sign In";
+
+        if (error) {
+          // Show meme screen on error
+          showScreen("meme");
+          els.loginError.textContent = error.message;
+        } else {
+          showScreen("app");
+        }
+      };
+
+      const checkSession = async () => {
+        const {
+          data: {
+            session
+          }
+        } = await supabase.auth.getSession();
+        if (session) {
+          showScreen("app");
+        } else {
+          showScreen("lock");
+        }
+      };
+
+      els.loginBtn.onclick = handleLogin;
+      els.loginPass.onkeyup = (e) => e.key === "Enter" && handleLogin();
+      els.memeImg.onclick = () => showScreen("lock");
+
+      // Check session on load
+      checkSession();
+
+    });
+  </script>
 </body>
 </html>
