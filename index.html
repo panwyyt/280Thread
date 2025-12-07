@@ -828,7 +828,11 @@
       const LOCAL_STORAGE_KEY = "280thread_autosave";
 
       // Initialize Supabase
-      const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+      const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+        auth: {
+          persistSession: false
+        }
+      });
 
       // --- DOM Elements ---
       const els = {
